@@ -282,7 +282,10 @@
                             <ul class="dropdown-menu pull-right">
                                 <li><a asp-area="Identity" asp-page="Account/Manage/Index"><i class="material-icons">person</i>Profile</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a><i class="material-icons">exit</i>Logout</a></li>
+                                <li>
+                                    <a href="javascript:{}" class="hidden-mobile" onclick="document.getElementById('logoutForm').submit();"><i class="material-icons">exit_to_app</i>Logout</a>
+                                </li>
+                                <form asp-area="Identity" asp-page="Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new {area = ""})" method="post" id="logoutForm"></form>
                             </ul>
                         </div>
                     }
@@ -369,7 +372,7 @@
                     &copy; 2019 - 2020 <a href="https://qrobotics.eu">Quantum Robotics #14270</a>
                 </div>
                 <div class="version">
-                    <b>Version: </b> DEV BETA 1.1
+                    <b>Version: </b> DEV BETA 1.2
                 </div>
             </div>
             <!-- #Footer -->
