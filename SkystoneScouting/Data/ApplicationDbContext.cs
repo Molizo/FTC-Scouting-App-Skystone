@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SkystoneScouting.Models;
 
 namespace SkystoneScouting.Data
 {
@@ -9,5 +10,6 @@ namespace SkystoneScouting.Data
             : base(options)
         {
         }
+        public DbSet<SkystoneScouting.Models.Event> Event { get; set; }
     }
 }
