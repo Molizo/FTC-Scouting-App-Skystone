@@ -19,9 +19,8 @@
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
                         </span>
-                        <label asp-for="Input.Email"></label>
                         <div class="form-line">
-                            <input asp-for="Input.Email" class="form-control" autofocus>
+                            <input asp-for="Input.Email" class="form-control" autofocus placeholder="Email">
                         </div>
                         <span asp-validation-for="Input.Email" class="text-danger"></span>
                     </div>
@@ -29,28 +28,26 @@
                         <span class="input-group-addon">
                             <i class="material-icons">lock</i>
                         </span>
-
-                        <label asp-for="Input.Password"></label>
                         <div class="form-line">
-                            <input asp-for="Input.Password" class="form-control">
+                            <input asp-for="Input.Password" class="form-control" placeholder="Password">
                         </div>
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
                     <div class="row">
                         <div class="col-xs-8 p-t-5">
-                            <input asp-for="Input.RememberMe" type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
+                            <input asp-for="Input.RememberMe" type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-blue">
                             <label for="rememberme">Remember Me</label>
                         </div>
                         <div class="col-xs-4">
-                            <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
+                            <button class="btn btn-block bg-blue waves-effect" type="submit">SIGN IN</button>
                         </div>
                     </div>
                     <div class="row m-t-15 m-b--20">
                         <div class="col-xs-6">
-                            <a href="sign-up.html">Register Now!</a>
+                            <a asp-area="Identity" asp-page="/Account/Register">Register Now!</a>
                         </div>
                         <div class="col-xs-6 align-right">
-                            <a href="forgot-password.html">Forgot Password?</a>
+                            <a asp-area="Identity" asp-page="/Account/ForgotPassword">Forgot Password?</a>
                         </div>
                     </div>
                 </form>
