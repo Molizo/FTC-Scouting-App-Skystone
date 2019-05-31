@@ -53,7 +53,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand font-24" href="../../index.html">FTC Scouting App</a>
+                <a class="navbar-brand font-24" asp-page="/Index">FTC Scouting App</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -319,46 +319,47 @@
                     else
                     {
                         <li>
-                            <a asp-page="/Dashboard">
+                            <a asp-page="/Dashboard" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                 <i class="material-icons">dashboard</i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
                         <li class="header">Scouting</li>
                         <li>
-                            <a asp-page="/Events/Index">
+                            <a asp-page="/Events/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                 <i class="material-icons">event</i>
                                 <span>Events</span>
                             </a>
                         </li>
-                        <li>
-                            <a asp-page="/Schedule/Index">
-                                <i class="material-icons">schedule</i>
-                                <span>Schedule</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-page="/Teams/Index">
-                                <i class="material-icons">people</i>
-                                <span>Teams</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-page="/Matches/Index">
-                                <i class="material-icons">flag</i>
-                                <span>Matches</span>
-                            </a>
-                        </li>
-                        <li class="header">Statistics</li>
-                        <li>
-                            <a asp-page="/Statistics/Index">
-                                <i class="material-icons">insert_chart</i>
-                                <span>Statistics</span>
-                            </a>
-                        </li>
+                        @if (Context.Request.Query["EventID"].ToString() != String.Empty)
+                        {
+                            <li>
+                                <a asp-page="/Schedule/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                                    <i class="material-icons">schedule</i>
+                                    <span>Schedule</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-page="/Teams/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                                    <i class="material-icons">people</i>
+                                    <span>Teams</span>
+                                </a>
+                            </li>
+                            @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
+                            {
+                                <li>
+                                    <a asp-page="/Matches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                                        <i class="material-icons">flag</i>
+                                        <span>Matches</span>
+                                    </a>
+                                </li>
+                            }
+
+                        }
                     }
+                    <li class="header">Help</li>
                     <li>
-                        <a asp-page="/Docs">
+                        <a asp-page="/Docs" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                             <i class="material-icons">book</i>
                             <span>Documentation</span>
                         </a>

@@ -11059,3 +11059,23 @@ html.ie11 .dropdown-menu ul.menu li a {
 html.ie11 .bs-searchbox .form-control {
     width: 90%;
 }
+
+/* Visibility Helpers */
+
+@media only screen and (min-width:769px) {
+    .visible-mobile, .visible-tablet, .hidden-desktop {
+        display: none !important;
+    }
+}
+
+@media only screen and (min-width:480px) and (max-width:768px) {
+    .visible-mobile, .hidden-tablet, .visible-desktop {
+        display: none !important;
+    }
+}
+
+@media only screen and (max-width:479px) {
+    .hidden-mobile, .visible-tablet, .visible-desktop {
+        display: none !important;
+    }
+}

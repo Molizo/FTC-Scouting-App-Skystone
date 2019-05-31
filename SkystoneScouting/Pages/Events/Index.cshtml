@@ -33,13 +33,13 @@
                                 <th>
                                     EVENT NAME
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     START DATE
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     END DATE
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     VENUE ADDRESS
                                 </th>
                                 <th width="200px"></th>
@@ -52,21 +52,21 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => Event.Name)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.StartDate)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.EndDate)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.Address)
                                     </td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
                                                 <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
-                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
                                             </div>
                                         </div>
                                     </td>
@@ -95,13 +95,13 @@
                                 <th>
                                     EVENT NAME
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     START DATE
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     END DATE
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     VENUE ADDRESS
                                 </th>
                                 <th width="200px"></th>
@@ -114,21 +114,21 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => Event.Name)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.StartDate)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.EndDate)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.Address)
                                     </td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
                                                 <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
-                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
                                             </div>
                                         </div>
                                     </td>
@@ -157,13 +157,13 @@
                                 <th>
                                     EVENT NAME
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     START DATE
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     END DATE
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     VENUE ADDRESS
                                 </th>
                                 <th width="200px"></th>
@@ -176,21 +176,21 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => Event.Name)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.StartDate)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.EndDate)
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Html.DisplayFor(modelItem => Event.Address)
                                     </td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
                                                 <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
-                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
                                             </div>
                                         </div>
                                     </td>
@@ -208,17 +208,17 @@
 {
     <div class="row clearfix">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="info-box bg-blue hover-expand-effect" style="width:300px;">
-                    <div class="icon">
-                        <i class="material-icons">info</i>
-                    </div>
-                    <div class="content">
-                        <div class="text">Information</div>
-                        <div class="number">
-                            No events
-                        </div>
+            <div class="info-box bg-blue hover-expand-effect" style="width:300px;">
+                <div class="icon">
+                    <i class="material-icons">info</i>
+                </div>
+                <div class="content">
+                    <div class="text">Information</div>
+                    <div class="number">
+                        No events
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 }
