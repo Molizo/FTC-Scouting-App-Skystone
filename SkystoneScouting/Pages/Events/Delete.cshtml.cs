@@ -12,24 +12,38 @@ namespace SkystoneScouting.Pages.Events
 {
     public class DeleteModel : PageModel
     {
+        #region Private Fields
+
         private readonly SkystoneScouting.Data.ApplicationDbContext _context;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public DeleteModel(SkystoneScouting.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
         [BindProperty]
         public Event Event { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public async Task<IActionResult> OnGetAsync(string EventID)
         {
-            if (id == null)
+            if (EventID == null)
             {
                 return NotFound();
             }
 
-            Event = await _context.Event.FirstOrDefaultAsync(m => m.ID == id);
+            Event = await _context.Event.FirstOrDefaultAsync(m => m.ID == EventID);
 
             if (Event == null)
             {
@@ -38,14 +52,14 @@ namespace SkystoneScouting.Pages.Events
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        public async Task<IActionResult> OnPostAsync(string EventID)
         {
-            if (id == null)
+            if (EventID == null)
             {
                 return NotFound();
             }
 
-            Event = await _context.Event.FindAsync(id);
+            Event = await _context.Event.FindAsync(EventID);
 
             if (Event != null)
             {
@@ -55,5 +69,7 @@ namespace SkystoneScouting.Pages.Events
 
             return RedirectToPage("./Index");
         }
+
+        #endregion Public Methods
     }
 }

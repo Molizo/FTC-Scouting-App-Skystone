@@ -2,170 +2,226 @@
 @model SkystoneScouting.Pages.Events.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Events";
 }
 
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="header">
-                <h2>Current events</h2>
-            </div>
-            <div class="body table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                EVENT NAME
-                            </th>
-                            <th>
-                                START DATE
-                            </th>
-                            <th>
-                                END DATE
-                            </th>
-                            <th>
-                                VENUE ADDRESS
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Event)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StartDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EndDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
-                                </td>
-                                <td>
-                                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<div class="block-header">
+    <h2 style="font-weight:bolder;">
+        Events list
+    </h2>
+    <ol class="breadcrumb">
+        <li class="active">
+            <a asp-page="Index">
+                <i class="material-icons">event</i> Events
+            </a>
+        </li>
+    </ol>
 </div>
 
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="header">
-                <h2>Upcoming events</h2>
-            </div>
-            <div class="body table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                EVENT NAME
-                            </th>
-                            <th>
-                                START DATE
-                            </th>
-                            <th>
-                                END DATE
-                            </th>
-                            <th>
-                                VENUE ADDRESS
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Event)
-                        {
+@if (Model.CurrentEvents.Count != 0)
+{
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Current events</h2>
+                </div>
+                <div class="body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StartDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EndDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
-                                </td>
-                                <td>
-                                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                                </td>
+                                <th>
+                                    EVENT NAME
+                                </th>
+                                <th>
+                                    START DATE
+                                </th>
+                                <th>
+                                    END DATE
+                                </th>
+                                <th>
+                                    VENUE ADDRESS
+                                </th>
+                                <th width="200px"></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var Event in Model.CurrentEvents)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.StartDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.EndDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.Address)
+                                    </td>
+                                    <td>
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
 
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="header">
-                <h2>Past events</h2>
-            </div>
-            <div class="body table-responsive">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>
-                                EVENT NAME
-                            </th>
-                            <th>
-                                START DATE
-                            </th>
-                            <th>
-                                END DATE
-                            </th>
-                            <th>
-                                VENUE ADDRESS
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.Event)
-                        {
+@if (Model.UpcomingEvents.Count != 0)
+{
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Upcoming events</h2>
+                </div>
+                <div class="body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StartDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.EndDate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Address)
-                                </td>
-                                <td>
-                                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                                </td>
+                                <th>
+                                    EVENT NAME
+                                </th>
+                                <th>
+                                    START DATE
+                                </th>
+                                <th>
+                                    END DATE
+                                </th>
+                                <th>
+                                    VENUE ADDRESS
+                                </th>
+                                <th width="200px"></th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (var Event in Model.UpcomingEvents)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.StartDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.EndDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.Address)
+                                    </td>
+                                    <td>
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
+
+@if (Model.PastEvents.Count != 0)
+{
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Past events</h2>
+                </div>
+                <div class="body table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    EVENT NAME
+                                </th>
+                                <th>
+                                    START DATE
+                                </th>
+                                <th>
+                                    END DATE
+                                </th>
+                                <th>
+                                    VENUE ADDRESS
+                                </th>
+                                <th width="200px"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var Event in Model.PastEvents)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.StartDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.EndDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => Event.Address)
+                                    </td>
+                                    <td>
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model.AuthorizedEvents.Count == 0)
+{
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="info-box bg-blue hover-expand-effect" style="width:300px;">
+                    <div class="icon">
+                        <i class="material-icons">info</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Information</div>
+                        <div class="number">
+                            No events
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+}
 
 <a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position:fixed; right:35px; bottom:35px;" asp-page="Create">
     <i class="material-icons">add</i>
