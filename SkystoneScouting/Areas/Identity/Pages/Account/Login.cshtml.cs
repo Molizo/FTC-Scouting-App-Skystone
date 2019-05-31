@@ -15,8 +15,14 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LoginModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        #region Private Fields
+
         private readonly ILogger<LoginModel> _logger;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
         {
@@ -24,29 +30,23 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        [BindProperty]
-        public InputModel Input { get; set; }
+        #endregion Public Constructors
 
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
-
-        public string ReturnUrl { get; set; }
+        #region Public Properties
 
         [TempData]
         public string ErrorMessage { get; set; }
 
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-            [Required]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
+        [BindProperty]
+        public InputModel Input { get; set; }
 
-            [Display(Name = "Remember me?")]
-            public bool RememberMe { get; set; }
-        }
+        public string ReturnUrl { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -98,5 +98,29 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
             // If we got this far, something failed, redisplay form
             return Page();
         }
+
+        #endregion Public Methods
+
+        #region Public Classes
+
+        public class InputModel
+        {
+            #region Public Properties
+
+            [Required]
+            [EmailAddress]
+            public string Email { get; set; }
+
+            [Required]
+            [DataType(DataType.Password)]
+            public string Password { get; set; }
+
+            [Display(Name = "Remember me?")]
+            public bool RememberMe { get; set; }
+
+            #endregion Public Properties
+        }
+
+        #endregion Public Classes
     }
 }
