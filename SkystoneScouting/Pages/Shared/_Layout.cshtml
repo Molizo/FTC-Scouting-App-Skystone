@@ -258,7 +258,7 @@
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <strong>@User.Identity.Name</strong>
+                            <strong>Hi, @User.Identity.Name</strong>
                         }
                         else
                         {
@@ -268,7 +268,7 @@
                     <div class="email">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <div>example@domain.com</div>
+                            <div>@UserManager.GetEmailAsync(UserManager.GetUserAsync(User).Result).Result</div>
                         }
                         else
                         {
@@ -373,7 +373,7 @@
                     &copy; 2019 - 2020 <a href="https://qrobotics.eu">Quantum Robotics #14270</a>
                 </div>
                 <div class="version">
-                    <b>Version: </b> DEV BETA 1.4
+                    <b>Version: </b> DEV BETA 1.5
                 </div>
             </div>
             <!-- #Footer -->
