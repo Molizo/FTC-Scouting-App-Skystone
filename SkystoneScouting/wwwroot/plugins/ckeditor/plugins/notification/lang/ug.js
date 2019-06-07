@@ -1,1 +1,1 @@
-CKEDITOR.plugins.setLang("notification","ug",{closed:"ئوقتۇرۇش تاقالدى."});
+CKEDITOR.plugins.setLang("notification", "ug", { closed: "ئوقتۇرۇش تاقالدى." });
