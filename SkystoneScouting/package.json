@@ -3,7 +3,7 @@
   "name": "ftc-scouting-app-skystone",
   "private": true,
   "dependencies": {
-    "autosize": "3.0.17",
+    "autosize": "4.0.2",
     "bootstrap": "3.4.1",
     "bootstrap-colorpicker": "3.1.2",
     "bootstrap-datepicker": "1.9.0",
