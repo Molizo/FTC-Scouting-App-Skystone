@@ -349,5 +349,4 @@
 			$('[data-notify-position="'+command+'"]').find('[data-notify="dismiss"]').trigger('click');
 		}
 	};
-
 }));

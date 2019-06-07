@@ -1,1 +1,1 @@
-CKEDITOR.plugins.setLang("notification","id",{closed:"Pemberitahuan ditutup"});
+CKEDITOR.plugins.setLang("notification", "id", { closed: "Pemberitahuan ditutup" });

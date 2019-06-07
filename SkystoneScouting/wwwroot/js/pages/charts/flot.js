@@ -148,21 +148,21 @@ $(function () {
         { data: oilprices, label: 'Oil price ($)', color: '#E91E63' },
         { data: exchangerates, label: 'USD/EUR exchange rate', yaxis: 2, color: '#00BCD4' }
     ], {
-        xaxes: [{ mode: 'time' }],
-        yaxes: [{ min: 0 }, {
-            alignTicksWithAxis: 1,
-            position: 'right',
-            tickFormatter: euroFormatter
-        }],
-        grid: {
-            hoverable: true,
-            autoHighlight: false,
-            borderColor: '#f3f3f3',
-            borderWidth: 1,
-            tickColor: '#f3f3f3'
-        },
-        legend: { position: 'sw' }
-    });
+            xaxes: [{ mode: 'time' }],
+            yaxes: [{ min: 0 }, {
+                alignTicksWithAxis: 1,
+                position: 'right',
+                tickFormatter: euroFormatter
+            }],
+            grid: {
+                hoverable: true,
+                autoHighlight: false,
+                borderColor: '#f3f3f3',
+                borderWidth: 1,
+                tickColor: '#f3f3f3'
+            },
+            legend: { position: 'sw' }
+        });
     //====================================================================================================
 
     //BAR CHART ==========================================================================================
