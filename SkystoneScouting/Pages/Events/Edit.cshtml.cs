@@ -35,10 +35,18 @@ namespace SkystoneScouting.Pages.Events
 
         #endregion Public Properties
 
+        #region Private Properties
+
+        private string CurrentEventID { get; set; }
+
+        #endregion Private Properties
+
         #region Public Methods
 
         public async Task<IActionResult> OnGetAsync(string EventID)
         {
+            if (!User.Identity.IsAuthenticated)
+                throw new Exception("User not allowed to edit event due to not being authenitcated.");
             if (EventID == null)
             {
                 return NotFound();
