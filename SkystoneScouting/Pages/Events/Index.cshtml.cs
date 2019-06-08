@@ -53,8 +53,20 @@ namespace SkystoneScouting.Pages.Events
             PastEvents = new List<Event>();
             foreach (var Event in AllEvents)
             {
-                if (Event.AllowedUsers == User.Identity.Name)
-                    AuthorizedEvents.Add(Event);
+                if (Event.AllowedUsers != String.Empty)
+                {
+                    Console.WriteLine("Hi!");
+                    try
+                    {
+                        if (Event.AllowedUsers.Split(',').ToList().Contains(User.Identity.Name))
+                            AuthorizedEvents.Add(Event);
+                    }
+                    catch
+                    {
+                        if (Event.AllowedUsers == User.Identity.Name)
+                            AuthorizedEvents.Add(Event);
+                    }
+                }
             }
             foreach (var Event in AuthorizedEvents)
             {
