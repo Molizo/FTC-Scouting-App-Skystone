@@ -103,8 +103,8 @@
     <script>
         $(function () {
             $('.datepicker').bootstrapMaterialDatePicker({
-                time: false,
-                format: 'dddd, D MMMM YYYY'
+                time: true,
+                format: 'MM/DD/YYYY HH:mm:ss A'
             });
             $('#date-end').bootstrapMaterialDatePicker({ weekStart: 0 });
             $('#date-start').bootstrapMaterialDatePicker({ weekStart: 0 }).on('change', function (e, date) {

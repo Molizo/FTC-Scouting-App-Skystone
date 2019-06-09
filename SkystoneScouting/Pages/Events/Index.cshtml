@@ -33,10 +33,10 @@
                                 <th>
                                     EVENT NAME
                                 </th>
-                                <th class="hidden-mobile hidden-tablet">
+                                <th class="hidden-mobile hidden-tablet" width="200px">
                                     START DATE
                                 </th>
-                                <th class="hidden-mobile hidden-tablet">
+                                <th class="hidden-mobile hidden-tablet" width="200px">
                                     END DATE
                                 </th>
                                 <th class="hidden-mobile hidden-tablet">
@@ -53,10 +53,10 @@
                                         @Event.Name
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @Event.StartDate.ToShortDateString()
+                                        @Event.StartDate.ToString("dddd, d MMMM yyyy")
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @Event.EndDate.ToShortDateString()
+                                        @Event.EndDate.ToString("dddd, d MMMM yyyy")
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
                                         @Event.Address
@@ -95,10 +95,10 @@
                                 <th>
                                     EVENT NAME
                                 </th>
-                                <th class="hidden-mobile hidden-tablet">
+                                <th class="hidden-mobile hidden-tablet" width="200px">
                                     START DATE
                                 </th>
-                                <th class="hidden-mobile hidden-tablet">
+                                <th class="hidden-mobile hidden-tablet" width="200px">
                                     END DATE
                                 </th>
                                 <th class="hidden-mobile hidden-tablet">
@@ -110,29 +110,29 @@
                         <tbody>
                             @foreach (var Event in Model.UpcomingEvents)
                             {
-                            <tr>
-                                <td>
-                                    @Event.Name
-                                </td>
-                                <td class="hidden-mobile hidden-tablet">
-                                    @Event.StartDate.ToShortDateString()
-                                </td>
-                                <td class="hidden-mobile hidden-tablet">
-                                    @Event.EndDate.ToShortDateString()
-                                </td>
-                                <td class="hidden-mobile hidden-tablet">
-                                    @Event.Address
-                                </td>
-                                <td>
-                                    <div class="btn-toolbar">
-                                        <div class="btn-group">
-                                            <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
-                                            <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
-                                            <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
+                                <tr>
+                                    <td>
+                                        @Event.Name
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @Event.StartDate.ToString("dddd, d MMMM yyyy")
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @Event.EndDate.ToString("dddd, d MMMM yyyy")
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @Event.Address
+                                    </td>
+                                    <td>
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
@@ -157,10 +157,10 @@
                                 <th>
                                     EVENT NAME
                                 </th>
-                                <th class="hidden-mobile hidden-tablet">
+                                <th class="hidden-mobile hidden-tablet" width="200px">
                                     START DATE
                                 </th>
-                                <th class="hidden-mobile hidden-tablet">
+                                <th class="hidden-mobile hidden-tablet" width="200px">
                                     END DATE
                                 </th>
                                 <th class="hidden-mobile hidden-tablet">
@@ -172,29 +172,29 @@
                         <tbody>
                             @foreach (var Event in Model.PastEvents)
                             {
-                            <tr>
-                                <td>
-                                    @Event.Name
-                                </td>
-                                <td class="hidden-mobile hidden-tablet">
-                                    @Event.StartDate.ToShortDateString()
-                                </td>
-                                <td class="hidden-mobile hidden-tablet">
-                                    @Event.EndDate.ToShortDateString()
-                                </td>
-                                <td class="hidden-mobile hidden-tablet">
-                                    @Event.Address
-                                </td>
-                                <td>
-                                    <div class="btn-toolbar">
-                                        <div class="btn-group">
-                                            <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
-                                            <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
-                                            <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
+                                <tr>
+                                    <td>
+                                        @Event.Name
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @Event.StartDate.ToString("dddd, d MMMM yyyy")
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @Event.EndDate.ToString("dddd, d MMMM yyyy")
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @Event.Address
+                                    </td>
+                                    <td>
+                                        <div class="btn-toolbar">
+                                            <div class="btn-group">
+                                                <a asp-page="/Dashboard" asp-route-EventID="@Event.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Delete" asp-route-EventID="@Event.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>

@@ -35,12 +35,6 @@ namespace SkystoneScouting.Pages.Events
 
         #endregion Public Properties
 
-        #region Private Properties
-
-        private string CurrentEventID { get; set; }
-
-        #endregion Private Properties
-
         #region Public Methods
 
         public async Task<IActionResult> OnGetAsync(string EventID)
@@ -67,7 +61,7 @@ namespace SkystoneScouting.Pages.Events
             {
                 return Page();
             }
-
+            //Fixes for the allowed user tags so no one user can remove themselves from the event
             if (Event.AllowedUsers != String.Empty)
             {
                 try
