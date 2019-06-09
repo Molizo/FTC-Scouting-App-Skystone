@@ -40,6 +40,7 @@ namespace SkystoneScouting.Pages.Events
         {
             if (!User.Identity.IsAuthenticated)
                 throw new Exception("User not allowed to create event due to not being authenitcated.");
+
             return Page();
         }
 
@@ -50,7 +51,11 @@ namespace SkystoneScouting.Pages.Events
                 return Page();
             }
 
-            Event.AllowedUsers = User.Identity.Name;
+            if (Event.AllowedUsers != String.Empty)
+                Event.AllowedUsers = User.Identity.Name + "," + Event.AllowedUsers;
+            else
+                Event.AllowedUsers = User.Identity.Name;
+
             _context.Event.Add(Event);
             await _context.SaveChangesAsync();
 

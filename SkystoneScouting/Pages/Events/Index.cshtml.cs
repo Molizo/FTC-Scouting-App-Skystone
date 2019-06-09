@@ -55,7 +55,6 @@ namespace SkystoneScouting.Pages.Events
             {
                 if (Event.AllowedUsers != String.Empty)
                 {
-                    Console.WriteLine("Hi!");
                     try
                     {
                         if (Event.AllowedUsers.Split(',').ToList().Contains(User.Identity.Name))

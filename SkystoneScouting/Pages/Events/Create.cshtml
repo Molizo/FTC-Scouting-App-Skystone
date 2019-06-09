@@ -6,8 +6,11 @@
 }
 
 @section Styles{
-<!-- Bootstrap Material Datetime Picker Css -->
-<link href="/vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!--Bootstrap tags input CSS-->
+    <link href="/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet">
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="/vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
 }
 
 <div class="block-header">
@@ -71,6 +74,14 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Who will be scouting?</h2>
+                            <div class="form-group demo-tagsinput-area">
+                                <div class="form-line">
+                                    <input asp-for="Event.AllowedUsers" type="text" data-role="tagsinput" class="form-control">
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-sm-1">
                             <button type="submit" class="btn btn-primary waves-effect">ADD EVENT</button>
                         </div>
@@ -84,21 +95,23 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
-<!-- Moment Plugin Js -->
-<script src="/vendor/moment/moment.js"></script>
-<!-- Bootstrap Material Datetime Picker Plugin Js -->
-<script src="/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
-<!-- Datetime picker config-->
-<script>
-    $(function () {
-        $('.datepicker').bootstrapMaterialDatePicker({
-            time: false,
-            format: 'dddd, D MMMM YYYY'
+    <!--Bootstrap tags input JS-->
+    <script src="/vendor/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script>
+    <!-- Moment Plugin Js -->
+    <script src="/vendor/moment/moment.js"></script>
+    <!-- Bootstrap Material Datetime Picker Plugin Js -->
+    <script src="/vendor/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <!-- Datetime picker config-->
+    <script>
+        $(function () {
+            $('.datepicker').bootstrapMaterialDatePicker({
+                time: false,
+                format: 'dddd, D MMMM YYYY'
+            });
+            $('#date-end').bootstrapMaterialDatePicker({ weekStart: 0 });
+            $('#date-start').bootstrapMaterialDatePicker({ weekStart: 0 }).on('change', function (e, date) {
+                $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+            });
         });
-        $('#date-end').bootstrapMaterialDatePicker({ weekStart: 0 });
-        $('#date-start').bootstrapMaterialDatePicker({ weekStart: 0 }).on('change', function (e, date) {
-            $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
-        });
-    });
-</script>
+    </script>
 }

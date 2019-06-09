@@ -68,6 +68,22 @@ namespace SkystoneScouting.Pages.Events
                 return Page();
             }
 
+            if (Event.AllowedUsers != String.Empty)
+            {
+                try
+                {
+                    if (!Event.AllowedUsers.Split(',').ToList().Contains(User.Identity.Name))
+                        Event.AllowedUsers = User.Identity.Name + "," + Event.AllowedUsers;
+                }
+                catch
+                {
+                    if (Event.AllowedUsers != User.Identity.Name)
+                        Event.AllowedUsers = User.Identity.Name + "," + Event.AllowedUsers;
+                }
+            }
+            else
+                Event.AllowedUsers = User.Identity.Name;
+
             _context.Attach(Event).State = EntityState.Modified;
 
             try
