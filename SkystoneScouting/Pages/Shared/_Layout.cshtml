@@ -256,30 +256,29 @@
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
-            <div class="user-info">
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        @if (User.Identity.IsAuthenticated)
-                        {
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="user-info" style="height:135px; padding: 13px 15px 12px 15px;">
+                    <div class="image">
+                        @{
+                            string GravatarID = SkystoneScouting.Services.CalculateHashes.CalculateMD5Hash(
+                                UserManager.GetEmailAsync(
+                                    UserManager.GetUserAsync(User).Result)
+                                .Result
+                                .TrimStart(' ')
+                                .TrimEnd(' ')
+                                .ToLower());
+                        }
+                        <img src="https://www.gravatar.com/avatar/@GravatarID?d=retro&r=x&s=48" width="48" height="48" alt="User" />
+                    </div>
+                    <div class="info-container">
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
                             <strong>Hi, @User.Identity.Name</strong>
-                        }
-                        else
-                        {
-                            <strong>Welcome</strong>
-                        }
-                    </div>
-                    <div class="email">
-                        @if (User.Identity.IsAuthenticated)
-                        {
+                        </div>
+                        <div class="email">
                             <div>@UserManager.GetEmailAsync(UserManager.GetUserAsync(User).Result).Result</div>
-                        }
-                        else
-                        {
-                            <div>Please login</div>
-                        }
-                    </div>
-                    @if (User.Identity.IsAuthenticated)
-                    {
+                        </div>
                         <div class="btn-group user-helper-dropdown">
                             <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                             <ul class="dropdown-menu pull-right">
@@ -291,9 +290,23 @@
                                 <form asp-area="Identity" asp-page="Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new {area = ""})" method="post" id="logoutForm"></form>
                             </ul>
                         </div>
-                    }
+                    </div>
                 </div>
-            </div>
+            }
+            else
+            {
+                <div class="user-info">
+                    <div class="info-container">
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                            <strong>Welcome</strong>
+                        </div>
+                        <div class="email">
+                            <div>Please login</div>
+                        </div>
+                    </div>
+                </div>
+            }
             <!-- #User Info -->
             <!-- Menu -->
             <div class="menu">
