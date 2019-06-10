@@ -10113,7 +10113,7 @@ fieldset[disabled] .form-control {
     transition: all 0.5s;
     font-family: "Roboto", sans-serif;
     background: #fdfdfd;
-    width: 275px;
+    width: 300px;
     overflow: hidden;
     display: inline-block;
     height: calc(100vh - 70px);
