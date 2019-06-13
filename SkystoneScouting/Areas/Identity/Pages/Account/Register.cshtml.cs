@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.IO;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account
 {
@@ -74,8 +75,10 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
                         values: new { userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    string ConfirmEmailTemplate = System.IO.File.ReadAllText(@"emailConfirmation.html");
+                    string ConfirmEmailContent = ConfirmEmailTemplate.Replace("EMAIL TOKEN LINK HERE", HtmlEncoder.Default.Encode(callbackUrl));
+
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email", ConfirmEmailContent);
 
                     // This is so the user doesn't get automatically signed in to the app upon registering
                     // await _signInManager.SignInAsync(user, isPersistent: false);
