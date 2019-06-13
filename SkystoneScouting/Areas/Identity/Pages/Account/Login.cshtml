@@ -8,13 +8,14 @@
 <body class="login-page">
     <div class="login-box">
         <div class="logo">
-            <a href="javascript:void(0);">FTC Scouting App</a>
+            <a asp-area="" asp-page="/Index">FTC Scouting App</a>
             <small>Skystone Edition</small>
         </div>
         <div class="card">
             <div class="body">
                 <form method="post">
                     <div class="msg">Sign in to start your session</div>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>
