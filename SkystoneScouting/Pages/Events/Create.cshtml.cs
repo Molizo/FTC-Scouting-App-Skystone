@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
+using SkystoneScouting.Services;
 
 namespace SkystoneScouting.Pages.Events
 {

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
+using SkystoneScouting.Services;
 
 namespace SkystoneScouting.Pages.Events
 {
@@ -32,6 +33,8 @@ namespace SkystoneScouting.Pages.Events
         [BindProperty]
         public Event Event { get; set; }
 
+        public string EventID { get; set; }
+
         #endregion Public Properties
 
         #region Public Methods
@@ -42,6 +45,11 @@ namespace SkystoneScouting.Pages.Events
             {
                 return NotFound();
             }
+
+            if (!User.Identity.IsAuthenticated)
+                throw new Exception("User not authenticated, therefore proof of authorisation is lacking and the event can not be deleted");
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                throw new Exception("User not authorized to delete event");
 
             Event = await _context.Event.FirstOrDefaultAsync(m => m.ID == EventID);
 

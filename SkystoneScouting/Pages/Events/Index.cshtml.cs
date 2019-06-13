@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
 using Microsoft.AspNetCore.Identity;
+using SkystoneScouting.Services;
 
 namespace SkystoneScouting.Pages.Events
 {
@@ -53,19 +54,8 @@ namespace SkystoneScouting.Pages.Events
             PastEvents = new List<Event>();
             foreach (var Event in AllEvents)
             {
-                if (Event.AllowedUsers != String.Empty)
-                {
-                    try
-                    {
-                        if (Event.AllowedUsers.Split(',').ToList().Contains(User.Identity.Name))
-                            AuthorizedEvents.Add(Event);
-                    }
-                    catch
-                    {
-                        if (Event.AllowedUsers == User.Identity.Name)
-                            AuthorizedEvents.Add(Event);
-                    }
-                }
+                if (AuthorizationCheck.Event(_context, Event.ID, User.Identity.Name))
+                    AuthorizedEvents.Add(Event);
             }
             foreach (var Event in AuthorizedEvents)
             {

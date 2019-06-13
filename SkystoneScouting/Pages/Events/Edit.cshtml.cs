@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
+using SkystoneScouting.Services;
 
 namespace SkystoneScouting.Pages.Events
 {
@@ -39,8 +40,12 @@ namespace SkystoneScouting.Pages.Events
 
         public async Task<IActionResult> OnGetAsync(string EventID)
         {
+            // Authorization checks
             if (!User.Identity.IsAuthenticated)
                 throw new Exception("User not allowed to edit event due to not being authenitcated.");
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                throw new Exception("User not authorized to edit this event.");
+
             if (EventID == null)
             {
                 return NotFound();
@@ -61,6 +66,7 @@ namespace SkystoneScouting.Pages.Events
             {
                 return Page();
             }
+
             //Fixes for the allowed user tags so no one user can remove themselves from the event
             if (Event.AllowedUsers != String.Empty)
             {
