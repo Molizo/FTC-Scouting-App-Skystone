@@ -6,6 +6,18 @@ jobs:
    steps:
      - checkout
      - run:
+         name: Install Sentry CLI
+         command:
+           curl -sL https://sentry.io/get-cli/ | bash
+     - run:
+         name: Make Sentry config script runnable
+         command:
+           chmod u+x sentry-release-config
+     - run:
+         name: Run Sentry release configurator
+         command:
+           ./sentry-release-config
+     - run:
          name: Restore packages
          command:
            dotnet restore
