@@ -8,6 +8,7 @@
 
     "Release": {
       "BumpMinor": true,
+      "ResetPatch": true,
       "ResetLabel": true
     }
   }
