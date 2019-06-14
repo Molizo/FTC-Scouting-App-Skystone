@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 
 namespace SkystoneScouting
 {
@@ -9,7 +10,8 @@ namespace SkystoneScouting
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseSentry("https://21c3e8d7321848eab851f9b7af4a2d0f@sentry.io/1482560");
 
         public static void Main(string[] args)
         {

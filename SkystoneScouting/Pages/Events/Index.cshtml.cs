@@ -9,6 +9,7 @@ using SkystoneScouting.Data;
 using SkystoneScouting.Models;
 using Microsoft.AspNetCore.Identity;
 using SkystoneScouting.Services;
+using System.Diagnostics;
 
 namespace SkystoneScouting.Pages.Events
 {
@@ -31,7 +32,9 @@ namespace SkystoneScouting.Pages.Events
 
         #region Public Properties
 
+        //Sublists of the events
         public IList<Event> AllEvents { get; set; }
+
         public IList<Event> AuthorizedEvents { get; set; }
         public IList<Event> CurrentEvents { get; set; }
         public IList<Event> PastEvents { get; set; }
@@ -43,6 +46,8 @@ namespace SkystoneScouting.Pages.Events
 
         public async Task OnGetAsync()
         {
+            Trace.TraceInformation("Loaded event page");
+
             if (!User.Identity.IsAuthenticated)
             {
                 throw new Exception("Permission error - This session is not authorised to access this area");

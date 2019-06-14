@@ -1,9 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <Version>1.9.3-DEV008</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +20,14 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="MSBump" Version="2.3.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="SendGrid" Version="9.11.0" />
+    <PackageReference Include="Sentry" Version="1.2.0" />
+    <PackageReference Include="Sentry.AspNetCore" Version="1.2.0" />
+    <PackageReference Include="SharpRaven" Version="2.4.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,4 +41,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties _1msbump__JsonSchema="msbump" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
