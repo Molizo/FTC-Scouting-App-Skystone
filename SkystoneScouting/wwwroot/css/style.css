@@ -10445,6 +10445,10 @@ fieldset[disabled] .form-control {
 .login-page {
     /*background-color: #00BCD4;*/
     background-image: url("../media/login-background.png");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;
@@ -10487,6 +10491,10 @@ fieldset[disabled] .form-control {
 .signup-page {
     /*background-color: #00BCD4;*/
     background-image: url("../media/login-background.png");
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;
