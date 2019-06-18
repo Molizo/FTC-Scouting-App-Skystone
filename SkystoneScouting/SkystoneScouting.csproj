@@ -6,6 +6,9 @@
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
     <Version>1.10.4-DEV0009</Version>
+    <Authors>Mihnea Theodor Visoiu</Authors>
+    <Company>Quantum Robotics</Company>
+    <Product>FTC Skystone Scouting App</Product>
   </PropertyGroup>
 
   <ItemGroup>
