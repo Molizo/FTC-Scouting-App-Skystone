@@ -1,5 +1,8 @@
 # Get a version number
-VERSION=$(sentry-cli releases propose-version)
+VERSION=$(grep 'Version' SkystoneScouting/SkystoneScouting.csproj | awk -F">" '{print $2}' | awk -F"<" '{print $1}')
+
+# Print version number to console
+echo Adding release $VERSION to Sentry
 
 # Create a release
 sentry-cli releases new -p ${SENTRY_PROJECT_NAME} $VERSION
