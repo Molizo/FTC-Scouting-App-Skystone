@@ -1,0 +1,79 @@
+﻿@page
+@model SkystoneScouting.Pages.Teams.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Team</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Team.AvgPTS" class="control-label"></label>
+                <input asp-for="Team.AvgPTS" class="form-control" />
+                <span asp-validation-for="Team.AvgPTS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.CCWM" class="control-label"></label>
+                <input asp-for="Team.CCWM" class="form-control" />
+                <span asp-validation-for="Team.CCWM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.Description" class="control-label"></label>
+                <textarea asp-for="Team.Description" class="form-control"></textarea>
+                <span asp-validation-for="Team.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.DPR" class="control-label"></label>
+                <input asp-for="Team.DPR" class="form-control" />
+                <span asp-validation-for="Team.DPR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.EventID" class="control-label"></label>
+                <input asp-for="Team.EventID" class="form-control" />
+                <span asp-validation-for="Team.EventID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.ExpPTS" class="control-label"></label>
+                <input asp-for="Team.ExpPTS" class="form-control" />
+                <span asp-validation-for="Team.ExpPTS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.OPR" class="control-label"></label>
+                <input asp-for="Team.OPR" class="form-control" />
+                <span asp-validation-for="Team.OPR" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.TeamAddress" class="control-label"></label>
+                <input asp-for="Team.TeamAddress" class="form-control" />
+                <span asp-validation-for="Team.TeamAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.TeamName" class="control-label"></label>
+                <input asp-for="Team.TeamName" class="form-control" />
+                <span asp-validation-for="Team.TeamName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Team.TeamNumber" class="control-label"></label>
+                <input asp-for="Team.TeamNumber" class="form-control" />
+                <span asp-validation-for="Team.TeamNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
