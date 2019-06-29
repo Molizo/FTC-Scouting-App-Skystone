@@ -14,7 +14,7 @@
     "@adactive/bootstrap-tagsinput": "0.8.2",
     "chartjs": "0.3.24",
     "chosen": "0.0.2",
-    "ckeditor": "4.11.4",
+    "ckeditor": "4.12.0",
     "dropzone": "5.5.1",
     "editable-table": "1.0.3",
     "flot-charts": "0.8.3",
@@ -37,9 +37,9 @@
     "multi-select": "0.3.4",
     "nestable": "0.2.0",
     "node-waves": "0.7.6",
-    "nouislider": "13.1.5",
+    "nouislider": "14.0.1",
     "raphael": "2.2.8",
     "sweetalert": "2.1.2",
-    "tinymce": "5.0.8"
+    "tinymce": "5.0.9"
   }
 }
