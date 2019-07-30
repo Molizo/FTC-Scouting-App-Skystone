@@ -33,6 +33,18 @@ namespace SkystoneScouting.Services
             return false;
         }
 
+        public static bool Team(SkystoneScouting.Data.ApplicationDbContext context, string TeamID, string Username)
+        {
+            IList<Team> Teams = new List<Team>();
+            Teams = context.Team.ToList();
+            foreach (var Team in Teams)
+            {
+                if (Team.ID == TeamID && AuthorizationCheck.Event(context, Team.EventID, Username))
+                    return true;
+            }
+            return false;
+        }
+
         #endregion Public Methods
     }
 }

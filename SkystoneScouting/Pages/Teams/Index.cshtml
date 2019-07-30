@@ -8,83 +8,84 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" asp-route-EventID="@Model.eventID">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].AvgPTS)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].AvgPTS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].CCWM)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].CCWM)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].Description)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].DPR)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].DPR)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].EventID)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].EventID)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].ExpPTS)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].ExpPTS)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].OPR)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].OPR)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].TeamAddress)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].TeamAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].TeamName)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].TeamName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Team[0].TeamNumber)
+                @Html.DisplayNameFor(model => model.AuthorizedTeams[0].TeamNumber)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Team) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.AvgPTS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CCWM)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DPR)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpPTS)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OPR)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TeamAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TeamName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TeamNumber)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.AuthorizedTeams)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AvgPTS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CCWM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DPR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpPTS)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OPR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TeamNumber)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

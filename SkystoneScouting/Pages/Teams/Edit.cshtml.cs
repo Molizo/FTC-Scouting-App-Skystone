@@ -13,17 +13,31 @@ namespace SkystoneScouting.Pages.Teams
 {
     public class EditModel : PageModel
     {
+        #region Private Fields
+
         private readonly SkystoneScouting.Data.ApplicationDbContext _context;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public EditModel(SkystoneScouting.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
         [BindProperty]
         public Team Team { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public async Task<IActionResult> OnGetAsync(string id)
         {
             if (id == null)
             {
@@ -67,9 +81,15 @@ namespace SkystoneScouting.Pages.Teams
             return RedirectToPage("./Index");
         }
 
-        private bool TeamExists(int id)
+        #endregion Public Methods
+
+        #region Private Methods
+
+        private bool TeamExists(string id)
         {
             return _context.Team.Any(e => e.ID == id);
         }
+
+        #endregion Private Methods
     }
 }

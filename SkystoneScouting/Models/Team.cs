@@ -31,7 +31,7 @@ namespace SkystoneScouting.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID { get; set; }
+        public string ID { get; set; }
 
         [Display(Name = "OPR")]
         public double OPR { get; set; }
