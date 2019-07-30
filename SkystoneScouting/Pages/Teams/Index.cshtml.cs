@@ -30,6 +30,7 @@ namespace SkystoneScouting.Pages.Teams
 
         #region Public Properties
 
+        public IList<Event> AllEvents { get; set; }
         public IList<Team> AllTeams { get; set; }
         public IList<Team> AuthorizedTeams { get; set; }
         public string eventID { get; set; }
@@ -44,13 +45,21 @@ namespace SkystoneScouting.Pages.Teams
         {
             eventID = EventID;
             AllTeams = await _context.Team.ToListAsync();
+            AllEvents = await _context.Event.ToListAsync();
             AuthorizedTeams = new List<Team>();
             NotScoutedTeams = new List<Team>();
             ScoutedTeams = new List<Team>();
             foreach (var Team in AllTeams)
             {
-                if (AuthorizationCheck.Team(_context, Team.ID, User.Identity.Name))
+                if (AuthorizationCheck.Team(_context, Team.ID, User.Identity.Name) && Team.EventID == EventID)
                     AuthorizedTeams.Add(Team);
+            }
+            foreach (var Team in AuthorizedTeams)
+            {
+                if (Team.ExpPTS == 0)
+                    NotScoutedTeams.Add(Team);
+                else
+                    ScoutedTeams.Add(Team);
             }
         }
 

@@ -7,17 +7,17 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkystoneScouting.Data;
 
-namespace SkystoneScouting.Data.Migrations
+namespace SkystoneScouting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190622111814_AddedTeamModel")]
-    partial class AddedTeamModel
+    [Migration("20190730135245_CompactedMigrations")]
+    partial class CompactedMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -208,9 +208,8 @@ namespace SkystoneScouting.Data.Migrations
 
             modelBuilder.Entity("SkystoneScouting.Models.Team", b =>
                 {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("AvgPTS");
 

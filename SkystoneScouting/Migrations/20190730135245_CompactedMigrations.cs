@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
-namespace SkystoneScouting.Data.Migrations
+namespace SkystoneScouting.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class CompactedMigrations : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,6 +45,43 @@ namespace SkystoneScouting.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Event",
+                columns: table => new
+                {
+                    ID = table.Column<string>(nullable: false),
+                    Address = table.Column<string>(nullable: true),
+                    AllowedUsers = table.Column<string>(nullable: true),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    StartDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Event", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Team",
+                columns: table => new
+                {
+                    ID = table.Column<string>(nullable: false),
+                    AvgPTS = table.Column<int>(nullable: false),
+                    CCWM = table.Column<double>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    DPR = table.Column<double>(nullable: false),
+                    EventID = table.Column<string>(nullable: true),
+                    ExpPTS = table.Column<int>(nullable: false),
+                    OPR = table.Column<double>(nullable: false),
+                    TeamAddress = table.Column<string>(nullable: true),
+                    TeamName = table.Column<string>(nullable: true),
+                    TeamNumber = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Team", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -209,6 +246,12 @@ namespace SkystoneScouting.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Event");
+
+            migrationBuilder.DropTable(
+                name: "Team");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
