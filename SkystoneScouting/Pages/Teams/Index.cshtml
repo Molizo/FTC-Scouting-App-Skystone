@@ -6,6 +6,8 @@
 }
 
 @section Styles{
+    <!--Animate for notifications-->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet">
     <!--Action buttons column resize-->
     <style>
 
@@ -55,6 +57,112 @@
     </ol>
 </div>
 
+@if (Model.AuthorizedTeams.Count == 0)
+{
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <div class="info-box bg-blue hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">info</i>
+                </div>
+                <div class="content">
+                    <div class="text">Information</div>
+                    <div class="number">
+                        No teams
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    double BestOPR, BestDPR, BestCCWM, ScoutingPercentage;
+    ScoutingPercentage = Model.ScoutedTeams.Count * 100 / Model.AuthorizedTeams.Count;
+    BestOPR = Model.AuthorizedTeams.Max(t => t.OPR);
+    BestDPR = Model.AuthorizedTeams.Max(t => t.DPR);
+    BestCCWM = Model.AuthorizedTeams.Min(t => t.CCWM);
+
+    <div class="row clearfix hidden-mobile">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6">
+            <div class="info-box bg-blue hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">info</i>
+                </div>
+                <div class="content" style="
+    width: calc(100% - 70px);
+">
+                    <div class="text">Team Scouting @ScoutingPercentage% | @Model.ScoutedTeams.Count / @Model.AuthorizedTeams.Count Teams</div>
+                    <div style="background-color: lightgray;height: 25px;width: 100%;">
+                        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: @ScoutingPercentage%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
+            <div class="info-box bg-orange hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">flash_on</i>
+                </div>
+                <div class="content">
+                    <div class="text">Best OPR</div>
+                    <div class="number">
+                        @if (BestOPR != 0.0)
+                        {
+                            @BestOPR
+                        }
+                        else
+                        {
+                            @Html.Raw("N/A Yet")
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
+            <div class="info-box bg-orange hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">flash_on</i>
+                </div>
+                <div class="content">
+                    <div class="text">Best DPR</div>
+                    <div class="number">
+                        @if (BestDPR != 0.0)
+                        {
+                            @BestDPR
+                        }
+                        else
+                        {
+                            @Html.Raw("N/A Yet")
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
+            <div class="info-box bg-orange hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">flash_on</i>
+                </div>
+                <div class="content">
+                    <div class="text">Best CCWM</div>
+                    <div class="number">
+                        @if (BestCCWM != 0.0)
+                        {
+                            @BestCCWM
+                        }
+                        else
+                        {
+                            @Html.Raw("N/A Yet")
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 @if (Model.NotScoutedTeams.Count != 0)
 {
     <div class="row clearfix">
@@ -73,19 +181,19 @@
                                 <th class="hidden-mobile hidden-tablet">
                                     TEAM NAME
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     EXP
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     AVG
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     OPR
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     DPR
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="60px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="60px">
                                     CCWM
                                 </th>
                                 <th class="action-column"></th>
@@ -163,19 +271,19 @@
                                 <th class="hidden-mobile hidden-tablet">
                                     TEAM NAME
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     EXP
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     AVG
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     OPR
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     DPR
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="60px">
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="60px">
                                     CCWM
                                 </th>
                                 <th class="action-column"></th>
@@ -230,25 +338,6 @@
                             }
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
-}
-
-@if (Model.AuthorizedTeams.Count == 0)
-{
-    <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="info-box bg-blue hover-expand-effect" style="width:300px;">
-                <div class="icon">
-                    <i class="material-icons">info</i>
-                </div>
-                <div class="content">
-                    <div class="text">Information</div>
-                    <div class="number">
-                        No teams
-                    </div>
                 </div>
             </div>
         </div>
