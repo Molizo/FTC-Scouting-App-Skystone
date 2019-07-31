@@ -11,7 +11,7 @@
 
         @@media only screen and (max-width:768px) {
             .action-column {
-                width: 75px;
+                width: 140px;
             }
         }
 
@@ -47,13 +47,13 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>To be scouted</h2>
+                    <h2>Incomplete Teams</h2>
                 </div>
                 <div class="body table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover" style="table-layout:fixed;">
                         <thead>
                             <tr>
-                                <th width="100px">
+                                <th width="50px">
                                     NR
                                 </th>
                                 <th>
@@ -71,7 +71,7 @@
                                 <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
                                     DPR
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-amber" width="60px">
                                     CCWM
                                 </th>
                                 <th class="action-column"></th>
@@ -84,16 +84,16 @@
                                     <td>
                                         @Team.TeamNumber
                                     </td>
-                                    <td>
+                                    <td style="word-wrap:break-word">
                                         @Team.TeamName
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Team.ExpPTS
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Team.AvgPTS
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @if (Team.OPR != 0)
                                         {
                                             @Team.OPR}
@@ -101,7 +101,7 @@
                                         {
                                             @Html.Raw("N/A")}
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @if (Team.DPR != 0)
                                         {
                                             @Team.DPR}
@@ -109,14 +109,14 @@
                                         {
                                             @Html.Raw("N/A")}
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Team.CCWM
                                     </td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
                                                 <a asp-page="/Dashboard" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
-                                                <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
                                                 <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
                                             </div>
                                         </div>
@@ -137,13 +137,13 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
-                    <h2>Scouted</h2>
+                    <h2>Teams</h2>
                 </div>
                 <div class="body table-responsive">
-                    <table class="table table-hover">
+                    <table class="table table-hover" style="table-layout:fixed;">
                         <thead>
                             <tr>
-                                <th width="100px">
+                                <th width="50px">
                                     NR
                                 </th>
                                 <th>
@@ -161,7 +161,7 @@
                                 <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
                                     DPR
                                 </th>
-                                <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
+                                <th class="hidden-mobile hidden-tablet bg-amber" width="60px">
                                     CCWM
                                 </th>
                                 <th class="action-column"></th>
@@ -174,16 +174,16 @@
                                     <td>
                                         @Team.TeamNumber
                                     </td>
-                                    <td>
+                                    <td style="word-wrap:break-word">
                                         @Team.TeamName
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Team.ExpPTS
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Team.AvgPTS
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @if (Team.OPR != 0)
                                         {
                                             @Team.OPR
@@ -192,7 +192,7 @@
                                         {
                                             @Html.Raw("N/A")}
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @if (Team.DPR != 0)
                                         {
                                             @Team.DPR}
@@ -200,14 +200,14 @@
                                         {
                                             @Html.Raw("N/A")}
                                     </td>
-                                    <td>
+                                    <td class="hidden-mobile hidden-tablet">
                                         @Team.CCWM
                                     </td>
                                     <td>
                                         <div class="btn-toolbar">
                                             <div class="btn-group">
                                                 <a asp-page="/Dashboard" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
-                                                <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">mode_edit</i></a>
+                                                <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
                                                 <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
                                             </div>
                                         </div>
