@@ -2,78 +2,133 @@
 @model SkystoneScouting.Pages.Teams.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add team";
 }
 
-<h1>Create</h1>
+<div class="block-header">
+    <h2 style="font-weight:bolder;">
+        Add team
+    </h2>
+    <ol class="breadcrumb">
+        <li>
+            <a asp-page="/Events/Index">
+                <i class="material-icons">event</i> Events
+            </a>
+        </li>
+        <li>
+            <a asp-page="Index">
+                <i class="material-icons">people</i> Teams
+            </a>
+        </li>
+        <li class="active">
+            <a asp-page="Create">
+                <i class="material-icons">add</i> Add team
+            </a>
+        </li>
+    </ol>
+</div>
 
-<h4>Team</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Team.AvgPTS" class="control-label"></label>
-                <input asp-for="Team.AvgPTS" class="form-control" />
-                <span asp-validation-for="Team.AvgPTS" class="text-danger"></span>
+<form method="post">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        TEAM INFO
+                        <small>What does this team do?</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-sm-3">
+                            <h2 class="card-inside-title">What is the number of this team?</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.TeamNumber" class="form-control">
+                                    <label class="form-label">Team Number</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-9">
+                            <h2 class="card-inside-title">How does this team like to be called?</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.TeamName" class="form-control">
+                                    <label class="form-label">Team Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Where is this team located?</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.TeamAddress" class="form-control">
+                                    <label class="form-label">Team address</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Team.CCWM" class="control-label"></label>
-                <input asp-for="Team.CCWM" class="form-control" />
-                <span asp-validation-for="Team.CCWM" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Team.Description" class="control-label"></label>
-                <textarea asp-for="Team.Description" class="form-control"></textarea>
-                <span asp-validation-for="Team.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Team.DPR" class="control-label"></label>
-                <input asp-for="Team.DPR" class="form-control" />
-                <span asp-validation-for="Team.DPR" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Team.EventID" class="control-label"></label>
-                <input asp-for="Team.EventID" class="form-control" />
-                <span asp-validation-for="Team.EventID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Team.ExpPTS" class="control-label"></label>
-                <input asp-for="Team.ExpPTS" class="form-control" />
-                <span asp-validation-for="Team.ExpPTS" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Team.OPR" class="control-label"></label>
-                <input asp-for="Team.OPR" class="form-control" />
-                <span asp-validation-for="Team.OPR" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Team.TeamAddress" class="control-label"></label>
-                <input asp-for="Team.TeamAddress" class="form-control" />
-                <span asp-validation-for="Team.TeamAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Team.TeamName" class="control-label"></label>
-                <input asp-for="Team.TeamName" class="form-control" />
-                <span asp-validation-for="Team.TeamName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Team.TeamNumber" class="control-label"></label>
-                <input asp-for="Team.TeamNumber" class="form-control" />
-                <span asp-validation-for="Team.TeamNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        ROBOT INFO
+                        <small>How does this team's robot look?</small>
+                    </h2>
+                </div>
+                <div class="body">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        DESCRIPTION
+                        <small>Team &amp; Robot description</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Anything to add?</h2>
+                            <div class="form-group form-group">
+                                <div class="form-line">
+                                    <textarea asp-for="Team.Description" rows="1" class="form-control no-resize auto-growth" style="overflow: hidden; overflow-wrap: break-word; height: 66px;" autocomplete="off"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="submit" class="btn btn-primary waves-effect">ADD TEAM</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <!-- Autosize Plugin JS -->
+    <script src="/vendor/autosize/dist/autosize.min.js"></script>
+
+    <script>
+        var ta = document.querySelector('textarea');
+        ta.style.display = 'none';
+        autosize(ta);
+        ta.style.display = '';
+
+        // Call the update method to recalculate the size:
+        autosize.update(ta);
+    </script>
 }

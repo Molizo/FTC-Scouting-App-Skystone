@@ -52,7 +52,10 @@ namespace SkystoneScouting.Pages.Teams
             _context.Team.Add(Team);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new
+            {
+                EventID = Team.EventID,
+            });
         }
 
         #endregion Public Methods

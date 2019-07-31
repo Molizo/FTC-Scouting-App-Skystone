@@ -20,6 +20,18 @@
                 width: 200px;
             }
         }
+
+        @@media only screen and (max-width:768px) {
+            .team-number-column {
+                width: calc(100% - 140px);
+            }
+        }
+
+        @@media only screen and (min-width:769px) {
+            .team-number-column {
+                width: 50px;
+            }
+        }
     </style>
 }
 
@@ -53,10 +65,10 @@
                     <table class="table table-hover" style="table-layout:fixed;">
                         <thead>
                             <tr>
-                                <th width="50px">
+                                <th class="team-number-column" width="50px">
                                     NR
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     TEAM NAME
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
@@ -84,7 +96,7 @@
                                     <td>
                                         @Team.TeamNumber
                                     </td>
-                                    <td style="word-wrap:break-word">
+                                    <td class="hidden-mobile hidden-tablet" style="word-wrap:break-word">
                                         @Team.TeamName
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
@@ -143,10 +155,10 @@
                     <table class="table table-hover" style="table-layout:fixed;">
                         <thead>
                             <tr>
-                                <th width="50px">
+                                <th class="team-number-column" width="50px">
                                     NR
                                 </th>
-                                <th>
+                                <th class="hidden-mobile hidden-tablet">
                                     TEAM NAME
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-amber" width="50px">
@@ -174,7 +186,7 @@
                                     <td>
                                         @Team.TeamNumber
                                     </td>
-                                    <td style="word-wrap:break-word">
+                                    <td class="hidden-mobile hidden-tablet" style="word-wrap:break-word">
                                         @Team.TeamName
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
