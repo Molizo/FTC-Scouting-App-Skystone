@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <Version>1.10.42-DEV0047</Version>
+    <Version>1.10.64-DEV0069</Version>
     <Authors>Mihnea Theodor Visoiu</Authors>
     <Company>Quantum Robotics</Company>
     <Product>FTC Skystone Scouting App</Product>
@@ -28,6 +28,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="RestSharp" Version="106.6.10" />
     <PackageReference Include="SendGrid" Version="9.11.0" />
     <PackageReference Include="Sentry" Version="1.2.0" />
     <PackageReference Include="Sentry.AspNetCore" Version="1.2.0" />

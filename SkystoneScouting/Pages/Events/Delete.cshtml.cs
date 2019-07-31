@@ -71,6 +71,12 @@ namespace SkystoneScouting.Pages.Events
 
             if (Event != null)
             {
+                List<Team> Teams = await _context.Team.ToListAsync();
+                foreach (var Team in Teams)
+                {
+                    if (Team.EventID == Event.ID)
+                        _context.Team.Remove(Team);
+                }
                 _context.Event.Remove(Event);
                 await _context.SaveChangesAsync();
             }

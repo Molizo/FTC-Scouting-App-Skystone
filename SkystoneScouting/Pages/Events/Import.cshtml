@@ -1,0 +1,60 @@
+﻿@page
+@model SkystoneScouting.Pages.Events.ImportModel
+
+@{
+    ViewData["Title"] = "Import event";
+}
+
+<div class="block-header">
+    <h2 style="font-weight:bolder;">
+        Import event
+    </h2>
+    <ol class="breadcrumb">
+        <li>
+            <a asp-page="Index">
+                <i class="material-icons">event</i> Events
+            </a>
+        </li>
+        <li class="active">
+            <a asp-page="Create">
+                <i class="material-icons">file_upload</i> Import event
+            </a>
+        </li>
+    </ol>
+</div>
+
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    IMPORT TOA EVENT
+                    <small>Please enter TOA event key for import</small>
+                </h2>
+            </div>
+            <div class="body">
+                <form method="post">
+                    <div class="row clearfix">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">What is the TOA event key?</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="TOAEventKey" class="form-control">
+                                    <label class="form-label">Event key</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1">
+                            <button type="submit" class="btn btn-primary waves-effect">IMPORT EVENT</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
