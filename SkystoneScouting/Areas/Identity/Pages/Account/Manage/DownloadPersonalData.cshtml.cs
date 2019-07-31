@@ -1,20 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
 {
     public class DownloadPersonalDataModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        #region Private Fields
+
         private readonly ILogger<DownloadPersonalDataModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public DownloadPersonalDataModel(
             UserManager<IdentityUser> userManager,
@@ -23,6 +29,10 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
             _userManager = userManager;
             _logger = logger;
         }
+
+        #endregion Public Constructors
+
+        #region Public Methods
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -46,5 +56,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
             Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
             return new FileContentResult(Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(personalData)), "text/json");
         }
+
+        #endregion Public Methods
     }
 }

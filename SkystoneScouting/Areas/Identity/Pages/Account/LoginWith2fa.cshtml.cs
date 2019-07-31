@@ -1,27 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginWith2faModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        #region Private Fields
+
         private readonly ILogger<LoginWith2faModel> _logger;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public LoginWith2faModel(SignInManager<IdentityUser> signInManager, ILogger<LoginWith2faModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
         }
+
+        #endregion Public Constructors
+
+        #region Public Properties
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -30,17 +38,9 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
 
         public string ReturnUrl { get; set; }
 
-        public class InputModel
-        {
-            [Required]
-            [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Text)]
-            [Display(Name = "Authenticator code")]
-            public string TwoFactorCode { get; set; }
+        #endregion Public Properties
 
-            [Display(Name = "Remember this machine")]
-            public bool RememberMachine { get; set; }
-        }
+        #region Public Methods
 
         public async Task<IActionResult> OnGetAsync(bool rememberMe, string returnUrl = null)
         {
@@ -94,5 +94,27 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
                 return Page();
             }
         }
+
+        #endregion Public Methods
+
+        #region Public Classes
+
+        public class InputModel
+        {
+            #region Public Properties
+
+            [Display(Name = "Remember this machine")]
+            public bool RememberMachine { get; set; }
+
+            [Required]
+            [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [DataType(DataType.Text)]
+            [Display(Name = "Authenticator code")]
+            public string TwoFactorCode { get; set; }
+
+            #endregion Public Properties
+        }
+
+        #endregion Public Classes
     }
 }

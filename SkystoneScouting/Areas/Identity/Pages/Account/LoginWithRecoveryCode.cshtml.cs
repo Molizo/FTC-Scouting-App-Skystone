@@ -1,21 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LoginWithRecoveryCodeModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        #region Private Fields
+
         private readonly ILogger<LoginWithRecoveryCodeModel> _logger;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public LoginWithRecoveryCodeModel(SignInManager<IdentityUser> signInManager, ILogger<LoginWithRecoveryCodeModel> logger)
         {
@@ -23,19 +27,18 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
         [BindProperty]
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
 
-        public class InputModel
-        {
-            [BindProperty]
-            [Required]
-            [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
-            public string RecoveryCode { get; set; }
-        }
+        #endregion Public Properties
+
+        #region Public Methods
 
         public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
@@ -85,5 +88,24 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
                 return Page();
             }
         }
+
+        #endregion Public Methods
+
+        #region Public Classes
+
+        public class InputModel
+        {
+            #region Public Properties
+
+            [BindProperty]
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Recovery Code")]
+            public string RecoveryCode { get; set; }
+
+            #endregion Public Properties
+        }
+
+        #endregion Public Classes
     }
 }

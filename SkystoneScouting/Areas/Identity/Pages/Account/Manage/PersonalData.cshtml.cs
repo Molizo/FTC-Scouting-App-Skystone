@@ -1,15 +1,21 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
 {
     public class PersonalDataModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        #region Private Fields
+
         private readonly ILogger<PersonalDataModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public PersonalDataModel(
             UserManager<IdentityUser> userManager,
@@ -18,6 +24,10 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
             _userManager = userManager;
             _logger = logger;
         }
+
+        #endregion Public Constructors
+
+        #region Public Methods
 
         public async Task<IActionResult> OnGet()
         {
@@ -29,5 +39,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
 
             return Page();
         }
+
+        #endregion Public Methods
     }
 }

@@ -1,21 +1,20 @@
-﻿using System;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using SkystoneScouting.Data;
+﻿using Microsoft.AspNetCore.Hosting;
 
 [assembly: HostingStartup(typeof(SkystoneScouting.Areas.Identity.IdentityHostingStartup))]
+
 namespace SkystoneScouting.Areas.Identity
 {
     public class IdentityHostingStartup : IHostingStartup
     {
+        #region Public Methods
+
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
+            builder.ConfigureServices((context, services) =>
+            {
             });
         }
+
+        #endregion Public Methods
     }
 }

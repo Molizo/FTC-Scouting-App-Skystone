@@ -10445,7 +10445,6 @@ fieldset[disabled] .form-control {
 .login-page {
     /*background-color: #00BCD4;*/
     background-image: url("../media/login-background.png");
-    
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;
@@ -10488,7 +10487,6 @@ fieldset[disabled] .form-control {
 .signup-page {
     /*background-color: #00BCD4;*/
     background-image: url("../media/login-background.png");
-    
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;

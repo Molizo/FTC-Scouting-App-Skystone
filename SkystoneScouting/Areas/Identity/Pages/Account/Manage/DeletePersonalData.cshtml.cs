@@ -1,18 +1,24 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
 {
     public class DeletePersonalDataModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        #region Private Fields
+
         private readonly ILogger<DeletePersonalDataModel> _logger;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public DeletePersonalDataModel(
             UserManager<IdentityUser> userManager,
@@ -24,17 +30,18 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public class InputModel
-        {
-            [Required]
-            [DataType(DataType.Password)]
-            public string Password { get; set; }
-        }
-
         public bool RequirePassword { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public async Task<IActionResult> OnGet()
         {
@@ -79,5 +86,22 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
 
             return Redirect("~/");
         }
+
+        #endregion Public Methods
+
+        #region Public Classes
+
+        public class InputModel
+        {
+            #region Public Properties
+
+            [Required]
+            [DataType(DataType.Password)]
+            public string Password { get; set; }
+
+            #endregion Public Properties
+        }
+
+        #endregion Public Classes
     }
 }

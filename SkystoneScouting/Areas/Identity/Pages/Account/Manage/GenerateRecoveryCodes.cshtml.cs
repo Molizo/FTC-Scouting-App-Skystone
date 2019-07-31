@@ -1,18 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
 {
     public class GenerateRecoveryCodesModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        #region Private Fields
+
         private readonly ILogger<GenerateRecoveryCodesModel> _logger;
+        private readonly UserManager<IdentityUser> _userManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public GenerateRecoveryCodesModel(
             UserManager<IdentityUser> userManager,
@@ -22,11 +27,19 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
         [TempData]
         public string[] RecoveryCodes { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -68,5 +81,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
             StatusMessage = "You have generated new recovery codes.";
             return RedirectToPage("./ShowRecoveryCodes");
         }
+
+        #endregion Public Methods
     }
 }

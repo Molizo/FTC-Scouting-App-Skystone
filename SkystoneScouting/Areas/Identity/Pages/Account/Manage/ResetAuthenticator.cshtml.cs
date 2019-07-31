@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
 {
     public class ResetAuthenticatorModel : PageModel
     {
-        UserManager<IdentityUser> _userManager;
+        #region Private Fields
+
         private readonly SignInManager<IdentityUser> _signInManager;
-        ILogger<ResetAuthenticatorModel> _logger;
+        private ILogger<ResetAuthenticatorModel> _logger;
+        private UserManager<IdentityUser> _userManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public ResetAuthenticatorModel(
             UserManager<IdentityUser> userManager,
@@ -25,8 +28,16 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
             _logger = logger;
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
         [TempData]
         public string StatusMessage { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
 
         public async Task<IActionResult> OnGet()
         {
@@ -56,5 +67,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account.Manage
 
             return RedirectToPage("./EnableAuthenticator");
         }
+
+        #endregion Public Methods
     }
 }

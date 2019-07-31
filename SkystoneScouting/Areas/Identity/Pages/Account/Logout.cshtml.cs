@@ -1,26 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class LogoutModel : PageModel
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
+        #region Private Fields
+
         private readonly ILogger<LogoutModel> _logger;
+        private readonly SignInManager<IdentityUser> _signInManager;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
         {
             _signInManager = signInManager;
             _logger = logger;
         }
+
+        #endregion Public Constructors
+
+        #region Public Methods
 
         public void OnGet()
         {
@@ -39,5 +46,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
                 return Page();
             }
         }
+
+        #endregion Public Methods
     }
 }
