@@ -64,6 +64,9 @@ namespace SkystoneScouting.Pages.Events
             eventClient.AddDefaultHeader("X-Application-Origin", "QR-FTCScoutingAppSkystone");
             var response = eventClient.Get(request);
 
+            if (response.Content.Contains("\"_code\""))
+                return RedirectToPage("/Error");
+
             TOAEvent TOAEvent = JsonConvert.DeserializeObject<TOAEvent>(response.Content.TrimStart('[').TrimEnd(']'));
 
             Event.Name = TOAEvent.event_name;

@@ -18,10 +18,10 @@
 
 @using Sentry
 
-@if (SentrySdk.LastEventId != Guid.Empty)
-{
-    <script>
+<script>
         Sentry.init({ dsn: 'https://21c3e8d7321848eab851f9b7af4a2d0f@sentry.io/1482560' });
-        Sentry.showReportDialog({ eventId: '@SentrySdk.LastEventId' });
-    </script>
-}
+        Sentry.showReportDialog({
+            eventId: '@SentrySdk.LastEventId',
+            requestId: '@Model.RequestId'
+        });
+</script>

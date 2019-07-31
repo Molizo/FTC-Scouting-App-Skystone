@@ -90,7 +90,7 @@ namespace SkystoneScouting
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DBConnection")));
 
             //This enables e-mail verification and configures the default identity
             services.AddDefaultIdentity<IdentityUser>(config =>
