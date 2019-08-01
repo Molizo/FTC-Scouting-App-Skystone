@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SkystoneScouting.Data;
 
 namespace SkystoneScouting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190801103711_AddedScheduledMatchModel")]
+    partial class AddedScheduledMatchModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -202,30 +204,6 @@ namespace SkystoneScouting.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Event");
-                });
-
-            modelBuilder.Entity("SkystoneScouting.Models.ScheduledMatch", b =>
-                {
-                    b.Property<string>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Blue1TeamID");
-
-                    b.Property<string>("Blue2TeamID");
-
-                    b.Property<int?>("BlueScore");
-
-                    b.Property<string>("EventID");
-
-                    b.Property<string>("Red1TeamID");
-
-                    b.Property<string>("Red2TeamID");
-
-                    b.Property<int?>("RedScore");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ScheduledMatch");
                 });
 
             modelBuilder.Entity("SkystoneScouting.Models.Team", b =>

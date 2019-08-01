@@ -1,0 +1,72 @@
+﻿@page
+@model SkystoneScouting.Pages.Schedule.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledMatch[0].Blue1TeamID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledMatch[0].Blue2TeamID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledMatch[0].BlueScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledMatch[0].EventID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledMatch[0].Red1TeamID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledMatch[0].Red2TeamID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScheduledMatch[0].RedScore)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.ScheduledMatch) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Blue1TeamID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Blue2TeamID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlueScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Red1TeamID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Red2TeamID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RedScore)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
