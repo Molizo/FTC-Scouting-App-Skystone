@@ -54,19 +54,20 @@ namespace SkystoneScouting.Pages.Schedule
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string EventID)
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-            ScheduledMatch.EventID = eventID;
+            ScheduledMatch.EventID = EventID;
+            var _EventID = EventID;
             _context.ScheduledMatch.Add(ScheduledMatch);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index", new
             {
-                EventID = eventID,
+                EventID = _EventID,
             });
         }
 

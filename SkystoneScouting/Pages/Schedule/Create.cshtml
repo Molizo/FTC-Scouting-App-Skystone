@@ -2,9 +2,183 @@
 @model SkystoneScouting.Pages.Schedule.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Add scheduled match";
 }
 
+<div class="block-header">
+    <h2 style="font-weight:bolder;">
+        Add scheduled match
+    </h2>
+    <ol class="breadcrumb">
+        <li>
+            <a asp-page="/Events/Index">
+                <i class="material-icons">event</i> Events
+            </a>
+        </li>
+        <li>
+            <a asp-page="Index">
+                <i class="material-icons">access_time</i> Scheduled matches
+            </a>
+        </li>
+        <li class="active">
+            <a asp-page="Index">
+                <i class="material-icons">add</i> Add a match
+            </a>
+        </li>
+    </ol>
+</div>
+
+<form method="post">
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        MATCH INFO
+                        <small>General match information</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-2">
+                            <h2 class="card-inside-title">Match type</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select class="form-control">
+                                        <option value="0">Qualification</option>
+                                        <option value="1">Eliminiation</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
+                            <h2 class="card-inside-title">Match number</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input class="form-control">
+                                    <label class="form-label">Match number</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header bg-red">
+                    <h2>
+                        RED ALLIANCE INFO
+                        <small>Scoring info about the red alliance</small>
+                    </h2>
+                </div>
+                <div class="body">
+
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Red alliance 1</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="ScheduledMatch.Red1TeamID" class="form-control">
+                                        <option value="null">Select team</option>
+                                        @foreach (var Team in Model.AuthorizedTeams)
+                                        {
+                                            <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Red alliance 2</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="ScheduledMatch.Red2TeamID" class="form-control">
+                                        <option value="null">Select team</option>
+                                        @foreach (var Team in Model.AuthorizedTeams)
+                                        {
+                                            <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Red score</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="ScheduledMatch.RedScore" class="form-control">
+                                    <label class="form-label">Red score</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header bg-blue">
+                    <h2>
+                        BLUE ALLIANCE INFO
+                        <small>Scoring info about the blue alliance</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Blue alliance 1</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="ScheduledMatch.Blue1TeamID" class="form-control">
+                                        <option value="null">Select team</option>
+                                        @foreach (var Team in Model.AuthorizedTeams)
+                                        {
+                                            <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Blue alliance 2</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="ScheduledMatch.Blue2TeamID" class="form-control">
+                                        <option value="null">Select team</option>
+                                        @foreach (var Team in Model.AuthorizedTeams)
+                                        {
+                                            <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title">Blue score</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="ScheduledMatch.BlueScore" class="form-control">
+                                    <label class="form-label">Blue score</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary waves-effect">ADD SCHEDULED MATCH</button>
+        </div>
+    </div>
+</form>
+<br />
+<br />
+<!--
 <h1>Create</h1>
 
 <h4>ScheduledMatch</h4>
@@ -77,7 +251,7 @@
 <div>
     <a asp-page="Index">Back to List</a>
 </div>
-
+-->
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
