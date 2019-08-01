@@ -52,7 +52,7 @@ namespace SkystoneScouting.Pages.Teams
             }
             foreach (var Team in AuthorizedTeams)
             {
-                if (Team.ExpPTS == 0)
+                if (Team.ExpPTS == null)
                     NotScoutedTeams.Add(Team);
                 else
                     ScoutedTeams.Add(Team);

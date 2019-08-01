@@ -26,21 +26,27 @@ namespace SkystoneScouting.Pages.Teams
 
         #region Public Properties
 
+        public string eventID { get; set; }
+
         [BindProperty]
         public Team Team { get; set; }
+
+        public string teamID { get; set; }
 
         #endregion Public Properties
 
         #region Public Methods
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string EventID, string TeamID)
         {
-            if (id == null)
+            if (TeamID == null)
             {
                 return NotFound();
             }
 
-            Team = await _context.Team.FirstOrDefaultAsync(m => m.ID == id);
+            teamID = TeamID;
+            eventID = EventID;
+            Team = await _context.Team.FirstOrDefaultAsync(m => m.ID == TeamID);
 
             if (Team == null)
             {
@@ -74,16 +80,20 @@ namespace SkystoneScouting.Pages.Teams
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index", new
+            {
+                EventID = eventID,
+                TeamID = teamID,
+            });
         }
 
         #endregion Public Methods
 
         #region Private Methods
 
-        private bool TeamExists(string id)
+        private bool TeamExists(string TeamID)
         {
-            return _context.Team.Any(e => e.ID == id);
+            return _context.Team.Any(e => e.ID == TeamID);
         }
 
         #endregion Private Methods

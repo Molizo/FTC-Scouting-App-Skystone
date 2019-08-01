@@ -77,7 +77,8 @@
 }
 else
 {
-    double BestOPR, BestDPR, BestCCWM, ScoutingPercentage;
+    double? BestOPR, BestDPR, BestCCWM;
+    double ScoutingPercentage;
     ScoutingPercentage = Model.ScoutedTeams.Count * 100 / Model.AuthorizedTeams.Count;
     BestOPR = Model.AuthorizedTeams.Max(t => t.OPR);
     BestDPR = Model.AuthorizedTeams.Max(t => t.DPR);
@@ -100,66 +101,68 @@ else
                 </div>
             </div>
         </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">flash_on</i>
-                </div>
-                <div class="content">
-                    <div class="text">Best OPR</div>
-                    <div class="number">
-                        @if (BestOPR != 0.0)
-                        {
+        @if (BestOPR != null)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Best OPR</div>
+                        <div class="number">
                             @BestOPR
-                        }
-                        else
-                        {
-                            @Html.Raw("N/A Yet")
-                        }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">flash_on</i>
-                </div>
-                <div class="content">
-                    <div class="text">Best DPR</div>
-                    <div class="number">
-                        @if (BestDPR != 0.0)
-                        {
-                            @BestDPR
-                        }
-                        else
-                        {
-                            @Html.Raw("N/A Yet")
-                        }
+        }
+        @if (BestDPR != null)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Best DPR</div>
+                        <div class="number">
+                            @if (BestDPR != null)
+                            {
+                                @BestDPR
+                            }
+                            else
+                            {
+                                @Html.Raw("N/A")
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">flash_on</i>
-                </div>
-                <div class="content">
-                    <div class="text">Best CCWM</div>
-                    <div class="number">
-                        @if (BestCCWM != 0.0)
-                        {
-                            @BestCCWM
-                        }
-                        else
-                        {
-                            @Html.Raw("N/A Yet")
-                        }
+        }
+        @if (BestCCWM != null)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-2 col-sm-2">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">Best CCWM</div>
+                        <div class="number">
+                            @if (BestCCWM != null)
+                            {
+                                @BestCCWM
+                            }
+                            else
+                            {
+                                @Html.Raw("N/A")
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        }
     </div>
 }
 
@@ -180,9 +183,6 @@ else
                                 </th>
                                 <th class="hidden-mobile hidden-tablet">
                                     TEAM NAME
-                                </th>
-                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
-                                    EXP
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     AVG
@@ -210,13 +210,15 @@ else
                                         @Team.TeamName
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @Team.ExpPTS
+                                        @if (Team.AvgPTS != null)
+                                        {
+                                            @Team.AvgPTS}
+                                        else
+                                        {
+                                            @Html.Raw("N/A")}
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @Team.AvgPTS
-                                    </td>
-                                    <td class="hidden-mobile hidden-tablet">
-                                        @if (Team.OPR != 0)
+                                        @if (Team.OPR != null)
                                         {
                                             @Team.OPR}
                                         else
@@ -224,7 +226,7 @@ else
                                             @Html.Raw("N/A")}
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @if (Team.DPR != 0)
+                                        @if (Team.DPR != null)
                                         {
                                             @Team.DPR}
                                         else
@@ -232,7 +234,12 @@ else
                                             @Html.Raw("N/A")}
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @Team.CCWM
+                                        @if (Team.CCWM != null)
+                                        {
+                                            @Team.CCWM}
+                                        else
+                                        {
+                                            @Html.Raw("N/A")}
                                     </td>
                                     <td>
                                         <div class="btn-toolbar">
@@ -303,10 +310,15 @@ else
                                         @Team.ExpPTS
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @Team.AvgPTS
+                                        @if (Team.AvgPTS != null)
+                                        {
+                                            @Team.AvgPTS}
+                                        else
+                                        {
+                                            @Html.Raw("N/A")}
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @if (Team.OPR != 0)
+                                        @if (Team.OPR != null)
                                         {
                                             @Team.OPR
                                         }
@@ -315,7 +327,7 @@ else
                                             @Html.Raw("N/A")}
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @if (Team.DPR != 0)
+                                        @if (Team.DPR != null)
                                         {
                                             @Team.DPR}
                                         else
@@ -323,7 +335,12 @@ else
                                             @Html.Raw("N/A")}
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @Team.CCWM
+                                        @if (Team.DPR != null)
+                                        {
+                                            @Team.CCWM}
+                                        else
+                                        {
+                                            @Html.Raw("N/A")}
                                     </td>
                                     <td>
                                         <div class="btn-toolbar">
