@@ -175,26 +175,38 @@ else
                     <h2>Incomplete Teams</h2>
                 </div>
                 <div class="body table-responsive">
-                    <table class="table table-hover" style="table-layout:fixed;">
+                    <table class="table table-hover" style="table-layout:fixed;" id="notScouted-table">
                         <thead>
                             <tr>
                                 <th class="team-number-column" width="50px">
-                                    NR
+                                    <a style="color: #424242;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.IDSort">
+                                        NR
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet">
-                                    TEAM NAME
+                                    <a style="color: #424242;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.NameSort">
+                                        TEAM NAME
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
-                                    AVG
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.AvgPTSSort">
+                                        AVG
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
-                                    OPR
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.OPRSort">
+                                        OPR
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
-                                    DPR
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.DPRSort">
+                                        DPR
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="60px">
-                                    CCWM
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.CCWMSort">
+                                        CCWM
+                                    </a>
                                 </th>
                                 <th class="action-column"></th>
                             </tr>
@@ -273,25 +285,39 @@ else
                         <thead>
                             <tr>
                                 <th class="team-number-column" width="50px">
-                                    NR
+                                    <a style="color: #424242;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.IDSort">
+                                        NR
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet">
-                                    TEAM NAME
+                                    <a style="color: #424242;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.NameSort">
+                                        TEAM NAME
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
-                                    EXP
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.ExpPTSSort">
+                                        EXP
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
-                                    AVG
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.AvgPTSSort">
+                                        AVG
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
-                                    OPR
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.OPRSort">
+                                        OPR
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
-                                    DPR
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.DPRSort">
+                                        DPR
+                                    </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="60px">
-                                    CCWM
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.CCWMSort">
+                                        CCWM
+                                    </a>
                                 </th>
                                 <th class="action-column"></th>
                             </tr>
