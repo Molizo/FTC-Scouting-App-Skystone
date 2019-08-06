@@ -24,6 +24,8 @@ namespace SkystoneScouting.Pages.Teams
 
         #region Public Properties
 
+        public string eventID { get; set; }
+
         [BindProperty]
         public Team Team { get; set; }
 
@@ -31,8 +33,9 @@ namespace SkystoneScouting.Pages.Teams
 
         #region Public Methods
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(string EventID)
         {
+            eventID = EventID;
             return Page();
         }
 

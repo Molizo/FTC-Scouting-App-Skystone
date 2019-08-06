@@ -16,12 +16,12 @@
             </a>
         </li>
         <li>
-            <a asp-page="Index">
+            <a asp-page="Index" asp-route-EventID="@Model.eventID">
                 <i class="material-icons">people</i> Teams
             </a>
         </li>
         <li class="active">
-            <a asp-page="Create">
+            <a asp-page="Create" asp-route-EventID="@Model.eventID">
                 <i class="material-icons">add</i> Add team
             </a>
         </li>

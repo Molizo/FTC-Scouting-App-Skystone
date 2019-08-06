@@ -16,12 +16,12 @@
             </a>
         </li>
         <li>
-            <a asp-page="Index">
+            <a asp-page="Index" asp-route-EventID="@Model.eventID">
                 <i class="material-icons">access_time</i> Scheduled matches
             </a>
         </li>
         <li class="active">
-            <a asp-page="Index">
+            <a asp-page="Create" asp-route-EventID="@Model.eventID">
                 <i class="material-icons">add</i> Add a match
             </a>
         </li>
@@ -44,9 +44,9 @@
                             <h2 class="card-inside-title">Match type</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <select class="form-control">
-                                        <option value="0">Qualification</option>
-                                        <option value="1">Eliminiation</option>
+                                    <select asp-for="ScheduledMatch.MatchType" class="form-control">
+                                        <option value="@Models.MatchType.Qualification">Qualification</option>
+                                        <option value="@Models.MatchType.Elimination">Elimination</option>
                                     </select>
                                 </div>
                             </div>
@@ -55,7 +55,7 @@
                             <h2 class="card-inside-title">Match number</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input class="form-control">
+                                    <input asp-for="ScheduledMatch.MatchNumber" class="form-control">
                                     <label class="form-label">Match number</label>
                                 </div>
                             </div>
@@ -178,80 +178,6 @@
 </form>
 <br />
 <br />
-<!--
-<h1>Create</h1>
-
-<h4>ScheduledMatch</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ScheduledMatch.Red1TeamID" class="control-label"></label>
-                <select asp-for="ScheduledMatch.Red1TeamID">
-                    <option value="null">Select team</option>
-                    @foreach (var Team in Model.AuthorizedTeams)
-                    {
-                        <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
-                    }
-                </select>
-                <span asp-validation-for="ScheduledMatch.Red1TeamID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ScheduledMatch.Red2TeamID" class="control-label"></label>
-                <select asp-for="ScheduledMatch.Red2TeamID">
-                    <option value="null">Select team</option>
-                    @foreach (var Team in Model.AuthorizedTeams)
-                    {
-                        <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
-                    }
-                </select>
-                <span asp-validation-for="ScheduledMatch.Red2TeamID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ScheduledMatch.Blue1TeamID" class="control-label"></label>
-                <select asp-for="ScheduledMatch.Blue1TeamID">
-                    <option value="null">Select team</option>
-                    @foreach (var Team in Model.AuthorizedTeams)
-                    {
-                        <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
-                    }
-                </select>
-                <span asp-validation-for="ScheduledMatch.Blue1TeamID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ScheduledMatch.Blue2TeamID" class="control-label"></label>
-                <select asp-for="ScheduledMatch.Blue2TeamID">
-                    <option value="null">Select team</option>
-                    @foreach (var Team in Model.AuthorizedTeams)
-                    {
-                        <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
-                    }
-                </select>
-                <span asp-validation-for="ScheduledMatch.Blue2TeamID" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ScheduledMatch.RedScore" class="control-label"></label>
-                <input asp-for="ScheduledMatch.RedScore" class="form-control" />
-                <span asp-validation-for="ScheduledMatch.RedScore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ScheduledMatch.BlueScore" class="control-label"></label>
-                <input asp-for="ScheduledMatch.BlueScore" class="form-control" />
-                <span asp-validation-for="ScheduledMatch.BlueScore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
-</div>
--->
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
