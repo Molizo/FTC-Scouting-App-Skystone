@@ -77,7 +77,7 @@
                 <div class="body">
 
                     <div class="row clearfix">
-                        <div class="col-sm-12">
+                        <div class="col-sm-10">
                             <h2 class="card-inside-title">Red alliance 1</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -91,7 +91,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-2">
+                            <div class="form-group form-float">
+                                <input asp-for="ScheduledMatch.Red1Surrogate" type="checkbox" id="red1surrogate" class="filled-in chk-col-blue">
+                                <label for="red1surrogate">Surrogate</label>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-10">
                             <h2 class="card-inside-title">Red alliance 2</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -103,6 +110,13 @@
                                         }
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group form-float">
+                                <input asp-for="ScheduledMatch.Red2Surrogate" type="checkbox" id="red2surrogate" class="filled-in chk-col-blue">
+                                <label for="red2surrogate">Surrogate</label>
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -128,7 +142,7 @@
                 </div>
                 <div class="body">
                     <div class="row clearfix">
-                        <div class="col-sm-12">
+                        <div class="col-sm-10">
                             <h2 class="card-inside-title">Blue alliance 1</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -142,7 +156,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+
+                        <div class="col-sm-2">
+                            <div class="form-group form-float">
+                                <input asp-for="ScheduledMatch.Blue1Surrogate" type="checkbox" id="blue1surrogate" class="filled-in chk-col-blue">
+                                <label for="blue1surrogate">Surrogate</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-10">
                             <h2 class="card-inside-title">Blue alliance 2</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
@@ -154,6 +175,13 @@
                                         }
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <div class="form-group form-float">
+                                <input asp-for="ScheduledMatch.Blue2Surrogate" type="checkbox" id="blue2surrogate" class="filled-in chk-col-blue">
+                                <label for="blue2surrogate">Surrogate</label>
                             </div>
                         </div>
                         <div class="col-sm-12">
