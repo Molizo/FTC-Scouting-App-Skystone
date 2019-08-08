@@ -61,6 +61,8 @@ namespace SkystoneScouting
                 RequestPath = new PathString("/vendor")
             });
 
+            app.UseStatusCodePages();
+            //app.UseStatusCodePagesWithReExecute("/Status{0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

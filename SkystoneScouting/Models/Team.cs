@@ -10,6 +10,12 @@ namespace SkystoneScouting.Models
         [Display(Name = "Average points")]
         public int? AvgPTS { get; set; }
 
+        [Display(Name = "Average RP")]
+        public double? AvgRP { get; set; }
+
+        [Display(Name = "TBP")]
+        public double? AvgTBP { get; set; }
+
         [Display(Name = "CCWM")]
         public double? CCWM { get; set; }
 

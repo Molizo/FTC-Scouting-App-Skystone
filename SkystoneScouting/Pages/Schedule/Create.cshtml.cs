@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
+using SkystoneScouting.Services;
 
 namespace SkystoneScouting.Pages.Schedule
 {
@@ -31,11 +32,12 @@ namespace SkystoneScouting.Pages.Schedule
 
         public IList<Team> AllTeams { get; set; }
         public IList<Team> AuthorizedTeams { get; set; }
-
         public string eventID { get; set; }
 
         [BindProperty]
         public ScheduledMatch ScheduledMatch { get; set; }
+
+        public IList<ScheduledMatch> ScheduledMatches { get; set; }
 
         #endregion Public Properties
 
@@ -43,6 +45,8 @@ namespace SkystoneScouting.Pages.Schedule
 
         public IActionResult OnGet(string EventID)
         {
+            if (EventID == null)
+                return NotFound();
             AllTeams = _context.Team.ToList<Team>();
             AuthorizedTeams = new List<Team>();
             foreach (var Team in AllTeams)
@@ -56,6 +60,8 @@ namespace SkystoneScouting.Pages.Schedule
 
         public async Task<IActionResult> OnPostAsync(string EventID)
         {
+            if (EventID == null)
+                return NotFound();
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -63,6 +69,25 @@ namespace SkystoneScouting.Pages.Schedule
             ScheduledMatch.EventID = EventID;
             var _EventID = EventID;
             _context.ScheduledMatch.Add(ScheduledMatch);
+
+            ScheduledMatches = _context.ScheduledMatch.ToList<Models.ScheduledMatch>();
+            IList<Models.ScheduledMatch> AuthorizedScheduledMatches = new List<Models.ScheduledMatch>();
+            foreach (var Match in ScheduledMatches)
+            {
+                if (Match.EventID == EventID)
+                    AuthorizedScheduledMatches.Add(Match);
+            }
+            AuthorizedScheduledMatches.Add(ScheduledMatch);
+            AllTeams = _context.Team.ToList<Team>();
+            AuthorizedTeams = new List<Team>();
+            foreach (var Team in AllTeams)
+            {
+                if (Team.EventID == EventID)
+                    AuthorizedTeams.Add(Team);
+            }
+            IList<Team> TeamsWithScores = CalculateTeamMetrics.CalculateAllMetrics(AuthorizedTeams, AuthorizedScheduledMatches);
+
+            _context.Team.UpdateRange(TeamsWithScores);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index", new

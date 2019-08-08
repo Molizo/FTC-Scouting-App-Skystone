@@ -31,6 +31,8 @@ namespace SkystoneScouting.Pages.Teams
         public IList<Team> AllTeams { get; set; }
         public IList<Team> AuthorizedTeams { get; set; }
         public string AvgPTSSort { get; set; }
+        public string AvgRPSort { get; set; }
+        public string AvgTBPSort { get; set; }
         public string CCWMSort { get; set; }
         public string DPRSort { get; set; }
         public string eventID { get; set; }
@@ -79,7 +81,9 @@ namespace SkystoneScouting.Pages.Teams
             IDSort = System.String.IsNullOrEmpty(SortOrder) || SortOrder == "ID" ? "ID_desc" : "ID";
             NameSort = SortOrder == "Name" ? "Name_desc" : "Name";
             ExpPTSSort = SortOrder == "ExpPTS" ? "ExpPTS_desc" : "ExpPTS";
-            AvgPTSSort = SortOrder == "AvgPTS" ? "AvgPT_desc" : "AvgPTS";
+            AvgPTSSort = SortOrder == "AvgPTS" ? "AvgPTS_desc" : "AvgPTS";
+            AvgRPSort = SortOrder == "AvgRP" ? "AvgRP_desc" : "AvgRP";
+            AvgTBPSort = SortOrder == "AvgTBP" ? "AvgTBP_desc" : "AvgTBP";
             OPRSort = SortOrder == "OPR" ? "OPR_desc" : "OPR";
             DPRSort = SortOrder == "DPR" ? "DPR_desc" : "DPR";
             CCWMSort = SortOrder == "CCWM" ? "CCWM" : "CCWM_desc";
@@ -116,6 +120,26 @@ namespace SkystoneScouting.Pages.Teams
                 case "AvgPTS_desc":
                     NotScoutedTeams = NotScoutedTeams.AsEnumerable<Team>().OrderByDescending(s => s.AvgPTS).ToList<Team>();
                     ScoutedTeams = ScoutedTeams.AsEnumerable<Team>().OrderByDescending(s => s.AvgPTS).ToList<Team>();
+                    break;
+
+                case "AvgRP":
+                    NotScoutedTeams = NotScoutedTeams.AsEnumerable<Team>().OrderBy(s => s.AvgRP).ToList<Team>();
+                    ScoutedTeams = ScoutedTeams.AsEnumerable<Team>().OrderBy(s => s.AvgRP).ToList<Team>();
+                    break;
+
+                case "AvgRP_desc":
+                    NotScoutedTeams = NotScoutedTeams.AsEnumerable<Team>().OrderByDescending(s => s.AvgRP).ToList<Team>();
+                    ScoutedTeams = ScoutedTeams.AsEnumerable<Team>().OrderByDescending(s => s.AvgRP).ToList<Team>();
+                    break;
+
+                case "AvgTBP":
+                    NotScoutedTeams = NotScoutedTeams.AsEnumerable<Team>().OrderBy(s => s.AvgTBP).ToList<Team>();
+                    ScoutedTeams = ScoutedTeams.AsEnumerable<Team>().OrderBy(s => s.AvgTBP).ToList<Team>();
+                    break;
+
+                case "AvgTBP_desc":
+                    NotScoutedTeams = NotScoutedTeams.AsEnumerable<Team>().OrderByDescending(s => s.AvgTBP).ToList<Team>();
+                    ScoutedTeams = ScoutedTeams.AsEnumerable<Team>().OrderByDescending(s => s.AvgTBP).ToList<Team>();
                     break;
 
                 case "OPR":

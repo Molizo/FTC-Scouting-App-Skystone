@@ -194,6 +194,16 @@ else
                                     </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.AvgRPSort">
+                                        RP
+                                    </a>
+                                </th>
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.AvgTBPSort">
+                                        TBP
+                                    </a>
+                                </th>
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.OPRSort">
                                         OPR
                                     </a>
@@ -225,6 +235,22 @@ else
                                         @if (Team.AvgPTS != null)
                                         {
                                             @Team.AvgPTS}
+                                        else
+                                        {
+                                            @Html.Raw("N/A")}
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @if (Team.AvgRP != null)
+                                        {
+                                            @Team.AvgRP}
+                                        else
+                                        {
+                                            @Html.Raw("N/A")}
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @if (Team.AvgTBP != null)
+                                        {
+                                            @Team.AvgTBP}
                                         else
                                         {
                                             @Html.Raw("N/A")}
@@ -305,6 +331,16 @@ else
                                     </a>
                                 </th>
                                 <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.AvgRPSort">
+                                        RP
+                                    </a>
+                                </th>
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
+                                    <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.AvgTBPSort">
+                                        TBP
+                                    </a>
+                                </th>
+                                <th class="hidden-mobile hidden-tablet bg-orange" width="50px">
                                     <a style="color: white;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.OPRSort">
                                         OPR
                                     </a>
@@ -339,6 +375,22 @@ else
                                         @if (Team.AvgPTS != null)
                                         {
                                             @Team.AvgPTS}
+                                        else
+                                        {
+                                            @Html.Raw("N/A")}
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @if (Team.AvgRP != null)
+                                        {
+                                            @Team.AvgRP}
+                                        else
+                                        {
+                                            @Html.Raw("N/A")}
+                                    </td>
+                                    <td class="hidden-mobile hidden-tablet">
+                                        @if (Team.AvgTBP != null)
+                                        {
+                                            @Team.AvgTBP}
                                         else
                                         {
                                             @Html.Raw("N/A")}
