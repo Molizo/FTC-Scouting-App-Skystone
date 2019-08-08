@@ -32,7 +32,7 @@ namespace SkystoneScouting.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("visoiu.mihnea@qrobotics.eu", "FTC Scouting App"),
+                From = new EmailAddress("mihnea@qrobotics.eu", "FTC Scouting App"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

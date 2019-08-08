@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <Version>1.11.73-DEV0144</Version>
+    <Version>1.11.76-DEV0147</Version>
     <Authors>Mihnea Theodor Visoiu</Authors>
     <Company>Quantum Robotics</Company>
     <Product>FTC Skystone Scouting App</Product>
@@ -34,6 +34,7 @@
     <PackageReference Include="Sentry" Version="1.2.0" />
     <PackageReference Include="Sentry.AspNetCore" Version="1.2.0" />
     <PackageReference Include="SharpRaven" Version="2.4.0" />
+    <PackageReference Include="WebMarkupMin.AspNetCore2" Version="2.6.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="emailConfirmation.html">
+    <None Update="emailConfirmation.ehtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

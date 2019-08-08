@@ -72,7 +72,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
                         values: new { userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    string ConfirmEmailTemplate = System.IO.File.ReadAllText(@"emailConfirmation.html");
+                    string ConfirmEmailTemplate = System.IO.File.ReadAllText(@"emailConfirmation.ehtml");
                     string ConfirmEmailContent = ConfirmEmailTemplate.Replace("EMAIL TOKEN LINK HERE", HtmlEncoder.Default.Encode(callbackUrl));
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email", ConfirmEmailContent);

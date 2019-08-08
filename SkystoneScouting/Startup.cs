@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using SkystoneScouting.Data;
-using System.IO;
-using SkystoneScouting.Services;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Sentry;
-using Sentry.AspNetCore;
 using Sentry.Protocol;
+using SkystoneScouting.Data;
+using SkystoneScouting.Services;
+using System.IO;
+using WebMarkupMin.AspNetCore2;
 
 namespace SkystoneScouting
 {
@@ -52,6 +52,9 @@ namespace SkystoneScouting
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            //This speeds up the page delivery by dynamically minimifying the files
+            //app.UseWebMarkupMin();
 
             //This remaps node_modules to lib for accesing by pages
             app.UseStaticFiles(new StaticFileOptions()
@@ -94,13 +97,29 @@ namespace SkystoneScouting
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DBConnection")));
 
+            /*This configures content minimification
+            services.AddWebMarkupMin(
+        options =>
+        {
+            options.AllowMinificationInDevelopmentEnvironment = true;
+            options.AllowCompressionInDevelopmentEnvironment = true;
+        })
+        .AddHtmlMinification(
+            options =>
+            {
+                options.MinificationSettings.RemoveRedundantAttributes = true;
+                options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
+                options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
+            })
+        .AddHttpCompression();*/
+
             //This enables e-mail verification and configures the default identity
             services.AddDefaultIdentity<IdentityUser>(config =>
-            {
-                config.SignIn.RequireConfirmedEmail = true;
-            })
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                {
+                    config.SignIn.RequireConfirmedEmail = true;
+                })
+                    .AddDefaultUI(UIFramework.Bootstrap4)
+                    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
