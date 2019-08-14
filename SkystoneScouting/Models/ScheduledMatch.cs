@@ -10,7 +10,8 @@ namespace SkystoneScouting.Models
     public enum MatchType
     {
         Qualification,
-        Elimination
+        Semifinal,
+        Final
     }
 
     public class ScheduledMatch

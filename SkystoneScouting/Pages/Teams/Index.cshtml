@@ -82,7 +82,7 @@ else
     ScoutingPercentage = Model.ScoutedTeams.Count * 100 / Model.AuthorizedTeams.Count;
     BestOPR = Model.AuthorizedTeams.Max(t => t.OPR);
     BestDPR = Model.AuthorizedTeams.Max(t => t.DPR);
-    BestCCWM = Model.AuthorizedTeams.Min(t => t.CCWM);
+    BestCCWM = Model.AuthorizedTeams.Max(t => t.CCWM);
 
     <div class="row clearfix hidden-mobile">
         <div class="col-lg-6 col-md-6 col-sm-6 col-sm-6">
