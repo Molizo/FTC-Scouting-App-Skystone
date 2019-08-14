@@ -28,6 +28,9 @@
 
     <!-- Page theme -->
     <link href="../../css/themes/theme-quantum.css" rel="stylesheet" />
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
 </head>
 <body class="theme-quantum">
     <!-- Page Loader -->
@@ -236,6 +239,10 @@
     <!-- Demo Js -->
     <script src="../../js/demo.js"></script>
 
+    <!-- Web App Service Worker-->
+    <script>
+        navigator.serviceWorker.register("../service_worker.js");
+    </script>
     @RenderSection("Scripts", false)
 </body>
 </html>

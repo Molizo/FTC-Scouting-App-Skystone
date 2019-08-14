@@ -1,0 +1,21 @@
+{
+  "short_name": "Scouting",
+  "name": "FTC Scouting App",
+  "icons": [
+    {
+      "src": "/media/icons/192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/media/icons/512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "blue",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#1D4294"
+}
