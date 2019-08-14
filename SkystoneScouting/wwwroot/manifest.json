@@ -1,6 +1,6 @@
 {
-  "short_name": "Scouting",
-  "name": "FTC Scouting App",
+  "background_color": "#1D4294",
+  "display": "standalone",
   "icons": [
     {
       "src": "/media/icons/192.png",
@@ -13,9 +13,10 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "/?source=pwa",
-  "background_color": "blue",
-  "display": "standalone",
+  "name": "FTC Scouting App",
   "scope": "/",
-  "theme_color": "#1D4294"
+  "short_name": "Scouting",
+  "start_url": "/?source=pwa",
+  "theme_color": "#1D4294",
+  "description": "A First Tech Challenge Scouting App for the 2019-2020 Skystone Season"
 }

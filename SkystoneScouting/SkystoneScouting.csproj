@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <Version>1.11.98-DEV0169</Version>
+    <Version>1.11.99-DEV0170</Version>
     <Authors>Mihnea Theodor Visoiu</Authors>
     <Company>Quantum Robotics</Company>
     <Product>FTC Skystone Scouting App</Product>
@@ -50,8 +50,6 @@
   </ItemGroup>
 
   <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties _1msbump__JsonSchema="msbump" />
-    </VisualStudio>
+    <VisualStudio><UserProperties _1msbump__JsonSchema="msbump" wwwroot_4manifest_1json__JsonSchema="" /></VisualStudio>
   </ProjectExtensions>
 </Project>
