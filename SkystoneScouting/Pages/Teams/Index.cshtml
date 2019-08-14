@@ -23,19 +23,6 @@
             }
         }
 
-        @@media only screen and (max-width:768px) {
-            .team-number-column {
-                width: -webkit-calc(100% - 140px);
-                width: -moz-calc(100% - 140px);
-                width: calc(100% - 140px);
-            }
-        }
-
-        @@media only screen and (min-width:769px) {
-            .team-number-column {
-                width: 50px;
-            }
-        }
     </style>
 }
 
@@ -178,12 +165,12 @@ else
                     <table class="table table-hover" style="table-layout:fixed;" id="notScouted-table">
                         <thead>
                             <tr>
-                                <th class="team-number-column" width="50px">
+                                <th width="50px">
                                     <a style="color: #424242;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.IDSort">
                                         NR
                                     </a>
                                 </th>
-                                <th class="hidden-mobile hidden-tablet">
+                                <th>
                                     <a style="color: #424242;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.NameSort">
                                         TEAM NAME
                                     </a>
@@ -228,7 +215,7 @@ else
                                     <td>
                                         @Team.TeamNumber
                                     </td>
-                                    <td class="hidden-mobile hidden-tablet" style="word-wrap:break-word">
+                                    <td style="overflow:hidden;">
                                         @Team.TeamName
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">

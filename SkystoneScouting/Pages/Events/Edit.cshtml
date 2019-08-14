@@ -30,18 +30,18 @@
     </ol>
 </div>
 
-<div class="row clearfix">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <div class="card">
-            <div class="header">
-                <h2>
-                    EVENT INFO
-                    <small>Let's talk about your event</small>
-                </h2>
-            </div>
-            <div class="body">
-                <form method="post">
-                    <input asp-for="Event.ID" hidden>
+<form method="post">
+    <input asp-for="Event.ID" hidden>
+    <div class="row clearfix">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        EVENT INFO
+                        <small>Let's talk about your event</small>
+                    </h2>
+                </div>
+                <div class="body">
                     <div class="row clearfix">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="col-sm-8">
@@ -74,23 +74,27 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-sm-12" style="margin-bottom:-20px;">
                             <h2 class="card-inside-title">Who will be scouting?</h2>
                             <div class="form-group demo-tagsinput-area">
                                 <div class="form-line">
-                                    <input asp-for="Event.AllowedUsers" type="text" data-role="tagsinput" id="scouters-input" class="form-control">
+                                    <input asp-for="Event.AllowedUsers" type="text" data-role="tagsinput" class="form-control">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-1">
-                            <button type="submit" class="btn btn-primary waves-effect">EDIT EVENT</button>
-                        </div>
-                </form>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="row clearfix">
+
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary waves-effect">EDIT EVENT</button>
+        </div>
     </div>
+</form>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <!--Bootstrap tags input JS-->
