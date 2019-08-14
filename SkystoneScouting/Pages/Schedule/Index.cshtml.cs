@@ -7,23 +7,71 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
+using SkystoneScouting.Services;
 
 namespace SkystoneScouting.Pages.Schedule
 {
     public class IndexModel : PageModel
     {
+        #region Private Fields
+
         private readonly SkystoneScouting.Data.ApplicationDbContext _context;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public IndexModel(SkystoneScouting.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IList<ScheduledMatch> ScheduledMatch { get;set; }
+        #endregion Public Constructors
 
-        public async Task OnGetAsync()
+        #region Public Properties
+
+        public IList<ScheduledMatch> AuthorizedScheduledMatches { get; set; }
+        public IList<Team> AuthorizedTeams { get; set; }
+        public double AverageScore { get; set; }
+        public int BestScore { get; set; }
+        public string eventID { get; set; }
+        public IList<ScheduledMatch> FinalsScheduledMatches { get; set; }
+        public double MatchesPerTeam { get; set; }
+        public IList<ScheduledMatch> QualificationsScheduledMatches { get; set; }
+        public IList<ScheduledMatch> SemifinalsScheduledMatches { get; set; }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public async Task OnGetAsync(string EventID)
         {
-            ScheduledMatch = await _context.ScheduledMatch.ToListAsync();
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                NotFound();
+            eventID = EventID;
+            AuthorizedTeams = await _context.Team.Where(t => t.EventID == EventID).ToListAsync();
+            AuthorizedScheduledMatches = await _context.ScheduledMatch.Where(m => m.EventID == EventID).OrderBy(m => m.MatchNumber).ToListAsync();
+            QualificationsScheduledMatches = AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Qualification).ToList();
+            SemifinalsScheduledMatches = AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Semifinal).ToList();
+            FinalsScheduledMatches = AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Final).ToList();
+
+            MatchesPerTeam = AuthorizedScheduledMatches.Count * 4 / AuthorizedTeams.Count;
+            MatchesPerTeam = System.Math.Round(MatchesPerTeam, 2);
+
+            int BestRedScore = AuthorizedScheduledMatches.Max(m => m.RedScore).GetValueOrDefault();
+            int BestBlueScore = AuthorizedScheduledMatches.Max(m => m.BlueScore).GetValueOrDefault();
+            BestScore = System.Math.Max(BestRedScore, BestBlueScore);
+
+            int ScoresSum = 0;
+            foreach (var Match in AuthorizedScheduledMatches)
+            {
+                ScoresSum += Match.RedScore.GetValueOrDefault();
+                ScoresSum += Match.BlueScore.GetValueOrDefault();
+            }
+            AverageScore = ScoresSum / (AuthorizedScheduledMatches.Count * 2);
+            AverageScore = System.Math.Round(AverageScore, 2);
         }
+
+        #endregion Public Methods
     }
 }

@@ -1,0 +1,71 @@
+﻿.theme-quantum .navbar {
+    background-color: #1D4294;
+}
+
+.theme-quantum .navbar-brand {
+    color: #fff;
+}
+
+    .theme-quantum .navbar-brand:hover {
+        color: #fff;
+    }
+
+    .theme-quantum .navbar-brand:active {
+        color: #fff;
+    }
+
+    .theme-quantum .navbar-brand:focus {
+        color: #fff;
+    }
+
+.theme-quantum .nav > li > a {
+    color: #fff;
+}
+
+    .theme-quantum .nav > li > a:hover {
+        background-color: transparent;
+    }
+
+    .theme-quantum .nav > li > a:focus {
+        background-color: transparent;
+    }
+
+.theme-quantum .nav .open > a {
+    background-color: transparent;
+}
+
+    .theme-quantum .nav .open > a:hover {
+        background-color: transparent;
+    }
+
+    .theme-quantum .nav .open > a:focus {
+        background-color: transparent;
+    }
+
+.theme-quantum .bars {
+    color: #fff;
+}
+
+.theme-quantum .sidebar .menu .list li.active {
+    background-color: transparent;
+}
+
+    .theme-quantum .sidebar .menu .list li.active > :first-child i, .theme-quantum .sidebar .menu .list li.active > :first-child span {
+        color: #1D4294;
+    }
+
+.theme-quantum .sidebar .menu .list .toggled {
+    background-color: transparent;
+}
+
+.theme-quantum .sidebar .menu .list .ml-menu {
+    background-color: transparent;
+}
+
+.theme-quantum .sidebar .legal {
+    background-color: #fff;
+}
+
+    .theme-quantum .sidebar .legal .copyright a {
+        color: #1D4294 !important;
+    }
