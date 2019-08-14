@@ -1,7 +1,7 @@
 ﻿// This is the "Offline page" service worker
 
 const CACHE = "sftcsoutingapp-page";
-const offlineFallbackPage = "offline.html";
+const offlineFallbackPage = "/error/offline.html";
 
 // Install stage sets up the offline page in the cache and opens a new cache
 self.addEventListener("install", function (event) {

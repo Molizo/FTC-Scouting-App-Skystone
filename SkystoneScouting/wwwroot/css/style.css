@@ -1,6 +1,12 @@
 ﻿/* Navbar ====================================== */
 @import url(materialize.css);
 
+.navbar-nav > li > a, .navbar-brand {
+    padding-top: 5px !important;
+    padding-bottom: 0 !important;
+    height: 30px;
+}
+
 .navbar {
     font-family: "Roboto", sans-serif;
     -webkit-border-radius: 0;
@@ -17,6 +23,7 @@
     left: 0;
     z-index: 12;
     width: 100%;
+    min-height: 30px !important;
 }
 
     .navbar .navbar-brand {
@@ -3034,7 +3041,7 @@
 @media (max-width: 767px) {
     .navbar > .container .navbar-brand,
     .navbar > .container-fluid .navbar-brand {
-        margin-left: 35px;
+        margin-left: 30px;
         width: 73%;
     }
 
@@ -3138,7 +3145,7 @@ a {
 }
 
 section.content {
-    margin: 100px 15px 0 315px;
+    margin: 70px 15px 0 315px;
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
     -webkit-transition: 0.5s;
@@ -9161,8 +9168,8 @@ fieldset[disabled] .form-control {
     font-family: 'Material Icons';
     font-size: 24px;
     position: absolute;
-    top: 18px;
-    left: 20px;
+    top: 9px;
+    left: 15px;
     margin-right: 10px;
     -moz-transform: scale(0);
     -ms-transform: scale(0);
@@ -10116,9 +10123,9 @@ fieldset[disabled] .form-control {
     width: 300px;
     overflow: hidden;
     display: inline-block;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 50px);
     position: fixed;
-    top: 70px;
+    top: 50px;
     left: 0;
     -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
