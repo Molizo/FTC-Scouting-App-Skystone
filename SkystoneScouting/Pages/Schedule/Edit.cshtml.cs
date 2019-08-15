@@ -13,25 +13,46 @@ namespace SkystoneScouting.Pages.Schedule
 {
     public class EditModel : PageModel
     {
+        #region Private Fields
+
         private readonly SkystoneScouting.Data.ApplicationDbContext _context;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public EditModel(SkystoneScouting.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
+        public IList<Team> AuthorizedTeams { get; set; }
+        public string eventID { get; set; }
+
         [BindProperty]
         public ScheduledMatch ScheduledMatch { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public async Task<IActionResult> OnGetAsync(string EventID, string ScheduledMatchID)
         {
-            if (id == null)
+            if (ScheduledMatchID == null)
             {
                 return NotFound();
             }
 
-            ScheduledMatch = await _context.ScheduledMatch.FirstOrDefaultAsync(m => m.ID == id);
+            if (!Services.AuthorizationCheck.ScheduledMatch(_context, ScheduledMatchID, User.Identity.Name))
+                return Forbid();
 
+            eventID = EventID;
+            ScheduledMatch = await _context.ScheduledMatch.FirstOrDefaultAsync(m => m.ID == ScheduledMatchID);
+            AuthorizedTeams = await _context.Team.Where(t => t.EventID == EventID).ToListAsync();
             if (ScheduledMatch == null)
             {
                 return NotFound();
@@ -39,7 +60,7 @@ namespace SkystoneScouting.Pages.Schedule
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string EventID, string ScheduledMatchID)
         {
             if (!ModelState.IsValid)
             {
@@ -64,12 +85,22 @@ namespace SkystoneScouting.Pages.Schedule
                 }
             }
 
-            return RedirectToPage("./Index");
+            eventID = EventID;
+            return RedirectToPage("./Index", new
+            {
+                EventID = eventID,
+            });
         }
+
+        #endregion Public Methods
+
+        #region Private Methods
 
         private bool ScheduledMatchExists(string id)
         {
             return _context.ScheduledMatch.Any(e => e.ID == id);
         }
+
+        #endregion Private Methods
     }
 }

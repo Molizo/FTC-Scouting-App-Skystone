@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <Version>1.12.2-DEV0175</Version>
+    <Version>1.12.21-DEV0194</Version>
     <Authors>Mihnea Theodor Visoiu</Authors>
     <Company>Quantum Robotics</Company>
     <Product>FTC Skystone Scouting App</Product>
@@ -47,10 +47,6 @@
     <None Update="emailConfirmation.ehtml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\error\" />
   </ItemGroup>
 
   <ProjectExtensions>

@@ -44,6 +44,19 @@ namespace SkystoneScouting.Services
             return false;
         }
 
+        public static bool ScheduledMatch(SkystoneScouting.Data.ApplicationDbContext context, string ScheduledMatchID, string Username)
+        {
+            IList<ScheduledMatch> ScheduledMatches = new List<ScheduledMatch>();
+            ScheduledMatches = context.ScheduledMatch.ToList();
+            foreach (var ScheduledMatch in ScheduledMatches)
+            {
+                if (ScheduledMatch.ID == ScheduledMatchID && AuthorizationCheck.Event(context, ScheduledMatch.EventID, Username))
+                    return true;
+            }
+            return false;
+        }
+
+
         #endregion Public Methods
     }
 }
