@@ -31,6 +31,11 @@
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">
+
+    <!-- Browser improvements-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="theme-color" content="#1D4294" />
+    <link rel="apple-touch-icon" href="~/media/icons/512.png">
 </head>
 <body class="theme-quantum">
     <!-- Page Loader -->
@@ -239,6 +244,8 @@
     <script>
         navigator.serviceWorker.register("../service_worker.js");
     </script>
+
+
     @RenderSection("Scripts", false)
 </body>
 </html>

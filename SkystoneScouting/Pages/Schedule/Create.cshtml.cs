@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
 using SkystoneScouting.Services;
@@ -30,7 +31,6 @@ namespace SkystoneScouting.Pages.Schedule
 
         #region Public Properties
 
-        public IList<Team> AllTeams { get; set; }
         public IList<Team> AuthorizedTeams { get; set; }
         public string eventID { get; set; }
 
@@ -47,14 +47,10 @@ namespace SkystoneScouting.Pages.Schedule
         {
             if (EventID == null)
                 return NotFound();
-            AllTeams = _context.Team.ToList<Team>();
-            AuthorizedTeams = new List<Team>();
-            foreach (var Team in AllTeams)
-            {
-                if (Team.EventID == EventID)
-                    AuthorizedTeams.Add(Team);
-            }
-            AuthorizedTeams = AuthorizedTeams.AsQueryable<Team>().OrderBy(s => s.TeamNumber.PadLeft(5)).ToList<Team>();
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
+
+            AuthorizedTeams = _context.Team.AsNoTracking().Where(t => t.EventID == EventID).AsQueryable<Team>().OrderBy(s => s.TeamNumber.PadLeft(5)).ToList<Team>();
             return Page();
         }
 
@@ -62,34 +58,25 @@ namespace SkystoneScouting.Pages.Schedule
         {
             if (EventID == null)
                 return NotFound();
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
             ScheduledMatch.EventID = EventID;
-            var _EventID = EventID;
             _context.ScheduledMatch.Add(ScheduledMatch);
 
-            ScheduledMatches = _context.ScheduledMatch.ToList<Models.ScheduledMatch>();
-            IList<Models.ScheduledMatch> AuthorizedScheduledMatches = new List<Models.ScheduledMatch>();
-            foreach (var Match in ScheduledMatches)
-            {
-                if (Match.EventID == EventID)
-                    AuthorizedScheduledMatches.Add(Match);
-            }
+            IList<Models.ScheduledMatch> AuthorizedScheduledMatches = await _context.ScheduledMatch.Where(s => s.EventID == EventID).ToListAsync();
             AuthorizedScheduledMatches.Add(ScheduledMatch);
-            AllTeams = _context.Team.ToList<Team>();
-            AuthorizedTeams = new List<Team>();
-            foreach (var Team in AllTeams)
-            {
-                if (Team.EventID == EventID)
-                    AuthorizedTeams.Add(Team);
-            }
+            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
             IList<Team> TeamsWithScores = CalculateTeamMetrics.CalculateAllMetrics(AuthorizedTeams, AuthorizedScheduledMatches);
 
             _context.Team.UpdateRange(TeamsWithScores);
             await _context.SaveChangesAsync();
 
+            var _EventID = EventID;
             return RedirectToPage("./Index", new
             {
                 EventID = _EventID,

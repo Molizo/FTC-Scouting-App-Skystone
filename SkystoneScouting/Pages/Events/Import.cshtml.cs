@@ -42,7 +42,7 @@ namespace SkystoneScouting.Pages.Events
         public IActionResult OnGet()
         {
             if (!User.Identity.IsAuthenticated)
-                throw new Exception("User not allowed to create event due to not being authenitcated.");
+                return Forbid();
 
             return Page();
         }

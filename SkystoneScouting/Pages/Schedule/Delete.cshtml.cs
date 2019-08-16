@@ -7,45 +7,58 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
+using SkystoneScouting.Services;
 
 namespace SkystoneScouting.Pages.Schedule
 {
     public class DeleteModel : PageModel
     {
+        #region Private Fields
+
         private readonly SkystoneScouting.Data.ApplicationDbContext _context;
+
+        #endregion Private Fields
+
+        #region Public Constructors
 
         public DeleteModel(SkystoneScouting.Data.ApplicationDbContext context)
         {
             _context = context;
         }
 
+        #endregion Public Constructors
+
+        #region Public Properties
+
         [BindProperty]
         public ScheduledMatch ScheduledMatch { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+        #endregion Public Properties
 
-            ScheduledMatch = await _context.ScheduledMatch.FirstOrDefaultAsync(m => m.ID == id);
+        #region Public Methods
+
+        public async Task<IActionResult> OnGetAsync(string EventID, string ScheduledMatchID)
+        {
+            if (EventID == null || ScheduledMatchID == null)
+                return NotFound();
+            if (!AuthorizationCheck.ScheduledMatch(_context, ScheduledMatchID, User.Identity.Name))
+                return Forbid();
+
+            ScheduledMatch = await _context.ScheduledMatch.FirstOrDefaultAsync(m => m.ID == ScheduledMatchID);
 
             if (ScheduledMatch == null)
-            {
                 return NotFound();
-            }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        public async Task<IActionResult> OnPostAsync(string EventID, string ScheduledMatchID)
         {
-            if (id == null)
-            {
+            if (EventID == null || ScheduledMatchID == null)
                 return NotFound();
-            }
+            if (!AuthorizationCheck.ScheduledMatch(_context, ScheduledMatchID, User.Identity.Name))
+                return Forbid();
 
-            ScheduledMatch = await _context.ScheduledMatch.FindAsync(id);
+            ScheduledMatch = await _context.ScheduledMatch.FindAsync(ScheduledMatchID);
 
             if (ScheduledMatch != null)
             {
@@ -53,7 +66,13 @@ namespace SkystoneScouting.Pages.Schedule
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToPage("./Index");
+            var _EventID = EventID;
+            return RedirectToPage("./Index", new
+            {
+                EventID = _EventID,
+            });
         }
+
+        #endregion Public Methods
     }
 }

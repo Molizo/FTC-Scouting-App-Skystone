@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
+using SkystoneScouting.Services;
 
 namespace SkystoneScouting.Pages.Schedule
 {
@@ -42,17 +43,14 @@ namespace SkystoneScouting.Pages.Schedule
 
         public async Task<IActionResult> OnGetAsync(string EventID, string ScheduledMatchID)
         {
-            if (ScheduledMatchID == null)
-            {
+            if (EventID == null || ScheduledMatchID == null)
                 return NotFound();
-            }
-
-            if (!Services.AuthorizationCheck.ScheduledMatch(_context, ScheduledMatchID, User.Identity.Name))
+            if (!AuthorizationCheck.ScheduledMatch(_context, ScheduledMatchID, User.Identity.Name))
                 return Forbid();
 
             eventID = EventID;
             ScheduledMatch = await _context.ScheduledMatch.FirstOrDefaultAsync(m => m.ID == ScheduledMatchID);
-            AuthorizedTeams = await _context.Team.Where(t => t.EventID == EventID).ToListAsync();
+            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
             if (ScheduledMatch == null)
             {
                 return NotFound();
@@ -62,12 +60,21 @@ namespace SkystoneScouting.Pages.Schedule
 
         public async Task<IActionResult> OnPostAsync(string EventID, string ScheduledMatchID)
         {
+            if (EventID == null || ScheduledMatchID == null)
+                return NotFound();
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
             _context.Attach(ScheduledMatch).State = EntityState.Modified;
+
+            IList<Models.ScheduledMatch> AuthorizedScheduledMatches = await _context.ScheduledMatch.Where(s => s.EventID == EventID).ToListAsync();
+            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
+            IList<Team> TeamsWithScores = CalculateTeamMetrics.CalculateAllMetrics(AuthorizedTeams, AuthorizedScheduledMatches);
+
+            _context.Team.UpdateRange(TeamsWithScores);
 
             try
             {

@@ -38,10 +38,8 @@ namespace SkystoneScouting.Pages.Events
         public async Task<IActionResult> OnGetAsync(string EventID)
         {
             // Authorization checks
-            if (!User.Identity.IsAuthenticated)
-                throw new Exception("User not allowed to edit event due to not being authenitcated.");
-            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
-                throw new Exception("User not authorized to edit this event.");
+            if (!User.Identity.IsAuthenticated || !AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
 
             if (EventID == null)
             {

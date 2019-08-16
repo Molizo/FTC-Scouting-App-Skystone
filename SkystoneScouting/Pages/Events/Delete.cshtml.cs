@@ -44,10 +44,8 @@ namespace SkystoneScouting.Pages.Events
                 return NotFound();
             }
 
-            if (!User.Identity.IsAuthenticated)
-                throw new Exception("User not authenticated, therefore proof of authorisation is lacking and the event can not be deleted");
-            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
-                throw new Exception("User not authorized to delete event");
+            if (!User.Identity.IsAuthenticated || !AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
 
             Event = await _context.Event.FirstOrDefaultAsync(m => m.ID == EventID);
 

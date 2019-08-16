@@ -11088,3 +11088,10 @@ html.ie11 .bs-searchbox .form-control {
         display: none !important;
     }
 }
+
+/* PWA immersiveness tweaks*/
+.body {
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}

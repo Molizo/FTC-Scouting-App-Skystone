@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Models;
 using SkystoneScouting.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkystoneScouting.Pages.Events
@@ -28,9 +30,7 @@ namespace SkystoneScouting.Pages.Events
 
         #region Public Properties
 
-        //Sublists of the events
         public IList<Event> AllEvents { get; set; }
-
         public IList<Event> AuthorizedEvents { get; set; }
         public IList<Event> CurrentEvents { get; set; }
         public IList<Event> PastEvents { get; set; }
@@ -40,33 +40,21 @@ namespace SkystoneScouting.Pages.Events
 
         #region Public Methods
 
-        public async Task OnGetAsync()
+        public async Task<ActionResult> OnGetAsync()
         {
-            Trace.TraceInformation("Loaded event page");
-
             if (!User.Identity.IsAuthenticated)
-            {
-                throw new Exception("Permission error - This session is not authorised to access this area");
-            }
-            AllEvents = await _context.Event.ToListAsync();
+                return Forbid();
+            AllEvents = await _context.Event.AsNoTracking().ToListAsync();
             AuthorizedEvents = new List<Event>();
-            CurrentEvents = new List<Event>();
-            UpcomingEvents = new List<Event>();
-            PastEvents = new List<Event>();
             foreach (var Event in AllEvents)
             {
                 if (AuthorizationCheck.Event(_context, Event.ID, User.Identity.Name))
                     AuthorizedEvents.Add(Event);
             }
-            foreach (var Event in AuthorizedEvents)
-            {
-                if (Event.StartDate <= DateTime.Today && Event.EndDate >= DateTime.Today)
-                    CurrentEvents.Add(Event);
-                else if (Event.StartDate > DateTime.Today)
-                    UpcomingEvents.Add(Event);
-                else
-                    PastEvents.Add(Event);
-            }
+            CurrentEvents = AuthorizedEvents.Where(e => e.StartDate <= DateTime.Today && e.EndDate >= DateTime.Today).ToList();
+            UpcomingEvents = AuthorizedEvents.Where(e => e.StartDate > DateTime.Today).ToList();
+            PastEvents = AuthorizedEvents.Where(e => e.EndDate < DateTime.Today).ToList();
+            return Page();
         }
 
         #endregion Public Methods
