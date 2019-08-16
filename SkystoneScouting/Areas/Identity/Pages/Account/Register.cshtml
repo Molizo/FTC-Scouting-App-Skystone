@@ -4,83 +4,110 @@
     ViewData["Title"] = "Register";
 }
 
-<body class="signup-page">
-    <div class="signup-box">
-        <div class="logo">
-            <a asp-area="" asp-page="/Index">FTC Scouting App</a>
-            <small>Skystone Edition</small>
-        </div>
-        <div class="card">
-            <div class="body">
-                <form id="sign_up" method="POST">
-                    <div class="msg">Register as new user</div>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input asp-for="Input.Username" class="form-control" placeholder="Username" autofocus>
+    <body class="signup-page">
+        <div class="signup-box">
+            <div class="logo">
+                <a asp-area="" asp-page="/Index">FTC Scouting App</a>
+                <small>Skystone Edition</small>
+            </div>
+            <div class="card">
+                <div class="body">
+                    <form id="sign_up" method="POST">
+                        <div class="msg">Register as new user</div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <div class="form-line">
+                                <input asp-for="Input.Username" class="form-control" placeholder="Username" autofocus>
+                            </div>
                         </div>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">email</i>
-                        </span>
-                        <div class="form-line">
-                            <input asp-for="Input.Email" placeholder="Email" class="form-control">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">email</i>
+                            </span>
+                            <div class="form-line">
+                                <input asp-for="Input.Email" placeholder="Email" class="form-control">
+                            </div>
+
+                            <span asp-validation-for="Input.Email" class="text-danger" placeholder="Email"></span>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input asp-for="Input.Password" placeholder="Password" class="form-control">
+                            </div>
+
+                            <span asp-validation-for="Input.Password" class="text-danger" placeholder="Password"></span>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm password">
+                            </div>
+
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-blue">
+                            <label for="terms">I am a <b>Gracious Professional</b></label>
                         </div>
 
-                        <span asp-validation-for="Input.Email" class="text-danger" placeholder="Email"></span>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input asp-for="Input.Password" placeholder="Password" class="form-control">
+                        <button class="btn btn-block btn-lg bg-blue waves-effect" type="submit">SIGN UP</button>
+
+                        <div class="m-t-25 m-b--5 align-center">
+                            <a asp-area="Identity" asp-page="/Account/Login">Already have an account?</a>
                         </div>
-
-                        <span asp-validation-for="Input.Password" class="text-danger" placeholder="Password"></span>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm password">
-                        </div>
-
-                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-blue">
-                        <label for="terms">I am a <b>Gracious Professional</b></label>
-                    </div>
-
-                    <button class="btn btn-block btn-lg bg-blue waves-effect" type="submit">SIGN UP</button>
-
-                    <div class="m-t-25 m-b--5 align-center">
-                        <a asp-area="Identity" asp-page="/Account/Login">Already have an account?</a>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Jquery Core Js -->
-    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+        <div class="signup-box">
+            <div class="card" style="
+    position: fixed;
+    bottom: -30px;
+    min-width: 360px;
+    background-color: #1d4294;
+                         ">
+                <div class="col-12">
+                    <h4 style="
+    color: white;
+    margin: 15px 21px;
+">
+                        <a href="https://qrobotics.eu" target="_blank" style="
+    all: unset;
+">Provided by Quantum Robotics #14270</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
 
-    <!-- Bootstrap Core Js -->
-    <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- Jquery Core Js -->
+        <script src="/vendor/jquery/dist/jquery.min.js"></script>
 
-    <!-- Waves Effect Plugin Js -->
-    <script src="/vendor/node-waves/dist/waves.js"></script>
+        <!-- Bootstrap Core Js -->
+        <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
 
-    <!-- Validation Plugin Js -->
-    <script src="/vendor/jquery-validation/dist/jquery.validate.js"></script>
+        <!-- Waves Effect Plugin Js -->
+        <script src="/vendor/node-waves/dist/waves.js"></script>
 
-    <!-- Custom Js -->
-    <script src="../../js/admin.js"></script>
-    <script src="../../js/pages/examples/sign-up.js"></script>
-</body>
+        <!-- Validation Plugin Js -->
+        <script src="/vendor/jquery-validation/dist/jquery.validate.js"></script>
+
+        <!-- Custom Js -->
+        <script src="../../js/admin.js"></script>
+        <script src="../../js/pages/examples/sign-up.js"></script>
+
+        <!-- Bounce effect fix -->
+        <script>
+            document.addEventListener("touchmove", function (e) {
+                e.preventDefault();
+            }, { passive: false });
+        </script>
+    </body>

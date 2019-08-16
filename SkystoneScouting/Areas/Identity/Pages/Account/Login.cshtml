@@ -5,70 +5,98 @@
     ViewData["Title"] = "Login";
 }
 
-<body class="login-page">
-    <div class="login-box">
-        <div class="logo">
-            <a asp-area="" asp-page="/Index">FTC Scouting App</a>
-            <small>Skystone Edition</small>
-        </div>
-        <div class="card">
-            <div class="body">
-                <form method="post">
-                    <div class="msg">Sign in to start your session</div>
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">person</i>
-                        </span>
-                        <div class="form-line">
-                            <input asp-for="Input.Username" class="form-control" autofocus placeholder="Username">
+    <body class="login-page">
+        <div class="login-box">
+            <div class="logo">
+                <a asp-area="" asp-page="/Index">FTC Scouting App</a>
+                <small>Skystone Edition</small>
+            </div>
+            <div class="card">
+                <div class="body">
+                    <form method="post">
+                        <div class="msg">Sign in to start your session</div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <div class="form-line">
+                                <input asp-for="Input.Username" class="form-control" autofocus placeholder="Username">
+                            </div>
+                            <span asp-validation-for="Input.Username" class="text-danger"></span>
                         </div>
-                        <span asp-validation-for="Input.Username" class="text-danger"></span>
-                    </div>
-                    <div class="input-group">
-                        <span class="input-group-addon">
-                            <i class="material-icons">lock</i>
-                        </span>
-                        <div class="form-line">
-                            <input asp-for="Input.Password" class="form-control" placeholder="Password">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input asp-for="Input.Password" class="form-control" placeholder="Password">
+                            </div>
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-8 p-t-5">
-                            <input asp-for="Input.RememberMe" type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-blue">
-                            <label for="rememberme">Remember Me</label>
+                        <div class="row">
+                            <div class="col-xs-8 p-t-5">
+                                <input asp-for="Input.RememberMe" type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-blue">
+                                <label for="rememberme">Remember Me</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <button class="btn btn-block bg-blue waves-effect" type="submit">SIGN IN</button>
+                            </div>
                         </div>
-                        <div class="col-xs-4">
-                            <button class="btn btn-block bg-blue waves-effect" type="submit">SIGN IN</button>
+                        <div class="row m-t-15 m-b--20">
+                            <div class="col-xs-6">
+                                <a asp-area="Identity" asp-page="/Account/Register">Register Now!</a>
+                            </div>
+                            <div class="col-xs-6 align-right">
+                                <a asp-area="Identity" asp-page="/Account/ForgotPassword">Forgot Password?</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row m-t-15 m-b--20">
-                        <div class="col-xs-6">
-                            <a asp-area="Identity" asp-page="/Account/Register">Register Now!</a>
-                        </div>
-                        <div class="col-xs-6 align-right">
-                            <a asp-area="Identity" asp-page="/Account/ForgotPassword">Forgot Password?</a>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Jquery Core Js -->
-    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+        <div class="login-box">
+            <div class="card" style="
+    position: fixed;
+    bottom: -30px;
+    min-width: 360px;
+    background-color: #1d4294;
+                         ">
+                <div class="col-12">
+                    <h4 style="
+    color: white;
+    margin: 15px 21px;
+">
+                        <a href="https://qrobotics.eu" target="_blank" style="
+    all: unset;
+">Provided by Quantum Robotics #14270</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
 
-    <!-- Bootstrap Core Js -->
-    <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+        <!-- Jquery Core Js -->
+        <script src="/vendor/jquery/dist/jquery.min.js"></script>
 
-    <!-- Waves Effect Plugin Js -->
-    <script src="/vendor/node-waves/dist/waves.js"></script>
+        <!-- Bootstrap Core Js -->
+        <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
 
-    <!-- Validation Plugin Js -->
-    <script src="/vendor/jquery-validation/dist/jquery.validate.js"></script>
+        <!-- Waves Effect Plugin Js -->
+        <script src="/vendor/node-waves/dist/waves.js"></script>
 
-    <!-- Custom Js -->
-    <script src="../../js/admin.js"></script>
-    <script src="../../js/pages/examples/sign-in.js"></script>
-</body>
+        <!-- Validation Plugin Js -->
+        <script src="/vendor/jquery-validation/dist/jquery.validate.js"></script>
+
+        <!-- Custom Js -->
+        <script src="../../js/admin.js"></script>
+        <script src="../../js/pages/examples/sign-in.js"></script>
+
+        <!-- Bounce effect fix -->
+        <script>
+            document.addEventListener("touchmove", function (e) {
+                e.preventDefault();
+            }, { passive: false });
+        </script>
+
+    </body>
