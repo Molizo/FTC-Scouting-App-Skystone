@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Models;
+using SkystoneScouting.Services;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,10 +40,10 @@ namespace SkystoneScouting.Pages.Teams
 
         public async Task<IActionResult> OnGetAsync(string EventID, string TeamID)
         {
-            if (TeamID == null)
-            {
+            if (EventID == null || TeamID == null)
                 return NotFound();
-            }
+            if (!AuthorizationCheck.Team(_context, TeamID, User.Identity.Name))
+                return Forbid();
 
             teamID = TeamID;
             eventID = EventID;
@@ -55,8 +56,11 @@ namespace SkystoneScouting.Pages.Teams
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string EventID, string TeamID)
         {
+            if (EventID == null || TeamID == null)
+                return NotFound();
+
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -80,10 +84,12 @@ namespace SkystoneScouting.Pages.Teams
                 }
             }
 
+            var _EventID = EventID;
+            var _TeamID = TeamID;
             return RedirectToPage("./Index", new
             {
-                EventID = eventID,
-                TeamID = teamID,
+                EventID = _EventID,
+                TeamID = _TeamID,
             });
         }
 

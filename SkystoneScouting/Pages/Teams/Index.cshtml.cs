@@ -28,11 +28,13 @@ namespace SkystoneScouting.Pages.Teams
 
         #region Public Properties
 
-        public IList<Event> AllEvents { get; set; }
         public IList<Team> AuthorizedTeams { get; set; }
         public string AvgPTSSort { get; set; }
         public string AvgRPSort { get; set; }
         public string AvgTBPSort { get; set; }
+        public double? BestCCWM { get; set; }
+        public double? BestDPR { get; set; }
+        public double? BestOPR { get; set; }
         public string CCWMSort { get; set; }
         public string DPRSort { get; set; }
         public string eventID { get; set; }
@@ -43,6 +45,7 @@ namespace SkystoneScouting.Pages.Teams
         public string OPRSort { get; set; }
         public IList<Team> ScoutedTeams { get; set; }
 
+        public double ScoutingPercentage { get; set; }
         public string teamID { get; set; }
 
         #endregion Public Properties
@@ -58,7 +61,6 @@ namespace SkystoneScouting.Pages.Teams
 
             eventID = EventID;
             teamID = TeamID;
-            AllEvents = await _context.Event.AsNoTracking().ToListAsync();
             AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
             NotScoutedTeams = new List<Team>();
             ScoutedTeams = new List<Team>();
@@ -71,6 +73,11 @@ namespace SkystoneScouting.Pages.Teams
             }
 
             SortTeams(SortOrder);
+
+            ScoutingPercentage = ScoutedTeams.Count * 100 / AuthorizedTeams.Count;
+            BestOPR = AuthorizedTeams.Max(t => t.OPR);
+            BestDPR = AuthorizedTeams.Max(t => t.DPR);
+            BestCCWM = AuthorizedTeams.Max(t => t.CCWM);
             return Page();
         }
 

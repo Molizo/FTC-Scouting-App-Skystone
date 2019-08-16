@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using SkystoneScouting.Models;
 using System.Threading.Tasks;
 
+using SkystoneScouting.Services;
+
 namespace SkystoneScouting.Pages.Teams
 {
     public class CreateModel : PageModel
@@ -35,12 +37,22 @@ namespace SkystoneScouting.Pages.Teams
 
         public IActionResult OnGet(string EventID)
         {
+            if (EventID == null)
+                return NotFound();
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
+
             eventID = EventID;
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string EventID)
         {
+            if (EventID == null)
+                return NotFound();
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
+
             if (!ModelState.IsValid)
             {
                 return Page();
