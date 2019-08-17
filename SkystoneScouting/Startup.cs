@@ -79,7 +79,7 @@ namespace SkystoneScouting
             //Sentry error level tracing & release version bundlng config
             SentrySdk.ConfigureScope(scope =>
             {
-                scope.Level = SentryLevel.Info;
+                scope.Level = SentryLevel.Warning;
             });
             SentrySdk.Init(o => o.Release = "ftc-scouting-app-skystone@" +
                 System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().LastIndexOf('.')));

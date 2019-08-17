@@ -274,6 +274,22 @@ namespace SkystoneScouting.Migrations
                     b.ToTable("Team");
                 });
 
+            modelBuilder.Entity("SkystoneScouting.Models.UserActivity", b =>
+                {
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Action");
+
+                    b.Property<DateTime>("DateTime");
+
+                    b.Property<string>("PerformedBy");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("UserActivity");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")

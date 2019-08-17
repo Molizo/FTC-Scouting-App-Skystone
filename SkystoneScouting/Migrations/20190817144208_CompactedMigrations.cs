@@ -1,43 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
 
 namespace SkystoneScouting.Migrations
 {
     public partial class CompactedMigrations : Migration
     {
-        #region Protected Methods
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "AspNetRoleClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Event");
-
-            migrationBuilder.DropTable(
-                name: "Team");
-
-            migrationBuilder.DropTable(
-                name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "AspNetUsers");
-        }
-
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -96,17 +64,43 @@ namespace SkystoneScouting.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ScheduledMatch",
+                columns: table => new
+                {
+                    ID = table.Column<string>(nullable: false),
+                    Blue1Surrogate = table.Column<bool>(nullable: false),
+                    Blue1TeamID = table.Column<string>(nullable: true),
+                    Blue2Surrogate = table.Column<bool>(nullable: false),
+                    Blue2TeamID = table.Column<string>(nullable: true),
+                    BlueScore = table.Column<int>(nullable: true),
+                    EventID = table.Column<string>(nullable: true),
+                    MatchNumber = table.Column<string>(nullable: true),
+                    MatchType = table.Column<int>(nullable: false),
+                    Red1Surrogate = table.Column<bool>(nullable: false),
+                    Red1TeamID = table.Column<string>(nullable: true),
+                    Red2Surrogate = table.Column<bool>(nullable: false),
+                    Red2TeamID = table.Column<string>(nullable: true),
+                    RedScore = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ScheduledMatch", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Team",
                 columns: table => new
                 {
                     ID = table.Column<string>(nullable: false),
-                    AvgPTS = table.Column<int>(nullable: false),
-                    CCWM = table.Column<double>(nullable: false),
+                    AvgPTS = table.Column<int>(nullable: true),
+                    AvgRP = table.Column<double>(nullable: true),
+                    AvgTBP = table.Column<double>(nullable: true),
+                    CCWM = table.Column<double>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    DPR = table.Column<double>(nullable: false),
+                    DPR = table.Column<double>(nullable: true),
                     EventID = table.Column<string>(nullable: true),
-                    ExpPTS = table.Column<int>(nullable: false),
-                    OPR = table.Column<double>(nullable: false),
+                    ExpPTS = table.Column<int>(nullable: true),
+                    OPR = table.Column<double>(nullable: true),
                     TeamAddress = table.Column<string>(nullable: true),
                     TeamName = table.Column<string>(nullable: true),
                     TeamNumber = table.Column<string>(nullable: true)
@@ -114,6 +108,20 @@ namespace SkystoneScouting.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Team", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserActivity",
+                columns: table => new
+                {
+                    ID = table.Column<string>(nullable: false),
+                    Action = table.Column<string>(nullable: true),
+                    DateTime = table.Column<DateTime>(nullable: false),
+                    PerformedBy = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserActivity", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -262,6 +270,40 @@ namespace SkystoneScouting.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
         }
 
-        #endregion Protected Methods
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Event");
+
+            migrationBuilder.DropTable(
+                name: "ScheduledMatch");
+
+            migrationBuilder.DropTable(
+                name: "Team");
+
+            migrationBuilder.DropTable(
+                name: "UserActivity");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+        }
     }
 }

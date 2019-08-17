@@ -5,11 +5,18 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <Version>1.12.57-DEV0230</Version>
+    <Version>1.12.71-DEV0244</Version>
     <Authors>Mihnea Theodor Visoiu</Authors>
     <Company>Quantum Robotics</Company>
     <Product>FTC Skystone Scouting App</Product>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\Admin\NewFolder\**" />
+    <Content Remove="Areas\Admin\NewFolder\**" />
+    <EmbeddedResource Remove="Areas\Admin\NewFolder\**" />
+    <None Remove="Areas\Admin\NewFolder\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Pages\Shared\_LoginLayout.cshtml" />

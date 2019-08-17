@@ -10,8 +10,8 @@ using SkystoneScouting.Data;
 namespace SkystoneScouting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190801103711_AddedScheduledMatchModel")]
-    partial class AddedScheduledMatchModel
+    [Migration("20190817144208_CompactedMigrations")]
+    partial class CompactedMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -206,12 +206,52 @@ namespace SkystoneScouting.Migrations
                     b.ToTable("Event");
                 });
 
+            modelBuilder.Entity("SkystoneScouting.Models.ScheduledMatch", b =>
+                {
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Blue1Surrogate");
+
+                    b.Property<string>("Blue1TeamID");
+
+                    b.Property<bool>("Blue2Surrogate");
+
+                    b.Property<string>("Blue2TeamID");
+
+                    b.Property<int?>("BlueScore");
+
+                    b.Property<string>("EventID");
+
+                    b.Property<string>("MatchNumber");
+
+                    b.Property<int>("MatchType");
+
+                    b.Property<bool>("Red1Surrogate");
+
+                    b.Property<string>("Red1TeamID");
+
+                    b.Property<bool>("Red2Surrogate");
+
+                    b.Property<string>("Red2TeamID");
+
+                    b.Property<int?>("RedScore");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("ScheduledMatch");
+                });
+
             modelBuilder.Entity("SkystoneScouting.Models.Team", b =>
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int?>("AvgPTS");
+
+                    b.Property<double?>("AvgRP");
+
+                    b.Property<double?>("AvgTBP");
 
                     b.Property<double?>("CCWM");
 
@@ -234,6 +274,22 @@ namespace SkystoneScouting.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Team");
+                });
+
+            modelBuilder.Entity("SkystoneScouting.Models.UserActivity", b =>
+                {
+                    b.Property<string>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Action");
+
+                    b.Property<DateTime>("DateTime");
+
+                    b.Property<string>("PerformedBy");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("UserActivity");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

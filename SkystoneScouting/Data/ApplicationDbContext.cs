@@ -20,6 +20,7 @@ namespace SkystoneScouting.Data
         public DbSet<SkystoneScouting.Models.Event> Event { get; set; }
         public DbSet<SkystoneScouting.Models.Team> Team { get; set; }
         public DbSet<SkystoneScouting.Models.ScheduledMatch> ScheduledMatch { get; set; }
+        public DbSet<SkystoneScouting.Models.UserActivity> UserActivity { get; set; }
 
         #endregion Public Properties
     }

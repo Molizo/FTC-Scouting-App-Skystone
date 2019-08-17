@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using SkystoneScouting.Data;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
     {
         #region Private Fields
 
+        private readonly ApplicationDbContext _context;
         private readonly ILogger<LoginModel> _logger;
         private readonly SignInManager<IdentityUser> _signInManager;
 
@@ -23,8 +25,9 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
 
         #region Public Constructors
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(ApplicationDbContext context, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
         {
+            _context = context;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -75,20 +78,24 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "User authenticated");
+                    //_logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
+                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "User awaiting auth with 2FA");
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "User locked out during login");
+                    //_logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
+                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "Invalid login attempt");
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
