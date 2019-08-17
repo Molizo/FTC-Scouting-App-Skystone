@@ -1,41 +1,24 @@
-﻿<!DOCTYPE html>
+﻿@inject ApplicationDbContext context
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>@ViewData["Title"] | FTC Scouting App</title>
 
-    <!-- Favicon-->
-    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
     <!-- Bootstrap Core Css -->
-    <link href="/vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
     @RenderSection("Styles", false)
 
     <!-- Waves Effect Css -->
-    <link href="/vendor/node-waves/dist/waves.css" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="/vendor/node-waves/dist/waves.css" rel="stylesheet preload" as="style" />
 
     <!-- Custom Css -->
-    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet preload" as="style">
 
     <!-- Page theme -->
-    <link href="../../css/themes/theme-quantum.css" rel="stylesheet" />
-
-    <!-- Web App Manifest -->
-    <link rel="manifest" href="/manifest.json">
-
-    <!-- Browser improvements-->
-    <meta name="apple-mobile-web-app-status-bar-style" content="white">
-    <meta name="theme-color" content="#1D4294" />
-    <link rel="apple-touch-icon" href="~/media/icons/512.png">
+    <link href="../../css/themes/theme-quantum.css" rel="stylesheet preload" as="style" />
 </head>
 <body class="theme-quantum">
     <!-- Page Loader -->
@@ -63,12 +46,19 @@
             <div class="navbar-header">
 
                 <a href="javascript:void(0);" class="bars" style="display: none;"></a>
-                <a class="navbar-brand font-20" href="/">FTC Scouting App</a>
+                @if (Context.Request.Query["EventID"].ToString() != String.Empty)
+                {
+                <a class="navbar-brand font-20">@context.Event.FindAsync(Context.Request.Query["EventID"].ToString()).Result.Name</a>
+                }
+                else
+                {
+                <a class="navbar-brand font-20" asp-page="/Index">FTC Scouting App</a>
+                }
             </div>
-            <div class="collapse navbar-collapse" id="navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                </ul>
-            </div>
+            <a style="color:white;position:absolute;
+right:15px;
+top:13px;
+cursor: pointer;"  href="javascript:window.location.href=window.location.href"><i class="material-icons">refresh</i></a>
         </div>
     </nav>
     <section>
@@ -77,9 +67,9 @@
             <!-- User Info -->
             @if (User.Identity.IsAuthenticated)
             {
-                <div class="user-info" style="height:135px; padding: 13px 15px 12px 15px;">
-                    <div class="image">
-                        @{
+            <div class="user-info" style="height:135px; padding: 13px 15px 12px 15px;">
+                <div class="image">
+                    @{
                             string GravatarID = SkystoneScouting.Services.CalculateHashes.CalculateMD5Hash(
                                 UserManager.GetEmailAsync(
                                     UserManager.GetUserAsync(User).Result)
@@ -87,44 +77,43 @@
                                 .TrimStart(' ')
                                 .TrimEnd(' ')
                                 .ToLower());
-                        }
-                        <img src="https://www.gravatar.com/avatar/@GravatarID?d=retro&r=x&s=48" width="48" height="48" alt="User" />
-                    </div>
-                    <div class="info-container">
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    }
+                    <img src="https://www.gravatar.com/avatar/@GravatarID?d=retro&r=x&s=48" width="48" height="48" alt="User" />
+                </div>
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                            <strong>Hi, @User.Identity.Name</strong>
-                        </div>
-                        <div class="email">
-                            <div>@UserManager.GetEmailAsync(UserManager.GetUserAsync(User).Result).Result</div>
-                        </div>
-                        <div class="btn-group user-helper-dropdown">
-                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a asp-area="Identity" asp-page="Account/Manage/Index"><i class="material-icons">person</i>Profile</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li>
-                                    <a href="javascript:{}" class="hidden-mobile" onclick="document.getElementById('logoutForm').submit();"><i class="material-icons">exit_to_app</i>Logout</a>
-                                </li>
-                                <form asp-area="Identity" asp-page="Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new {area = ""})" method="post" id="logoutForm"></form>
-                            </ul>
-                        </div>
+                        <strong>Hi, @User.Identity.Name</strong>
+                    </div>
+                    <div class="email">
+                        <div>@UserManager.GetEmailAsync(UserManager.GetUserAsync(User).Result).Result</div>
+                    </div>
+                    <div class="btn-group user-helper-dropdown">
+                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="material-icons">person</i>Profile</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/"><i class="material-icons">exit_to_app</i>Logout</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
+            </div>
             }
             else
             {
-                <div class="user-info">
-                    <div class="info-container">
-                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="user-info">
+                <div class="info-container">
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                            <strong>Welcome</strong>
-                        </div>
-                        <div class="email">
-                            <div>Please login</div>
-                        </div>
+                        <strong>Welcome</strong>
+                    </div>
+                    <div class="email">
+                        <div>Please login</div>
                     </div>
                 </div>
+            </div>
             }
             <!-- #User Info -->
             <!-- Menu -->
@@ -132,62 +121,65 @@
                 <ul class="list">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <li>
-                            <a asp-page="/Index">
-                                <i class="material-icons">home</i>
-                                <span>Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="Identity" asp-page="/Account/Login">
-                                <i class="material-icons">account_circle</i>
-                                <span>Sign in</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a asp-area="Identity" asp-page="/Account/Register">
-                                <i class="material-icons">person_add</i>
-                                <span>Sign up</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a asp-page="/Index">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Identity" asp-page="/Account/Login">
+                            <i class="material-icons">account_circle</i>
+                            <span>Sign in</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-area="Identity" asp-page="/Account/Register">
+                            <i class="material-icons">person_add</i>
+                            <span>Sign up</span>
+                        </a>
+                    </li>
                     }
                     else
                     {
-                        <li>
-                            <a asp-page="/Dashboard" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                                <i class="material-icons">dashboard</i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="header">Scouting</li>
-                        <li>
-                            <a asp-page="/Events/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                                <i class="material-icons">event</i>
-                                <span>Events</span>
-                            </a>
-                        </li>
-                        @if (Context.Request.Query["EventID"].ToString() != String.Empty)
+                    @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                         {
-                            <li>
-                                <a asp-page="/Schedule/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                                    <i class="material-icons">schedule</i>
-                                    <span>Schedule</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-page="/Teams/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                                    <i class="material-icons">people</i>
-                                    <span>Teams</span>
-                                </a>
-                            </li>
-                            @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
+                    <li>
+                        <a asp-page="/Dashboard" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                            <i class="material-icons">dashboard</i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                        }
+                    <li class="header">Scouting</li>
+                    <li>
+                        <a asp-page="/Events/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                            <i class="material-icons">event</i>
+                            <span>Events</span>
+                        </a>
+                    </li>
+                    @if (Context.Request.Query["EventID"].ToString() != String.Empty)
+                        {
+                    <li>
+                        <a asp-page="/Schedule/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                            <i class="material-icons">schedule</i>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="/Teams/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                            <i class="material-icons">people</i>
+                            <span>Teams</span>
+                        </a>
+                    </li>
+                    @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
                             {
-                                <li>
-                                    <a asp-page="/Matches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                                        <i class="material-icons">flag</i>
-                                        <span>Matches</span>
-                                    </a>
-                                </li>
+                    <li>
+                        <a asp-page="/Matches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                            <i class="material-icons">flag</i>
+                            <span>Matches</span>
+                        </a>
+                    </li>
                             }
 
                         }
@@ -208,7 +200,7 @@
                     &copy; 2019 - 2020 <a href="https://qrobotics.eu">Quantum Robotics #14270</a>
                 </div>
                 <div class="version">
-                    <b>Version: </b>@System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().LastIndexOf('.'))
+                    <b>Version: </b>@System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().Substring(0, System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString().LastIndexOf('.')) BETA
                 </div>
             </div>
             <!-- #Footer -->
@@ -223,25 +215,46 @@
     </section>
 
     <!-- Jquery Core Js -->
-    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="/vendor/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet preload" as="style" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet preload" as="style" type="text/css">
+
+    <!-- Animation Css -->
+    <link href="../../plugins/animate-css/animate.css" rel="stylesheet preload" as="style" />
 
     <!-- Slimscroll Plugin Js -->
-    <script src="/vendor/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script async src="/vendor/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="/vendor/node-waves/dist/waves.js"></script>
+    <script aync src="/vendor/node-waves/dist/waves.js"></script>
 
     <!-- Custom Js -->
-    <script src="../../js/admin.js"></script>
+    <script async src="../../js/admin.js"></script>
 
     <!-- Demo Js -->
-    <script src="../../js/demo.js"></script>
+    <script async src="../../js/demo.js"></script>
+
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Browser improvements-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="theme-color" content="#1D4294" />
+    <link rel="apple-touch-icon" href="~/media/icons/512.png">
 
     <!-- Web App Service Worker-->
-    <script>
+    <script async>
         navigator.serviceWorker.register("../service_worker.js");
     </script>
 
