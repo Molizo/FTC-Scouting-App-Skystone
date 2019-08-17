@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@ using Sentry.Protocol;
 using SkystoneScouting.Data;
 using SkystoneScouting.Services;
 using System.IO;
-using WebMarkupMin.AspNetCore2;
+using System.IO.Compression;
 
 namespace SkystoneScouting
 {
@@ -48,13 +49,10 @@ namespace SkystoneScouting
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/error/503.html");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
-            //This speeds up the page delivery by dynamically minimifying the files
-            //app.UseWebMarkupMin();
 
             //This remaps node_modules to lib for accesing by pages
             app.UseStaticFiles(new StaticFileOptions()
@@ -71,6 +69,10 @@ namespace SkystoneScouting
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            //This enables resource caching and compression
+            app.UseResponseCaching();
+            app.UseResponseCompression();
 
             app.UseMvc();
 
@@ -97,21 +99,7 @@ namespace SkystoneScouting
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DBConnection")));
 
-            /*This configures content minimification
-            services.AddWebMarkupMin(
-        options =>
-        {
-            options.AllowMinificationInDevelopmentEnvironment = true;
-            options.AllowCompressionInDevelopmentEnvironment = true;
-        })
-        .AddHtmlMinification(
-            options =>
-            {
-                options.MinificationSettings.RemoveRedundantAttributes = true;
-                options.MinificationSettings.RemoveHttpProtocolFromAttributes = true;
-                options.MinificationSettings.RemoveHttpsProtocolFromAttributes = true;
-            })
-        .AddHttpCompression();*/
+            //This configures content minimification
 
             //This enables e-mail verification and configures the default identity
             services.AddDefaultIdentity<IdentityUser>(config =>
@@ -123,6 +111,14 @@ namespace SkystoneScouting
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
+            //This configures resource caching and compression
+            services.AddResponseCaching();
+            services.AddResponseCompression();
+            services.Configure<GzipCompressionProviderOptions>
+        (options =>
+        {
+            options.Level = CompressionLevel.Fastest;
+        });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
