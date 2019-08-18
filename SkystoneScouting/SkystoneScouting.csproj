@@ -5,10 +5,13 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <Version>1.12.71-DEV0244</Version>
+    <Version>1.12.90-DEV0281</Version>
     <Authors>Mihnea Theodor Visoiu</Authors>
     <Company>Quantum Robotics</Company>
     <Product>FTC Skystone Scouting App</Product>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <PublishWithAspNetCoreTargetManifest>false</PublishWithAspNetCoreTargetManifest>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,14 +19,6 @@
     <Content Remove="Areas\Admin\NewFolder\**" />
     <EmbeddedResource Remove="Areas\Admin\NewFolder\**" />
     <None Remove="Areas\Admin\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Pages\Shared\_LoginLayout.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Pages\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,12 +36,7 @@
     <PackageReference Include="Sentry" Version="1.2.0" />
     <PackageReference Include="Sentry.AspNetCore" Version="1.2.0" />
     <PackageReference Include="SharpRaven" Version="2.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="Pages\Shared\_Layout.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
+    <PackageReference Include="System.Runtime" Version="4.3.1" />
   </ItemGroup>
 
   <ItemGroup>

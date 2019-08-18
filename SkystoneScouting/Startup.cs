@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,6 +62,12 @@ namespace SkystoneScouting
                     Path.Combine(Directory.GetCurrentDirectory(), @"node_modules")),
                 RequestPath = new PathString("/vendor")
             });
+
+            //Route /Identity/Account to /Account
+            var URLRewitingOptions = new RewriteOptions()
+                 .AddRedirect("Identity/Account/(.*)", "Account/$1")
+        .AddRewrite(@"^Account/(.*)", "Identity/Account/$1", skipRemainingRules: true);
+            app.UseRewriter(URLRewitingOptions);
 
             //app.UseStatusCodePages();
             app.UseStatusCodePagesWithReExecute("/error/{0}.html");
