@@ -30,19 +30,30 @@ namespace SkystoneScouting.Pages.Schedule
 
         #region Public Properties
 
-        public IList<ScheduledMatch> AuthorizedScheduledMatches { get; set; }
+        public IQueryable<ScheduledMatch> AuthorizedScheduledMatches { get; set; }
         public IList<Team> AuthorizedTeams { get; set; }
         public double AverageScore { get; set; }
         public int BestScore { get; set; }
         public string eventID { get; set; }
         public IList<ScheduledMatch> FinalsScheduledMatches { get; set; }
         public double MatchesPerTeam { get; set; }
+        public IList<ScheduledMatch> PracticeScheduledMatches { get; set; }
         public IList<ScheduledMatch> QualificationsScheduledMatches { get; set; }
         public IList<ScheduledMatch> SemifinalsScheduledMatches { get; set; }
 
         #endregion Public Properties
 
         #region Public Methods
+
+        public async Task GetAndSeparateData(string EventID)
+        {
+            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
+            AuthorizedScheduledMatches = _context.ScheduledMatch.AsNoTracking().Where(m => m.EventID == EventID).OrderBy(m => m.MatchNumber);
+            QualificationsScheduledMatches = await AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Qualification).ToListAsync();
+            SemifinalsScheduledMatches = await AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Semifinal).ToListAsync(); ;
+            FinalsScheduledMatches = await AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Final).ToListAsync();
+            PracticeScheduledMatches = await AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Practice).ToListAsync(); ;
+        }
 
         public async Task<ActionResult> OnGetAsync(string EventID)
         {
@@ -52,11 +63,7 @@ namespace SkystoneScouting.Pages.Schedule
                 return Forbid();
 
             eventID = EventID;
-            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
-            AuthorizedScheduledMatches = await _context.ScheduledMatch.AsNoTracking().Where(m => m.EventID == EventID).OrderBy(m => m.MatchNumber).ToListAsync();
-            QualificationsScheduledMatches = AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Qualification).ToList();
-            SemifinalsScheduledMatches = AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Semifinal).ToList();
-            FinalsScheduledMatches = AuthorizedScheduledMatches.Where(m => m.MatchType == MatchType.Final).ToList();
+            await GetAndSeparateData(EventID);
 
             int BestRedScore = AuthorizedScheduledMatches.Max(m => m.RedScore).GetValueOrDefault();
             int BestBlueScore = AuthorizedScheduledMatches.Max(m => m.BlueScore).GetValueOrDefault();
@@ -70,10 +77,10 @@ namespace SkystoneScouting.Pages.Schedule
                     ScoresSum += Match.RedScore.GetValueOrDefault();
                     ScoresSum += Match.BlueScore.GetValueOrDefault();
                 }
-                AverageScore = ScoresSum / (AuthorizedScheduledMatches.Count * 2);
+                AverageScore = ScoresSum / (AuthorizedScheduledMatches.Count() * 2);
                 AverageScore = System.Math.Round(AverageScore, 2);
 
-                MatchesPerTeam = AuthorizedScheduledMatches.Count * 4 / AuthorizedTeams.Count;
+                MatchesPerTeam = AuthorizedScheduledMatches.Count() * 4 / AuthorizedTeams.Count;
                 MatchesPerTeam = System.Math.Round(MatchesPerTeam, 2);
             }
             catch

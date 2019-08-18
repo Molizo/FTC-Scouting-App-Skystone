@@ -11,7 +11,8 @@ namespace SkystoneScouting.Models
     {
         Qualification,
         Semifinal,
-        Final
+        Final,
+        Practice
     }
 
     public class ScheduledMatch

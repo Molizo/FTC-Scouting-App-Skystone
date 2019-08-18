@@ -74,7 +74,8 @@ namespace SkystoneScouting.Pages.Teams
 
             SortTeams(SortOrder);
 
-            ScoutingPercentage = ScoutedTeams.Count * 100 / AuthorizedTeams.Count;
+            if (AuthorizedTeams.Count != 0)
+                ScoutingPercentage = ScoutedTeams.Count * 100 / AuthorizedTeams.Count;
             BestOPR = AuthorizedTeams.Max(t => t.OPR);
             BestDPR = AuthorizedTeams.Max(t => t.DPR);
             BestCCWM = AuthorizedTeams.Max(t => t.CCWM);
