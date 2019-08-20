@@ -44,13 +44,13 @@ namespace SkystoneScouting.Services
             return false;
         }
 
-        public static bool ScheduledMatch(SkystoneScouting.Data.ApplicationDbContext context, string ScheduledMatchID, string Username)
+        public static bool OfficialMatch(SkystoneScouting.Data.ApplicationDbContext context, string OfficialMatchID, string Username)
         {
-            IList<ScheduledMatch> ScheduledMatches = new List<ScheduledMatch>();
-            ScheduledMatches = context.ScheduledMatch.ToList();
-            foreach (var ScheduledMatch in ScheduledMatches)
+            IList<OfficialMatch> OfficialMatches = new List<OfficialMatch>();
+            OfficialMatches = context.OfficialMatch.ToList();
+            foreach (var OfficialMatch in OfficialMatches)
             {
-                if (ScheduledMatch.ID == ScheduledMatchID && AuthorizationCheck.Event(context, ScheduledMatch.EventID, Username))
+                if (OfficialMatch.ID == OfficialMatchID && AuthorizationCheck.Event(context, OfficialMatch.EventID, Username))
                     return true;
             }
             return false;

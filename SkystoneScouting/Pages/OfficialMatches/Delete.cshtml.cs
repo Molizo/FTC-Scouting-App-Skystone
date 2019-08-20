@@ -9,7 +9,7 @@ using SkystoneScouting.Data;
 using SkystoneScouting.Models;
 using SkystoneScouting.Services;
 
-namespace SkystoneScouting.Pages.Schedule
+namespace SkystoneScouting.Pages.OfficialMatches
 {
     public class DeleteModel : PageModel
     {
@@ -31,38 +31,38 @@ namespace SkystoneScouting.Pages.Schedule
         #region Public Properties
 
         [BindProperty]
-        public ScheduledMatch ScheduledMatch { get; set; }
+        public OfficialMatch OfficialMatch { get; set; }
 
         #endregion Public Properties
 
         #region Public Methods
 
-        public async Task<IActionResult> OnGetAsync(string EventID, string ScheduledMatchID)
+        public async Task<IActionResult> OnGetAsync(string EventID, string OfficialMatchID)
         {
-            if (EventID == null || ScheduledMatchID == null)
+            if (EventID == null || OfficialMatchID == null)
                 return NotFound();
-            if (!AuthorizationCheck.ScheduledMatch(_context, ScheduledMatchID, User.Identity.Name))
+            if (!AuthorizationCheck.OfficialMatch(_context, OfficialMatchID, User.Identity.Name))
                 return Forbid();
 
-            ScheduledMatch = await _context.ScheduledMatch.FirstOrDefaultAsync(m => m.ID == ScheduledMatchID);
+            OfficialMatch = await _context.OfficialMatch.FirstOrDefaultAsync(m => m.ID == OfficialMatchID);
 
-            if (ScheduledMatch == null)
+            if (OfficialMatch == null)
                 return NotFound();
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string EventID, string ScheduledMatchID)
+        public async Task<IActionResult> OnPostAsync(string EventID, string OfficialMatchID)
         {
-            if (EventID == null || ScheduledMatchID == null)
+            if (EventID == null || OfficialMatchID == null)
                 return NotFound();
-            if (!AuthorizationCheck.ScheduledMatch(_context, ScheduledMatchID, User.Identity.Name))
+            if (!AuthorizationCheck.OfficialMatch(_context, OfficialMatchID, User.Identity.Name))
                 return Forbid();
 
-            ScheduledMatch = await _context.ScheduledMatch.FindAsync(ScheduledMatchID);
+            OfficialMatch = await _context.OfficialMatch.FindAsync(OfficialMatchID);
 
-            if (ScheduledMatch != null)
+            if (OfficialMatch != null)
             {
-                _context.ScheduledMatch.Remove(ScheduledMatch);
+                _context.OfficialMatch.Remove(OfficialMatch);
                 await _context.SaveChangesAsync();
             }
 

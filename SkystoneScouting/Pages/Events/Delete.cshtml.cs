@@ -5,6 +5,7 @@ using SkystoneScouting.Models;
 using SkystoneScouting.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SkystoneScouting.Pages.Events
@@ -67,12 +68,10 @@ namespace SkystoneScouting.Pages.Events
 
             if (Event != null)
             {
-                List<Team> Teams = await _context.Team.ToListAsync();
-                foreach (var Team in Teams)
-                {
-                    if (Team.EventID == Event.ID)
-                        _context.Team.Remove(Team);
-                }
+                List<Team> RemovedTeams = await _context.Team.Where(t => t.EventID == EventID).ToListAsync();
+                List<OfficialMatch> RemovedOfficialMatches = await _context.OfficialMatch.Where(t => t.EventID == EventID).ToListAsync();
+                _context.Team.RemoveRange(RemovedTeams);
+                _context.OfficialMatch.RemoveRange(RemovedOfficialMatches);
                 _context.Event.Remove(Event);
                 await _context.SaveChangesAsync();
             }

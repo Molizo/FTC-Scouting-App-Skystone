@@ -15,7 +15,7 @@ namespace SkystoneScouting.Models
         Practice
     }
 
-    public class ScheduledMatch
+    public class OfficialMatch
     {
         #region Public Properties
 

@@ -10,7 +10,7 @@ namespace SkystoneScouting.Services
     {
         #region Public Methods
 
-        public static IList<Team> AvgRPandAvgTBP(IList<Team> Teams, IList<ScheduledMatch> Matches)
+        public static IList<Team> AvgRPandAvgTBP(IList<Team> Teams, IList<OfficialMatch> Matches)
         {
             foreach (var Team in Teams)
             {
@@ -56,7 +56,7 @@ namespace SkystoneScouting.Services
             return Teams;
         }
 
-        public static IList<Team> CalculateAllMetrics(IList<Team> Teams, IList<ScheduledMatch> Matches)
+        public static IList<Team> CalculateAllMetrics(IList<Team> Teams, IList<OfficialMatch> Matches)
         {
             Teams = AvgRPandAvgTBP(Teams, Matches);
             if (IsODCComputeable(Teams, Matches))
@@ -76,7 +76,7 @@ namespace SkystoneScouting.Services
             return Teams;
         }
 
-        public static IList<Team> DPR(IList<Team> Teams, IList<ScheduledMatch> Matches)
+        public static IList<Team> DPR(IList<Team> Teams, IList<OfficialMatch> Matches)
         {
             //Variable initialisation
             double EPS = 0.0000001d;
@@ -232,7 +232,7 @@ namespace SkystoneScouting.Services
             return Teams;
         }
 
-        public static bool IsODCComputeable(IList<Team> Teams, IList<ScheduledMatch> Matches)
+        public static bool IsODCComputeable(IList<Team> Teams, IList<OfficialMatch> Matches)
         {
             IList<int> teamsMatchCounter = new List<int>();
 
@@ -255,7 +255,7 @@ namespace SkystoneScouting.Services
                 return true;
         }
 
-        public static IList<Team> OPR(IList<Team> Teams, IList<ScheduledMatch> Matches)
+        public static IList<Team> OPR(IList<Team> Teams, IList<OfficialMatch> Matches)
         {
             //Variable initialisation
             double EPS = 0.0000001d;

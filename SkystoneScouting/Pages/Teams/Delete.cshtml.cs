@@ -58,13 +58,13 @@ namespace SkystoneScouting.Pages.Teams
             if (!AuthorizationCheck.Team(_context, TeamID, User.Identity.Name))
                 return Forbid();
 
-            IList<ScheduledMatch> RemovedScheduledMatches = await _context.ScheduledMatch.Where(s => s.Red1TeamID == TeamID || s.Red2TeamID == TeamID || s.Blue1TeamID == TeamID || s.Blue2TeamID == TeamID).ToListAsync();
+            IList<OfficialMatch> RemovedOfficialMatches = await _context.OfficialMatch.Where(s => s.Red1TeamID == TeamID || s.Red2TeamID == TeamID || s.Blue1TeamID == TeamID || s.Blue2TeamID == TeamID).ToListAsync();
             Team = await _context.Team.FindAsync(TeamID);
 
             if (Team != null)
             {
                 _context.Team.Remove(Team);
-                _context.RemoveRange(RemovedScheduledMatches);
+                _context.RemoveRange(RemovedOfficialMatches);
                 await _context.SaveChangesAsync();
             }
 

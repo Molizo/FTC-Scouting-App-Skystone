@@ -47,7 +47,7 @@ namespace SkystoneScouting.Pages
             eventID = EventID;
 
             IList<Team> AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
-            IList<ScheduledMatch> AuthorizedScheduledMatches = await _context.ScheduledMatch.AsNoTracking().Where(s => s.EventID == EventID).ToListAsync();
+            IList<OfficialMatch> AuthorizedOfficialMatches = await _context.OfficialMatch.AsNoTracking().Where(s => s.EventID == EventID).ToListAsync();
             IList<int> AuthorizedScoutedMatches = new List<int>();
 
             stats.TopOPRTeams = AuthorizedTeams.OrderByDescending(t => t.OPR).Take(5).ToList();
@@ -59,7 +59,7 @@ namespace SkystoneScouting.Pages
 
             stats.NrOfEvents = await _context.Event.CountAsync();
             stats.NrOfTeams = AuthorizedTeams.Count;
-            stats.NrOfScheduledMatches = AuthorizedScheduledMatches.Count;
+            stats.NrOfOfficialMatches = AuthorizedOfficialMatches.Count;
             stats.NrOfScoutedMatches = AuthorizedScoutedMatches.Count;
 
             return Page();
@@ -74,7 +74,7 @@ namespace SkystoneScouting.Pages
             #region Public Properties
 
             public int NrOfEvents { get; set; }
-            public int? NrOfScheduledMatches { get; set; }
+            public int? NrOfOfficialMatches { get; set; }
             public int? NrOfScoutedMatches { get; set; }
             public int? NrOfTeams { get; set; }
             public IList<Team> TopAvgPTSTeams { get; set; }

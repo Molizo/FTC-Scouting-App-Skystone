@@ -204,7 +204,7 @@ namespace SkystoneScouting.Migrations
                     b.ToTable("Event");
                 });
 
-            modelBuilder.Entity("SkystoneScouting.Models.ScheduledMatch", b =>
+            modelBuilder.Entity("SkystoneScouting.Models.OfficialMatch", b =>
                 {
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
@@ -237,7 +237,7 @@ namespace SkystoneScouting.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("ScheduledMatch");
+                    b.ToTable("OfficialMatch");
                 });
 
             modelBuilder.Entity("SkystoneScouting.Models.Team", b =>

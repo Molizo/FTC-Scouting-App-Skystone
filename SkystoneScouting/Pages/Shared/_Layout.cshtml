@@ -1,4 +1,4 @@
-@inject ApplicationDbContext context
+﻿@inject ApplicationDbContext context
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
     @RenderSection("Styles", false)
-
 
     <!-- Animation Css -->
     <link href="../../plugins/animate-css/animate.css" rel="stylesheet preload" as="style" />
@@ -52,17 +51,17 @@
                 <a href="javascript:void(0);" class="bars" style="display: none;"></a>
                 @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                 {
-                <a class="navbar-brand font-20">@context.Event.FindAsync(Context.Request.Query["EventID"].ToString()).Result.Name</a>
+                    <a class="navbar-brand font-20">@context.Event.FindAsync(Context.Request.Query["EventID"].ToString()).Result.Name</a>
                 }
                 else
                 {
-                <a class="navbar-brand font-20" asp-page="/Index">FTC Scouting App</a>
+                    <a class="navbar-brand font-20" asp-page="/Index">FTC Scouting App</a>
                 }
             </div>
             <a style="color:white;position:absolute;
 right:15px;
 top:13px;
-cursor: pointer;"  href="javascript:window.location.href=window.location.href"><i class="material-icons">refresh</i></a>
+cursor: pointer;" href="javascript:window.location.href=window.location.href"><i class="material-icons">refresh</i></a>
         </div>
     </nav>
     <section>
@@ -71,9 +70,9 @@ cursor: pointer;"  href="javascript:window.location.href=window.location.href"><
             <!-- User Info -->
             @if (User.Identity.IsAuthenticated)
             {
-            <div class="user-info" style="height:135px; padding: 13px 15px 12px 15px;">
-                <div class="image">
-                    @{
+                <div class="user-info" style="height:135px; padding: 13px 15px 12px 15px;">
+                    <div class="image">
+                        @{
                             string GravatarID = SkystoneScouting.Services.CalculateHashes.CalculateMD5Hash(
                                 UserManager.GetEmailAsync(
                                     UserManager.GetUserAsync(User).Result)
@@ -81,43 +80,43 @@ cursor: pointer;"  href="javascript:window.location.href=window.location.href"><
                                 .TrimStart(' ')
                                 .TrimEnd(' ')
                                 .ToLower());
-                    }
-                    <img src="https://www.gravatar.com/avatar/@GravatarID?d=retro&r=x&s=48" width="48" height="48" alt="User" />
-                </div>
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        }
+                        <img src="https://www.gravatar.com/avatar/@GravatarID?d=retro&r=x&s=48" width="48" height="48" alt="User" />
+                    </div>
+                    <div class="info-container">
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        <strong>Hi, @User.Identity.Name</strong>
-                    </div>
-                    <div class="email">
-                        <div>@UserManager.GetEmailAsync(UserManager.GetUserAsync(User).Result).Result</div>
-                    </div>
-                    <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/"><i class="material-icons">exit_to_app</i>Logout</a>
-                            </li>
-                        </ul>
+                            <strong>Hi, @User.Identity.Name</strong>
+                        </div>
+                        <div class="email">
+                            <div>@UserManager.GetEmailAsync(UserManager.GetUserAsync(User).Result).Result</div>
+                        </div>
+                        <div class="btn-group user-helper-dropdown">
+                            <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                            <ul class="dropdown-menu pull-right">
+                                <li><a asp-area="Identity" asp-page="/Account/Manage/Index"><i class="material-icons">person</i>Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="/"><i class="material-icons">exit_to_app</i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
             else
             {
-            <div class="user-info">
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="user-info">
+                    <div class="info-container">
+                        <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                        <strong>Welcome</strong>
-                    </div>
-                    <div class="email">
-                        <div>Please login</div>
+                            <strong>Welcome</strong>
+                        </div>
+                        <div class="email">
+                            <div>Please login</div>
+                        </div>
                     </div>
                 </div>
-            </div>
             }
             <!-- #User Info -->
             <!-- Menu -->
@@ -125,65 +124,65 @@ cursor: pointer;"  href="javascript:window.location.href=window.location.href"><
                 <ul class="list">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                    <li>
-                        <a asp-page="/Index">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Identity" asp-page="/Account/Login">
-                            <i class="material-icons">account_circle</i>
-                            <span>Sign in</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-area="Identity" asp-page="/Account/Register">
-                            <i class="material-icons">person_add</i>
-                            <span>Sign up</span>
-                        </a>
-                    </li>
+                        <li>
+                            <a asp-page="/Index">
+                                <i class="material-icons">home</i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="Identity" asp-page="/Account/Login">
+                                <i class="material-icons">account_circle</i>
+                                <span>Sign in</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-area="Identity" asp-page="/Account/Register">
+                                <i class="material-icons">person_add</i>
+                                <span>Sign up</span>
+                            </a>
+                        </li>
                     }
                     else
                     {
-                    @if (Context.Request.Query["EventID"].ToString() != String.Empty)
+                        @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                         {
-                    <li>
-                        <a asp-page="/Dashboard" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                            <i class="material-icons">dashboard</i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
+                            <li>
+                                <a asp-page="/Dashboard" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                                    <i class="material-icons">dashboard</i>
+                                    <span>Dashboard</span>
+                                </a>
+                            </li>
                         }
-                    <li class="header">Scouting</li>
-                    <li>
-                        <a asp-page="/Events/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                            <i class="material-icons">event</i>
-                            <span>Events</span>
-                        </a>
-                    </li>
-                    @if (Context.Request.Query["EventID"].ToString() != String.Empty)
+                        <li class="header">Scouting</li>
+                        <li>
+                            <a asp-page="/Events/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                                <i class="material-icons">event</i>
+                                <span>Events</span>
+                            </a>
+                        </li>
+                        @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                         {
-                    <li>
-                        <a asp-page="/Schedule/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                            <i class="material-icons">schedule</i>
-                            <span>Schedule</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a asp-page="/Teams/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                            <i class="material-icons">people</i>
-                            <span>Teams</span>
-                        </a>
-                    </li>
-                    @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
+                            <li>
+                                <a asp-page="/OfficialMatches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                                    <i class="material-icons">flag</i>
+                                    <span>Official Matches</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a asp-page="/Teams/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                                    <i class="material-icons">people</i>
+                                    <span>Teams</span>
+                                </a>
+                            </li>
+                            @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
                             {
-                    <li>
-                        <a asp-page="/Matches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
-                            <i class="material-icons">flag</i>
-                            <span>Matches</span>
-                        </a>
-                    </li>
+                                <li>
+                                    <a asp-page="/ScoutedMatches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                                        <i class="material-icons">flag</i>
+                                        <span>Scouted Matches</span>
+                                    </a>
+                                </li>
                             }
 
                         }
@@ -233,7 +232,6 @@ cursor: pointer;"  href="javascript:window.location.href=window.location.href"><
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet preload" as="style" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet preload" as="style" type="text/css">
-
 
     <!-- Slimscroll Plugin Js -->
     <script async src="/vendor/jquery-slimscroll/jquery.slimscroll.js"></script>

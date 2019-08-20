@@ -1,13 +1,13 @@
 ﻿@page
-@model SkystoneScouting.Pages.Schedule.CreateModel
+@model SkystoneScouting.Pages.OfficialMatches.CreateModel
 
 @{
-    ViewData["Title"] = "Add scheduled match";
+    ViewData["Title"] = "Add official match";
 }
 
 <div class="block-header">
     <h2 style="font-weight:bolder;">
-        Add scheduled match
+        Add official match
     </h2>
     <ol class="breadcrumb">
         <li>
@@ -17,12 +17,12 @@
         </li>
         <li>
             <a asp-page="Index" asp-route-EventID="@Model.eventID">
-                <i class="material-icons">access_time</i> Scheduled matches
+                <i class="material-icons">flag</i> Official matches
             </a>
         </li>
         <li class="active">
             <a asp-page="Create" asp-route-EventID="@Model.eventID">
-                <i class="material-icons">add</i> Add a scheduled match
+                <i class="material-icons">add</i> Add an official match
             </a>
         </li>
     </ol>
@@ -44,7 +44,7 @@
                             <h2 class="card-inside-title">Match type</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <select asp-for="ScheduledMatch.MatchType" class="form-control">
+                                    <select asp-for="OfficialMatch.MatchType" class="form-control">
                                         <option value="@Models.MatchType.Qualification">Qualification</option>
                                         <option value="@Models.MatchType.Semifinal">Semifinal</option>
                                         <option value="@Models.MatchType.Final">Final</option>
@@ -58,7 +58,7 @@
                             <h2 class="card-inside-title">Match number</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input asp-for="ScheduledMatch.MatchNumber" class="form-control">
+                                    <input asp-for="OfficialMatch.MatchNumber" class="form-control">
                                     <label class="form-label">Match number</label>
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                             <h2 class="card-inside-title">Red alliance 1</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <select asp-for="ScheduledMatch.Red1TeamID" class="form-control">
+                                    <select asp-for="OfficialMatch.Red1TeamID" class="form-control">
                                         <option value="null">Select team</option>
                                         @foreach (var Team in Model.AuthorizedTeams)
                                         {
@@ -94,7 +94,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <input asp-for="ScheduledMatch.Red1Surrogate" type="checkbox" id="red1surrogate" class="filled-in chk-col-blue">
+                                <input asp-for="OfficialMatch.Red1Surrogate" type="checkbox" id="red1surrogate" class="filled-in chk-col-blue">
                                 <label for="red1surrogate">Surrogate team</label>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                             <h2 class="card-inside-title">Red alliance 2</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <select asp-for="ScheduledMatch.Red2TeamID" class="form-control">
+                                    <select asp-for="OfficialMatch.Red2TeamID" class="form-control">
                                         <option value="null">Select team</option>
                                         @foreach (var Team in Model.AuthorizedTeams)
                                         {
@@ -113,7 +113,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <input asp-for="ScheduledMatch.Red2Surrogate" type="checkbox" id="red2surrogate" class="filled-in chk-col-blue">
+                                <input asp-for="OfficialMatch.Red2Surrogate" type="checkbox" id="red2surrogate" class="filled-in chk-col-blue">
                                 <label for="red2surrogate">Surrogate team</label>
                             </div>
                         </div>
@@ -122,7 +122,7 @@
                             <h2 class="card-inside-title">Red score</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input asp-for="ScheduledMatch.RedScore" class="form-control">
+                                    <input asp-for="OfficialMatch.RedScore" class="form-control">
                                     <label class="form-label">Red score</label>
                                 </div>
                             </div>
@@ -145,7 +145,7 @@
                             <h2 class="card-inside-title">Blue alliance 1</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <select asp-for="ScheduledMatch.Blue1TeamID" class="form-control">
+                                    <select asp-for="OfficialMatch.Blue1TeamID" class="form-control">
                                         <option value="null">Select team</option>
                                         @foreach (var Team in Model.AuthorizedTeams)
                                         {
@@ -155,7 +155,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <input asp-for="ScheduledMatch.Blue1Surrogate" type="checkbox" id="blue1surrogate" class="filled-in chk-col-blue">
+                                <input asp-for="OfficialMatch.Blue1Surrogate" type="checkbox" id="blue1surrogate" class="filled-in chk-col-blue">
                                 <label for="blue1surrogate">Surrogate team</label>
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                             <h2 class="card-inside-title">Blue alliance 2</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <select asp-for="ScheduledMatch.Blue2TeamID" class="form-control">
+                                    <select asp-for="OfficialMatch.Blue2TeamID" class="form-control">
                                         <option value="null">Select team</option>
                                         @foreach (var Team in Model.AuthorizedTeams)
                                         {
@@ -174,7 +174,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-float">
-                                <input asp-for="ScheduledMatch.Blue2Surrogate" type="checkbox" id="blue2surrogate" class="filled-in chk-col-blue">
+                                <input asp-for="OfficialMatch.Blue2Surrogate" type="checkbox" id="blue2surrogate" class="filled-in chk-col-blue">
                                 <label for="blue2surrogate">Surrogate team</label>
                             </div>
                         </div>
@@ -183,7 +183,7 @@
                             <h2 class="card-inside-title">Blue score</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input asp-for="ScheduledMatch.BlueScore" class="form-control">
+                                    <input asp-for="OfficialMatch.BlueScore" class="form-control">
                                     <label class="form-label">Blue score</label>
                                 </div>
                             </div>
@@ -195,7 +195,7 @@
     </div>
     <div class="row clearfix">
         <div class="col-sm-3">
-            <button type="submit" class="btn btn-primary waves-effect">ADD SCHEDULED MATCH</button>
+            <button type="submit" class="btn btn-primary waves-effect">ADD OFFICIAL MATCH</button>
         </div>
     </div>
 </form>

@@ -10,7 +10,7 @@ using SkystoneScouting.Data;
 using SkystoneScouting.Models;
 using SkystoneScouting.Services;
 
-namespace SkystoneScouting.Pages.Schedule
+namespace SkystoneScouting.Pages.OfficialMatches
 {
     public class CreateModel : PageModel
     {
@@ -35,9 +35,9 @@ namespace SkystoneScouting.Pages.Schedule
         public string eventID { get; set; }
 
         [BindProperty]
-        public ScheduledMatch ScheduledMatch { get; set; }
+        public OfficialMatch OfficialMatch { get; set; }
 
-        public IList<ScheduledMatch> ScheduledMatches { get; set; }
+        public IList<OfficialMatch> OfficialMatches { get; set; }
 
         #endregion Public Properties
 
@@ -65,13 +65,13 @@ namespace SkystoneScouting.Pages.Schedule
             {
                 return Page();
             }
-            ScheduledMatch.EventID = EventID;
-            _context.ScheduledMatch.Add(ScheduledMatch);
+            OfficialMatch.EventID = EventID;
+            _context.OfficialMatch.Add(OfficialMatch);
 
-            IList<Models.ScheduledMatch> AuthorizedScheduledMatches = await _context.ScheduledMatch.Where(s => s.EventID == EventID).ToListAsync();
-            AuthorizedScheduledMatches.Add(ScheduledMatch);
+            IList<Models.OfficialMatch> AuthorizedOfficialMatches = await _context.OfficialMatch.Where(s => s.EventID == EventID).ToListAsync();
+            AuthorizedOfficialMatches.Add(OfficialMatch);
             AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
-            IList<Team> TeamsWithScores = CalculateTeamMetrics.CalculateAllMetrics(AuthorizedTeams, AuthorizedScheduledMatches);
+            IList<Team> TeamsWithScores = CalculateTeamMetrics.CalculateAllMetrics(AuthorizedTeams, AuthorizedOfficialMatches);
 
             _context.Team.UpdateRange(TeamsWithScores);
             await _context.SaveChangesAsync();

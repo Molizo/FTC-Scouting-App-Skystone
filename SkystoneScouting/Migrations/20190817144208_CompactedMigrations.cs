@@ -64,7 +64,7 @@ namespace SkystoneScouting.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ScheduledMatch",
+                name: "OfficialMatch",
                 columns: table => new
                 {
                     ID = table.Column<string>(nullable: false),
@@ -84,7 +84,7 @@ namespace SkystoneScouting.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ScheduledMatch", x => x.ID);
+                    table.PrimaryKey("PK_OfficialMatch", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -291,7 +291,7 @@ namespace SkystoneScouting.Migrations
                 name: "Event");
 
             migrationBuilder.DropTable(
-                name: "ScheduledMatch");
+                name: "OfficialMatch");
 
             migrationBuilder.DropTable(
                 name: "Team");

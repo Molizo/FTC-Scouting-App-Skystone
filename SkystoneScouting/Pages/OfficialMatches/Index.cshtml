@@ -1,13 +1,13 @@
 ﻿@page
-@model SkystoneScouting.Pages.Schedule.IndexModel
+@model SkystoneScouting.Pages.OfficialMatches.IndexModel
 
 @{
-    ViewData["Title"] = "Schedule";
+    ViewData["Title"] = "Official matches";
 }
 
 <div class="block-header">
     <h2 style="font-weight:bolder;">
-        Scheduled matches list
+        Official matches list
     </h2>
     <ol class="breadcrumb">
         <li>
@@ -17,13 +17,13 @@
         </li>
         <li class="active">
             <a asp-page="Index" asp-route-EventID="@Model.eventID">
-                <i class="material-icons">schedule</i> Schedule
+                <i class="material-icons">flag</i> Official matches
             </a>
         </li>
     </ol>
 </div>
 
-@if (Model.AuthorizedScheduledMatches.Count() == 0)
+@if (Model.AuthorizedOfficialMatches.Count() == 0)
 {
     <div class="row clearfix">
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -53,7 +53,7 @@ else
                 <div class="content">
                     <div class="text"># Matches</div>
                     <div class="number">
-                        @Model.AuthorizedScheduledMatches.Count()
+                        @Model.AuthorizedOfficialMatches.Count()
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@ else
             </div>
         </div>
     </div>
-    @if (Model.FinalsScheduledMatches.Count != 0)
+    @if (Model.FinalsOfficialMatches.Count != 0)
     {
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -141,7 +141,7 @@ else
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var Match in Model.FinalsScheduledMatches)
+                                @foreach (var Match in Model.FinalsOfficialMatches)
                                 {
                                     <tr>
                                         <td>
@@ -196,8 +196,8 @@ else
                                         <td>
                                             <div class="btn-toolbar">
                                                 <div class="btn-group">
-                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-ScheduledMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                    <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-ScheduledMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-OfficialMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                    <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-OfficialMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
                                                 </div>
                                             </div>
                                         </td>
@@ -210,7 +210,7 @@ else
             </div>
         </div>
     }
-    @if (Model.SemifinalsScheduledMatches.Count != 0)
+    @if (Model.SemifinalsOfficialMatches.Count != 0)
     {
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -253,7 +253,7 @@ else
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var Match in Model.SemifinalsScheduledMatches)
+                                @foreach (var Match in Model.SemifinalsOfficialMatches)
                                 {
                                     <tr>
                                         <td>
@@ -308,8 +308,8 @@ else
                                         <td>
                                             <div class="btn-toolbar">
                                                 <div class="btn-group">
-                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-ScheduledMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                    <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-ScheduledMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-OfficialMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                    <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-OfficialMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
                                                 </div>
                                             </div>
                                         </td>
@@ -322,7 +322,7 @@ else
             </div>
         </div>
     }
-    @if (Model.QualificationsScheduledMatches.Count != 0)
+    @if (Model.QualificationsOfficialMatches.Count != 0)
     {
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -365,7 +365,7 @@ else
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var Match in Model.QualificationsScheduledMatches)
+                                @foreach (var Match in Model.QualificationsOfficialMatches)
                                 {
                                     <tr>
                                         <td>
@@ -420,8 +420,8 @@ else
                                         <td>
                                             <div class="btn-toolbar">
                                                 <div class="btn-group">
-                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-ScheduledMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                    <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-ScheduledMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-OfficialMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                    <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-OfficialMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
                                                 </div>
                                             </div>
                                         </td>
@@ -434,7 +434,7 @@ else
             </div>
         </div>
     }
-    @if (Model.PracticeScheduledMatches.Count != 0)
+    @if (Model.PracticeOfficialMatches.Count != 0)
     {
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -477,7 +477,7 @@ else
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var Match in Model.PracticeScheduledMatches)
+                                @foreach (var Match in Model.PracticeOfficialMatches)
                                 {
                                     <tr>
                                         <td>
@@ -532,8 +532,8 @@ else
                                         <td>
                                             <div class="btn-toolbar">
                                                 <div class="btn-group">
-                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-ScheduledMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                    <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-ScheduledMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-OfficialMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                    <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-OfficialMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
                                                 </div>
                                             </div>
                                         </td>

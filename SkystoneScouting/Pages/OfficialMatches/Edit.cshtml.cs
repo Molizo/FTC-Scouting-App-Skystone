@@ -10,7 +10,7 @@ using SkystoneScouting.Data;
 using SkystoneScouting.Models;
 using SkystoneScouting.Services;
 
-namespace SkystoneScouting.Pages.Schedule
+namespace SkystoneScouting.Pages.OfficialMatches
 {
     public class EditModel : PageModel
     {
@@ -35,32 +35,32 @@ namespace SkystoneScouting.Pages.Schedule
         public string eventID { get; set; }
 
         [BindProperty]
-        public ScheduledMatch ScheduledMatch { get; set; }
+        public OfficialMatch OfficialMatch { get; set; }
 
         #endregion Public Properties
 
         #region Public Methods
 
-        public async Task<IActionResult> OnGetAsync(string EventID, string ScheduledMatchID)
+        public async Task<IActionResult> OnGetAsync(string EventID, string OfficialMatchID)
         {
-            if (EventID == null || ScheduledMatchID == null)
+            if (EventID == null || OfficialMatchID == null)
                 return NotFound();
-            if (!AuthorizationCheck.ScheduledMatch(_context, ScheduledMatchID, User.Identity.Name))
+            if (!AuthorizationCheck.OfficialMatch(_context, OfficialMatchID, User.Identity.Name))
                 return Forbid();
 
             eventID = EventID;
-            ScheduledMatch = await _context.ScheduledMatch.FirstOrDefaultAsync(m => m.ID == ScheduledMatchID);
+            OfficialMatch = await _context.OfficialMatch.FirstOrDefaultAsync(m => m.ID == OfficialMatchID);
             AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
-            if (ScheduledMatch == null)
+            if (OfficialMatch == null)
             {
                 return NotFound();
             }
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string EventID, string ScheduledMatchID)
+        public async Task<IActionResult> OnPostAsync(string EventID, string OfficialMatchID)
         {
-            if (EventID == null || ScheduledMatchID == null)
+            if (EventID == null || OfficialMatchID == null)
                 return NotFound();
 
             if (!ModelState.IsValid)
@@ -68,11 +68,11 @@ namespace SkystoneScouting.Pages.Schedule
                 return Page();
             }
 
-            _context.Attach(ScheduledMatch).State = EntityState.Modified;
+            _context.Attach(OfficialMatch).State = EntityState.Modified;
 
-            IList<Models.ScheduledMatch> AuthorizedScheduledMatches = await _context.ScheduledMatch.Where(s => s.EventID == EventID).ToListAsync();
+            IList<Models.OfficialMatch> AuthorizedOfficialMatches = await _context.OfficialMatch.Where(s => s.EventID == EventID).ToListAsync();
             AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
-            IList<Team> TeamsWithScores = CalculateTeamMetrics.CalculateAllMetrics(AuthorizedTeams, AuthorizedScheduledMatches);
+            IList<Team> TeamsWithScores = CalculateTeamMetrics.CalculateAllMetrics(AuthorizedTeams, AuthorizedOfficialMatches);
 
             _context.Team.UpdateRange(TeamsWithScores);
 
@@ -82,7 +82,7 @@ namespace SkystoneScouting.Pages.Schedule
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ScheduledMatchExists(ScheduledMatch.ID))
+                if (!OfficialMatchExists(OfficialMatch.ID))
                 {
                     return NotFound();
                 }
@@ -103,9 +103,9 @@ namespace SkystoneScouting.Pages.Schedule
 
         #region Private Methods
 
-        private bool ScheduledMatchExists(string id)
+        private bool OfficialMatchExists(string id)
         {
-            return _context.ScheduledMatch.Any(e => e.ID == id);
+            return _context.OfficialMatch.Any(e => e.ID == id);
         }
 
         #endregion Private Methods
