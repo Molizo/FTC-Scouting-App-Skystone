@@ -51,7 +51,8 @@
                 <a href="javascript:void(0);" class="bars" style="display: none;"></a>
                 @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                 {
-                    <a class="navbar-brand font-20">@context.Event.FindAsync(Context.Request.Query["EventID"].ToString()).Result.Name</a>
+                    <a class="navbar-brand font-20 hidden-mobile">@context.Event.FindAsync(Context.Request.Query["EventID"].ToString()).Result.Name | FTC Scouting App</a>
+                    <a class="navbar-brand font-20 hidden-tablet hidden-desktop">@context.Event.FindAsync(Context.Request.Query["EventID"].ToString()).Result.Name</a>
                 }
                 else
                 {
@@ -124,7 +125,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                 <ul class="list">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <li>
+                        <li class="active">
                             <a asp-page="/Index">
                                 <i class="material-icons">home</i>
                                 <span>Home</span>
@@ -147,7 +148,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                     {
                         @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                         {
-                            <li>
+                            <li @(@Context.Request.Path.Value.Contains("/Dashboard") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                 <a asp-page="/Dashboard" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                     <i class="material-icons">dashboard</i>
                                     <span>Dashboard</span>
@@ -155,7 +156,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                             </li>
                         }
                         <li class="header">Scouting</li>
-                        <li>
+                        <li  @(@Context.Request.Path.Value.Contains("/Events") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                             <a asp-page="/Events/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                 <i class="material-icons">event</i>
                                 <span>Events</span>
@@ -163,13 +164,13 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                         </li>
                         @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                         {
-                            <li>
+                            <li  @(@Context.Request.Path.Value.Contains("/OfficialMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                 <a asp-page="/OfficialMatches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                     <i class="material-icons">flag</i>
                                     <span>Official Matches</span>
                                 </a>
                             </li>
-                            <li>
+                            <li  @(@Context.Request.Path.Value.Contains("/Teams") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                 <a asp-page="/Teams/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                     <i class="material-icons">people</i>
                                     <span>Teams</span>
@@ -177,7 +178,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                             </li>
                             @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
                             {
-                                <li>
+                                <li  @(@Context.Request.Path.Value.Contains("/ScoutedMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                     <a asp-page="/ScoutedMatches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                         <i class="material-icons">flag</i>
                                         <span>Scouted Matches</span>
@@ -188,7 +189,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                         }
                     }
                     <li class="header">Help</li>
-                    <li>
+                    <li  @(@Context.Request.Path.Value.Contains("/Docs") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                         <a asp-page="/Docs" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                             <i class="material-icons">book</i>
                             <span>Documentation</span>
