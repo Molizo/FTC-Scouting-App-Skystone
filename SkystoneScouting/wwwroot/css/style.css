@@ -5651,7 +5651,7 @@ section.content {
 /* Modals ====================================== */
 .modal .modal-header {
     border: none;
-    padding: 25px 25px 5px 25px;
+    padding-left:25px;
 }
 
     .modal .modal-header .modal-title {

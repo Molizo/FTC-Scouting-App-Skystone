@@ -57,6 +57,28 @@ namespace SkystoneScouting.Pages.Events
             return Page();
         }
 
+        public async Task<ActionResult> OnGetDelete(string EventID)
+        {
+            if (EventID == null)
+                return NotFound();
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
+
+            Event Event = await _context.Event.FindAsync(EventID);
+
+            if (Event != null)
+            {
+                List<Team> RemovedTeams = await _context.Team.Where(t => t.EventID == EventID).ToListAsync();
+                List<OfficialMatch> RemovedOfficialMatches = await _context.OfficialMatch.Where(t => t.EventID == EventID).ToListAsync();
+                _context.Team.RemoveRange(RemovedTeams);
+                _context.OfficialMatch.RemoveRange(RemovedOfficialMatches);
+                _context.Event.Remove(Event);
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
+        }
+
         #endregion Public Methods
     }
 }

@@ -82,6 +82,32 @@ namespace SkystoneScouting.Pages.Teams
             return Page();
         }
 
+        public async Task<ActionResult> OnGetDelete(string EventID, string TeamID)
+        {
+            if (EventID == null || TeamID == null)
+                return NotFound();
+            if (!AuthorizationCheck.Team(_context, TeamID, User.Identity.Name))
+                return Forbid();
+
+            IList<OfficialMatch> RemovedOfficialMatches = await _context.OfficialMatch.Where(o => o.Red1TeamID == TeamID || o.Red2TeamID == TeamID || o.Blue1TeamID == TeamID || o.Blue2TeamID == TeamID).ToListAsync();
+            IList<ScoutedMatch> RemovedScoutedMatches = await _context.ScoutedMatch.Where(m => m.TeamID == TeamID).ToListAsync();
+            Team Team = await _context.Team.FindAsync(TeamID);
+
+            if (Team != null)
+            {
+                _context.Team.Remove(Team);
+                _context.RemoveRange(RemovedOfficialMatches);
+                _context.RemoveRange(RemovedScoutedMatches);
+                await _context.SaveChangesAsync();
+            }
+
+            var _EventID = EventID;
+            return RedirectToPage("./Index", new
+            {
+                EventID = _EventID,
+            });
+        }
+
         public void SortTeams(string SortOrder)
         {
             IDSort = System.String.IsNullOrEmpty(SortOrder) || SortOrder == "ID" ? "ID_desc" : "ID";

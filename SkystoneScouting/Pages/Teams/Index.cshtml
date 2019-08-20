@@ -249,7 +249,7 @@ else
                                             <div class="btn-group">
                                                 <a asp-page="/ScoutedMatches/Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
                                                 <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
+                                                <a href="javascript:;" onclick="createModal('@Team.TeamName','@Model.eventID','@Team.ID');" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
                                             </div>
                                         </div>
                                     </td>
@@ -390,7 +390,7 @@ else
                                             <div class="btn-group">
                                                 <a asp-page="/ScoutedMatches/Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary btn-lg waves-effect"><strong>SCOUT</strong></a>
                                                 <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
-                                                <a asp-page="Delete" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Team.ID" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
+                                                <a href="javascript:;" onclick="createModal('@Team.TeamName','@Model.eventID','@Team.ID');" class="btn btn-primary waves-effect hidden-mobile hidden-tablet"><i class="material-icons">delete</i></a>
                                             </div>
                                         </div>
                                     </td>
@@ -407,3 +407,17 @@ else
 <a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position:fixed; right:35px; bottom:35px;" asp-page="Create" asp-route-EventID="@Model.eventID">
     <i class="material-icons">add</i>
 </a>
+
+@section Scripts{
+    <script>
+        function createModal(Name, EventID, TeamID) {
+            var oldError = document.getElementById("deleteModal");
+            if (oldError == null)
+                $("body").append('<div class="modal fade in" id="deleteModal" tabindex="-1" role="dialog" style="display: block;"></div>');
+            $("#deleteModal").html('<div class="modal-dialog modal-sm" brole="document"><div class="modal-content"><div class="modal-header bg-red"><h4 class="modal-title" id="defaultModalLabel">Delete team</h4></div><div class="modal-body">Are you sure you want to delete<br />' + Name + ' ?</div > <div class="modal-footer"> <a href="Teams?EventID=' + EventID + '&TeamID=' + TeamID + '&handler=Delete" class="btn btn-danger waves-effect hidden-mobile hidden-tablet">DELETE</a>  <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button> </div>        </div >             </div > ');
+            $("#deleteModal").modal(); // show the modal
+
+        }
+    </script>
+
+}

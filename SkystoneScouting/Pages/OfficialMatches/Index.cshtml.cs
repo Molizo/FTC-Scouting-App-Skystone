@@ -91,6 +91,33 @@ namespace SkystoneScouting.Pages.OfficialMatches
             return Page();
         }
 
+        public async Task<ActionResult> OnGetDelete(string EventID, string OfficialMatchID)
+        {
+            if (EventID == null || OfficialMatchID == null)
+                return NotFound();
+            if (!AuthorizationCheck.OfficialMatch(_context, OfficialMatchID, User.Identity.Name))
+                return Forbid();
+
+            OfficialMatch OfficialMatch = await _context.OfficialMatch.FindAsync(OfficialMatchID);
+            IList<OfficialMatch> AuthorizedOfficialMatches = await _context.OfficialMatch.Where(s => s.EventID == EventID).ToListAsync();
+            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
+            IList<Team> TeamsWithScores = CalculateTeamMetrics.CalculateAllMetrics(AuthorizedTeams, AuthorizedOfficialMatches);
+
+            _context.Team.UpdateRange(TeamsWithScores);
+
+            if (OfficialMatch != null)
+            {
+                _context.OfficialMatch.Remove(OfficialMatch);
+                await _context.SaveChangesAsync();
+            }
+
+            var _EventID = EventID;
+            return RedirectToPage("./Index", new
+            {
+                EventID = _EventID,
+            });
+        }
+
         #endregion Public Methods
     }
 }
