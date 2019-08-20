@@ -21,6 +21,7 @@ namespace SkystoneScouting.Data
         public DbSet<SkystoneScouting.Models.Team> Team { get; set; }
         public DbSet<SkystoneScouting.Models.OfficialMatch> OfficialMatch { get; set; }
         public DbSet<SkystoneScouting.Models.UserActivity> UserActivity { get; set; }
+        public DbSet<SkystoneScouting.Models.ScoutedMatch> ScoutedMatch { get; set; }
 
         #endregion Public Properties
     }

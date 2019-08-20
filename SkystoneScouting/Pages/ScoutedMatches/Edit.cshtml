@@ -1,0 +1,65 @@
+﻿@page
+@model SkystoneScouting.Pages.ScoutedMatches.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ScoutedMatch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ScoutedMatch.Alliance" class="control-label"></label>
+                <select asp-for="ScoutedMatch.Alliance" class="form-control"></select>
+                <span asp-validation-for="ScoutedMatch.Alliance" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="ScoutedMatch.HumanPlayer" /> @Html.DisplayNameFor(model => model.ScoutedMatch.HumanPlayer)
+                </label>
+            </div>
+            <input type="hidden" asp-for="ScoutedMatch.ID" />
+            <div class="form-group">
+                <label asp-for="ScoutedMatch.MajorPenalties" class="control-label"></label>
+                <input asp-for="ScoutedMatch.MajorPenalties" class="form-control" />
+                <span asp-validation-for="ScoutedMatch.MajorPenalties" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScoutedMatch.MinorPenalties" class="control-label"></label>
+                <input asp-for="ScoutedMatch.MinorPenalties" class="form-control" />
+                <span asp-validation-for="ScoutedMatch.MinorPenalties" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScoutedMatch.Score" class="control-label"></label>
+                <input asp-for="ScoutedMatch.Score" class="form-control" />
+                <span asp-validation-for="ScoutedMatch.Score" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScoutedMatch.StartingPosition" class="control-label"></label>
+                <select asp-for="ScoutedMatch.StartingPosition" class="form-control"></select>
+                <span asp-validation-for="ScoutedMatch.StartingPosition" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScoutedMatch.TeamID" class="control-label"></label>
+                <input asp-for="ScoutedMatch.TeamID" class="form-control" />
+                <span asp-validation-for="ScoutedMatch.TeamID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

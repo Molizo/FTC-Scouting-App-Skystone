@@ -49,7 +49,12 @@
             <div class="navbar-header">
 
                 <a href="javascript:void(0);" class="bars" style="display: none;"></a>
-                @if (Context.Request.Query["EventID"].ToString() != String.Empty)
+                @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
+                {
+                    <a class="navbar-brand font-20 hidden-mobile">@context.Team.FindAsync(Context.Request.Query["TeamID"].ToString()).Result.TeamName | FTC Scouting App</a>
+                    <a class="navbar-brand font-20 hidden-tablet hidden-desktop">@context.Team.FindAsync(Context.Request.Query["TeamID"].ToString()).Result.TeamName</a>
+                }
+                else if (Context.Request.Query["EventID"].ToString() != String.Empty)
                 {
                     <a class="navbar-brand font-20 hidden-mobile">@context.Event.FindAsync(Context.Request.Query["EventID"].ToString()).Result.Name | FTC Scouting App</a>
                     <a class="navbar-brand font-20 hidden-tablet hidden-desktop">@context.Event.FindAsync(Context.Request.Query["EventID"].ToString()).Result.Name</a>
