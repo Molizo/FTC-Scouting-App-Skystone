@@ -1,6 +1,6 @@
 ﻿@inject ApplicationDbContext context
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
@@ -23,9 +23,35 @@
     <!-- Page theme -->
     <link href="../../css/themes/theme-quantum.css" rel="stylesheet preload" as="style" />
 
+    <!-- Cookie Consent -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function () {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#252e39"
+                    },
+                    "button": {
+                        "background": "#14a7d0"
+                    }
+                },
+                "showLink": false,
+                "theme": "edgeless",
+                "position": "bottom-right"
+            })
+        });
+
+        /**/</script>
 
     <!-- Web App Manifest -->
     <link rel="manifest" href="/manifest.json">
+
+    <!-- Browser improvements-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <meta name="theme-color" content="#1D4294" />
+    <link rel="apple-touch-icon" href="~/media/icons/512.png">
 </head>
 <body class="theme-quantum">
     <!-- Page Loader -->
@@ -134,7 +160,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                 <ul class="list">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <li class="active">
+                        <li>
                             <a asp-page="/Index">
                                 <i class="material-icons">home</i>
                                 <span>Home</span>
@@ -165,7 +191,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                             </li>
                         }
                         <li class="header">Scouting</li>
-                        <li  @(@Context.Request.Path.Value.Contains("/Events") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                        <li @(@Context.Request.Path.Value.Contains("/Events") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                             <a asp-page="/Events/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                 <i class="material-icons">event</i>
                                 <span>Events</span>
@@ -173,13 +199,13 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                         </li>
                         @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                         {
-                            <li  @(@Context.Request.Path.Value.Contains("/OfficialMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                            <li @(@Context.Request.Path.Value.Contains("/OfficialMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                 <a asp-page="/OfficialMatches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                     <i class="material-icons">flag</i>
                                     <span>Official Matches</span>
                                 </a>
                             </li>
-                            <li  @(@Context.Request.Path.Value.Contains("/Teams") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                            <li @(@Context.Request.Path.Value.Contains("/Teams") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                 <a asp-page="/Teams/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                     <i class="material-icons">people</i>
                                     <span>Teams</span>
@@ -187,7 +213,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                             </li>
                             @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
                             {
-                                <li  @(@Context.Request.Path.Value.Contains("/ScoutedMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                                <li @(@Context.Request.Path.Value.Contains("/ScoutedMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                     <a asp-page="/ScoutedMatches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                         <i class="material-icons">flag</i>
                                         <span>Scouted Matches</span>
@@ -198,10 +224,16 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                         }
                     }
                     <li class="header">Help</li>
-                    <li  @(@Context.Request.Path.Value.Contains("/Docs") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                    <li @(@Context.Request.Path.Value.Contains("/Docs") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                         <a asp-page="/Docs" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                             <i class="material-icons">book</i>
                             <span>Documentation</span>
+                        </a>
+                    </li>
+                    <li @(@Context.Request.Path.Value.Contains("/Legal") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                        <a asp-page="/Legal" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                            <i class="material-icons">ballot</i>
+                            <span>Legal</span>
                         </a>
                     </li>
                 </ul>
@@ -254,12 +286,6 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
 
     <!-- Demo Js -->
     <script async src="../../js/demo.js"></script>
-
-    <!-- Browser improvements-->
-    <meta name="apple-mobile-web-app-status-bar-style" content="white">
-    <meta name="theme-color" content="#1D4294" />
-    <link rel="apple-touch-icon" href="~/media/icons/512.png">
-
     <!-- Web App Service Worker-->
     <script async>
         navigator.serviceWorker.register("../service_worker.js");
