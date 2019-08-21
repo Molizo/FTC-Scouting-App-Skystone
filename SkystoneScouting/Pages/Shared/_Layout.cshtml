@@ -12,16 +12,16 @@
     @RenderSection("Styles", false)
 
     <!-- Animation Css -->
-    <link href="../../plugins/animate-css/animate.css" rel="stylesheet preload" as="style" />
+    <link href="/plugins/animate-css/animate.css" rel="stylesheet preload" as="style" />
 
     <!-- Waves Effect Css -->
     <link href="/vendor/node-waves/dist/waves.css" rel="stylesheet preload" as="style" />
 
     <!-- Custom Css -->
-    <link href="../../css/style.css" rel="stylesheet preload" as="style">
+    <link href="/css/style.css" rel="stylesheet preload" as="style">
 
     <!-- Page theme -->
-    <link href="../../css/themes/theme-quantum.css" rel="stylesheet preload" as="style" />
+    <link href="/css/themes/theme-quantum.css" rel="stylesheet preload" as="style" />
 
     <!-- Cookie Consent -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css">
@@ -268,7 +268,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
     <!-- Favicon-->
-    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
@@ -282,13 +282,26 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
     <script aync src="/vendor/node-waves/dist/waves.js"></script>
 
     <!-- Custom Js -->
-    <script async src="../../js/admin.js"></script>
+    <script async src="/js/admin.js"></script>
 
     <!-- Demo Js -->
-    <script async src="../../js/demo.js"></script>
+    <script async src="/js/demo.js"></script>
     <!-- Web App Service Worker-->
     <script async>
-        navigator.serviceWorker.register("../service_worker.js");
+        if ("serviceWorker" in navigator) {
+  if (navigator.serviceWorker.controller) {
+    console.log("[FTC Scouting App] Active service worker found, no need to register");
+  } else {
+    // Register the service worker
+    navigator.serviceWorker
+      .register("/service_worker.js", {
+        scope: "./"
+      })
+      .then(function (reg) {
+        console.log("[FTC Scouting App] Service worker has been registered for scope: " + reg.scope);
+      });
+  }
+}
     </script>
 
     @RenderSection("Scripts", false)

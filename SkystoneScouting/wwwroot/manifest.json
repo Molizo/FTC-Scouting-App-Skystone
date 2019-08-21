@@ -13,6 +13,7 @@
       "sizes": "512x512"
     }
   ],
+  "lang": "English",
   "name": "FTC Scouting App",
   "scope": "/",
   "short_name": "Scouting",
