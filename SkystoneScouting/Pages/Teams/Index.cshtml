@@ -140,7 +140,7 @@ else
                     <h2>Incomplete Teams</h2>
                 </div>
                 <div class="body table-responsive">
-                    <table class="table table-hover" style="table-layout:fixed;" id="notScouted-table">
+                    <table class="table table-hover" style="table-layout:fixed;">
                         <thead>
                             <tr>
                                 <th width="50px">
@@ -275,12 +275,12 @@ else
                     <table class="table table-hover" style="table-layout:fixed;">
                         <thead>
                             <tr>
-                                <th class="team-number-column" width="50px">
+                                <th width="50px">
                                     <a style="color: #424242;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.IDSort">
                                         NR
                                     </a>
                                 </th>
-                                <th class="hidden-mobile hidden-tablet">
+                                <th>
                                     <a style="color: #424242;" asp-page="./Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-SortOrder="@Model.NameSort">
                                         TEAM NAME
                                     </a>
@@ -330,7 +330,7 @@ else
                                     <td>
                                         @Team.TeamNumber
                                     </td>
-                                    <td class="hidden-mobile hidden-tablet" style="word-wrap:break-word">
+                                    <td style="overflow:hidden;">
                                         @Team.TeamName
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
@@ -378,7 +378,7 @@ else
                                             @Html.Raw("N/A")}
                                     </td>
                                     <td class="hidden-mobile hidden-tablet">
-                                        @if (Team.DPR != null)
+                                        @if (Team.CCWM != null)
                                         {
                                             @Team.CCWM}
                                         else
