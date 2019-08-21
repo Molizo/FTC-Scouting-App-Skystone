@@ -2,72 +2,549 @@
 @model SkystoneScouting.Pages.ScoutedMatches.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Scouted matches";
 }
 
-<h1>Index</h1>
+<div class="block-header">
+    <h2 style="font-weight:bolder;">
+        Scouted matches list
+    </h2>
+    <ol class="breadcrumb">
+        <li>
+            <a asp-page="/Events/Index">
+                <i class="material-icons">event</i> Events
+            </a>
+        </li>
+        <li>
+            <a asp-page="/Teams/Index" asp-route-EventID="@Model.eventID">
+                <i class="material-icons">people</i> Teams
+            </a>
+        </li>
+        <li class="active">
+            <a asp-page="Index" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID">
+                <i class="material-icons">flag</i> Scouted matches
+            </a>
+        </li>
+    </ol>
+</div>
 
-<p>
-    <a asp-page="Create" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ScoutedMatch[0].Alliance)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ScoutedMatch[0].HumanPlayer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ScoutedMatch[0].MajorPenalties)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ScoutedMatch[0].MinorPenalties)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ScoutedMatch[0].Score)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ScoutedMatch[0].StartingPosition)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ScoutedMatch[0].TeamID)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.ScoutedMatch)
+@if (Model.NumberOfScoutedMatches == 0)
+{
+    <div class="row clearfix">
+        <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="info-box bg-blue hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">info</i>
+                </div>
+                <div class="content">
+                    <div class="text">Information</div>
+                    <div class="number">
+                        No matches
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="row clearfix hidden-mobile">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-sm-3">
+            <div class="info-box bg-blue hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">info</i>
+                </div>
+                <div class="content">
+                    <div class="text"># Matches</div>
+                    <div class="number">
+                        @Model.NumberOfScoutedMatches
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-sm-3">
+            <div class="info-box bg-orange hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">trending_up</i>
+                </div>
+                <div class="content">
+                    <div class="text">Best score</div>
+                    <div class="number">
+                        @Model.HighestScore
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-sm-3">
+            <div class="info-box bg-orange hover-expand-effect">
+                <div class="icon">
+                    <i class="material-icons">trending_flat</i>
+                </div>
+                <div class="content">
+                    <div class="text">Average score</div>
+                    <div class="number">
+                        @Model.AverageScore
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model.NumberOfPenalties != 0)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Alliance)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.HumanPlayer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MajorPenalties)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MinorPenalties)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Score)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartingPosition)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TeamID)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
-            </tr>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-sm-3">
+                <div class="info-box bg-red hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">warning</i>
+                    </div>
+                    <div class="content">
+                        <div class="text"># Penalties</div>
+                        <div class="number">
+                            @Model.NumberOfPenalties
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+    @if (Model.FinalsScoutedMatches.Count != 0)
+    {
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Finals Matches</h2>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-hover" style="table-layout:fixed;">
+                            <thead>
+                                <tr>
+                                    <th style="width:75px;">
+                                        NR
+                                    </th>
+                                    <th>
+                                        SCORE
+                                    </th>
+                                    <th class="hidden-mobile">
+                                        START POS
+                                    </th>
+                                    <th class="hidden-mobile" style="width:50px;">
+                                        HP
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        DSC
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MLF
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MNP
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MJP
+                                    </th>
+                                    <th class="action-column" style="width:110px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var Match in Model.FinalsScoutedMatches)
+                                {
+                                    <tr @(Match.Alliance == Models.Alliance.Red ? Html.Raw("style=\"background-color: rgba(255,82,82,.13);\"") : Html.Raw("style=\"background-color:rgba(68,138,255,.13);\""))>
+                                        <td>
+                                            @Match.MatchNumber
+                                        </td>
+                                        <td>
+                                            @Match.Score
+                                        </td>
+                                        <td class="hidden-mobile">
+                                            @Match.StartingPosition
+                                        </td>
+                                        <td class="hidden-mobile">
+                                            @if (Match.HumanPlayer)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.RobotDisconnected ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @if (Match.RobotDisconnected)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.RobotMalfunction ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @if (Match.RobotMalfunction)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.MinorPenalties != 0 ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @Match.MinorPenalties
+                                        </td>
+                                        <td @(Match.MajorPenalties != 0 ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @Match.MajorPenalties
+                                        </td>
+                                        <td>
+                                            <div class="btn-toolbar">
+                                                <div class="btn-group">
+                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-ScoutedMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                    <a href="javascript:;" onclick="createModal('@Match.MatchNumber','@Model.eventID','@Model.teamID','@Match.ID');" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.SemifinalsScoutedMatches.Count != 0)
+    {
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Semifinals Matches</h2>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-hover" style="table-layout:fixed;">
+                            <thead>
+                                <tr>
+                                    <th style="width:75px;">
+                                        NR
+                                    </th>
+                                    <th>
+                                        SCORE
+                                    </th>
+
+                                    <th class="hidden-mobile">
+                                        START POS
+                                    </th>
+                                    <th class="hidden-mobile" style="width:50px;">
+                                        HP
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        DSC
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MLF
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MNP
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MJP
+                                    </th>
+                                    <th class="action-column" style="width:110px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var Match in Model.SemifinalsScoutedMatches)
+                                {
+                                    <tr @(Match.Alliance == Models.Alliance.Red ? Html.Raw("style=\"background-color: rgba(255,82,82,.13);\"") : Html.Raw("style=\"background-color:rgba(68,138,255,.13);\""))>
+                                        <td>
+                                            @Match.MatchNumber
+                                        </td>
+                                        <td>
+                                            @Match.Score
+                                        </td>
+                                        <td class="hidden-mobile">
+                                            @Match.StartingPosition
+                                        </td>
+                                        <td class="hidden-mobile">
+                                            @if (Match.HumanPlayer)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.RobotDisconnected ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @if (Match.RobotDisconnected)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.RobotMalfunction ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @if (Match.RobotMalfunction)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.MinorPenalties != 0 ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @Match.MinorPenalties
+                                        </td>
+                                        <td @(Match.MajorPenalties != 0 ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @Match.MajorPenalties
+                                        </td>
+                                        <td>
+                                            <div class="btn-toolbar">
+                                                <div class="btn-group">
+                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-ScoutedMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                    <a href="javascript:;" onclick="createModal('@Match.MatchNumber','@Model.eventID','@Model.teamID','@Match.ID');" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.QualificationScoutedMatches.Count != 0)
+    {
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Qualification Matches</h2>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-hover" style="table-layout:fixed;">
+                            <thead>
+                                <tr>
+                                    <th style="width:75px;">
+                                        NR
+                                    </th>
+                                    <th>
+                                        SCORE
+                                    </th>
+
+                                    <th class="hidden-mobile">
+                                        START POS
+                                    </th>
+                                    <th class="hidden-mobile" style="width:50px;">
+                                        HP
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        DSC
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MLF
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MNP
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MJP
+                                    </th>
+                                    <th class="action-column" style="width:110px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var Match in Model.QualificationScoutedMatches)
+                                {
+                                    <tr @(Match.Alliance == Models.Alliance.Red ? Html.Raw("style=\"background-color: rgba(255,82,82,.13);\"") : Html.Raw("style=\"background-color:rgba(68,138,255,.13);\""))>
+                                        <td>
+                                            @Match.MatchNumber
+                                        </td>
+                                        <td>
+                                            @Match.Score
+                                        </td>
+                                        <td class="hidden-mobile">
+                                            @Match.StartingPosition
+                                        </td>
+                                        <td class="hidden-mobile">
+                                            @if (Match.HumanPlayer)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.RobotDisconnected ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @if (Match.RobotDisconnected)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.RobotMalfunction ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @if (Match.RobotMalfunction)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.MinorPenalties != 0 ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @Match.MinorPenalties
+                                        </td>
+                                        <td @(Match.MajorPenalties != 0 ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @Match.MajorPenalties
+                                        </td>
+                                        <td>
+                                            <div class="btn-toolbar">
+                                                <div class="btn-group">
+                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-ScoutedMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                    <a href="javascript:;" onclick="createModal('@Match.MatchNumber','@Model.eventID','@Model.teamID','@Match.ID');" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.PracticeScoutedMatches.Count != 0)
+    {
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Practice Matches</h2>
+                    </div>
+                    <div class="body table-responsive">
+                        <table class="table table-hover" style="table-layout:fixed;">
+                            <thead>
+                                <tr>
+                                    <th style="width:75px;">
+                                        NR
+                                    </th>
+                                    <th>
+                                        SCORE
+                                    </th>
+
+                                    <th class="hidden-mobile">
+                                        START POS
+                                    </th>
+                                    <th class="hidden-mobile" style="width:50px;">
+                                        HP
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        DSC
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MLF
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MNP
+                                    </th>
+                                    <th class="hidden-mobile bg-red" style="width:50px;">
+                                        MJP
+                                    </th>
+                                    <th class="action-column" style="width:110px;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var Match in Model.PracticeScoutedMatches)
+                                {
+                                    <tr @(Match.Alliance == Models.Alliance.Red ? Html.Raw("style=\"background-color: rgba(255,82,82,.13);\"") : Html.Raw("style=\"background-color:rgba(68,138,255,.13);\""))>
+                                        <td>
+                                            @Match.MatchNumber
+                                        </td>
+                                        <td>
+                                            @Match.Score
+                                        </td>
+                                        <td class="hidden-mobile">
+                                            @Match.StartingPosition
+                                        </td>
+                                        <td class="hidden-mobile">
+                                            @if (Match.HumanPlayer)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.RobotDisconnected ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @if (Match.RobotDisconnected)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.RobotMalfunction ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @if (Match.RobotMalfunction)
+                                            {
+                                                @Html.Raw("Yes");
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw("No");
+                                            }
+                                        </td>
+                                        <td @(Match.MinorPenalties != 0 ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @Match.MinorPenalties
+                                        </td>
+                                        <td @(Match.MajorPenalties != 0 ? Html.Raw("class=\"hidden-mobile bg-red\"") : Html.Raw("class=\"hidden-mobile\""))>
+                                            @Match.MajorPenalties
+                                        </td>
+                                        <td>
+                                            <div class="btn-toolbar">
+                                                <div class="btn-group">
+                                                    <a asp-page="Edit" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID" asp-route-ScoutedMatchID="@Match.ID" class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a>
+                                                    <a href="javascript:;" onclick="createModal('@Match.MatchNumber','@Model.eventID','@Model.teamID','@Match.ID');" class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position:fixed; right:35px; bottom:35px;" asp-page="Create" asp-route-EventID="@Model.eventID" asp-route-TeamID="@Model.teamID">
+    <i class="material-icons">add</i>
+</a>
+
+@section Scripts{
+    <script>
+        function createModal(Name, EventID, TeamID, OfficialMatchID) {
+            var oldError = document.getElementById("deleteModal");
+            if (oldError == null)
+                $("body").append('<div class="modal fade in" id="deleteModal" tabindex="-1" role="dialog" style="display: block;"></div>');
+            $("#deleteModal").html('<div class="modal-dialog modal-sm" brole="document"><div class="modal-content"><div class="modal-header bg-red"><h4 class="modal-title" id="defaultModalLabel">Delete scouted match</h4></div><div class="modal-body">Are you sure you want to delete<br />' + Name + ' ?</div > <div class="modal-footer"> <a href="ScoutedMatches?EventID=' + EventID + '&TeamID=' + TeamID + '&ScoutedMatchID=' + OfficialMatchID + '&handler=Delete" class="btn btn-danger waves-effect hidden-mobile">DELETE</a>  <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button> </div>        </div >             </div > ');
+            $("#deleteModal").modal(); // show the modal
+
+        }
+    </script>
+
+}

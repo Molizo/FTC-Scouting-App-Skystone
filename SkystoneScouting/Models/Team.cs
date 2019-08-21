@@ -8,7 +8,7 @@ namespace SkystoneScouting.Models
         #region Public Properties
 
         [Display(Name = "Average points")]
-        public int? AvgPTS { get; set; }
+        public double? AvgPTS { get; set; }
 
         [Display(Name = "Average RP")]
         public double? AvgRP { get; set; }

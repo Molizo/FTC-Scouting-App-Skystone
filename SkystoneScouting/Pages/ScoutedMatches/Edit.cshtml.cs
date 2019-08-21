@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -71,13 +71,21 @@ namespace SkystoneScouting.Pages.ScoutedMatches
             if (!AuthorizationCheck.ScoutedMatch(_context, ScoutedMatchID, User.Identity.Name))
                 return Forbid();
 
+            _context.Attach(ScoutedMatch).State = EntityState.Modified;
+
             eventID = EventID;
             teamID = TeamID;
+            ScoutedMatch.TeamID = TeamID;
+            ScoutedMatch.Score = CalculateTeamMetrics.ComputeScoutedMatchScore(ScoutedMatch);
 
-            _context.Attach(ScoutedMatch).State = EntityState.Modified;
+            Team ScoutedTeam = await _context.Team.FindAsync(TeamID);
 
             try
             {
+                await _context.SaveChangesAsync();
+                IList<int> Scores = await _context.ScoutedMatch.AsNoTracking().Where(s => s.TeamID == TeamID).Select(s => s.Score).ToListAsync();
+                ScoutedTeam.AvgPTS = Math.Round(Scores.Average(), 1);
+                _context.Team.Update(ScoutedTeam);
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)

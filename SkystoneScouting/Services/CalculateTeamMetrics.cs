@@ -76,6 +76,14 @@ namespace SkystoneScouting.Services
             return Teams;
         }
 
+        public static int ComputeScoutedMatchScore(ScoutedMatch ScoutedMatch)
+        {
+            int score = 0;
+            score -= Convert.ToInt32(ScoutedMatch.MinorPenalties) * 10;
+            score -= Convert.ToInt32(ScoutedMatch.MajorPenalties) * 50;
+            return score;
+        }
+
         public static IList<Team> DPR(IList<Team> Teams, IList<OfficialMatch> Matches)
         {
             //Variable initialisation

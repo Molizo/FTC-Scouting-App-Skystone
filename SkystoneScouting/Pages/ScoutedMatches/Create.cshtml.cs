@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using SkystoneScouting.Data;
 using SkystoneScouting.Models;
 using SkystoneScouting.Services;
@@ -67,7 +68,15 @@ namespace SkystoneScouting.Pages.ScoutedMatches
             eventID = EventID;
             teamID = TeamID;
             ScoutedMatch.TeamID = TeamID;
+            ScoutedMatch.Score = CalculateTeamMetrics.ComputeScoutedMatchScore(ScoutedMatch);
             _context.ScoutedMatch.Add(ScoutedMatch);
+
+            Team ScoutedTeam = await _context.Team.FindAsync(TeamID);
+            IList<int> Scores = await _context.ScoutedMatch.AsNoTracking().Where(s => s.TeamID == TeamID).Select(s => s.Score).ToListAsync();
+            Scores.Add(ScoutedMatch.Score);
+            ScoutedTeam.AvgPTS = Math.Round(Scores.Average(), 1);
+
+            _context.Team.Update(ScoutedTeam);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index", new

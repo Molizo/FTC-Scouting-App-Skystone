@@ -38,7 +38,7 @@ namespace SkystoneScouting.Models
         public uint MinorPenalties { get; set; }
         public bool RobotDisconnected { get; set; }
         public bool RobotMalfunction { get; set; }
-        public int? Score { get; set; }
+        public int Score { get; set; }
         public StartingPosition StartingPosition { get; set; }
         public string TeamID { get; set; }
 
