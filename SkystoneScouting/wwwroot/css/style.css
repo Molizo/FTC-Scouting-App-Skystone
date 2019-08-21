@@ -5280,11 +5280,11 @@ section.content {
 /* DateTime Picker ============================= */
 .dtp div.dtp-date,
 .dtp div.dtp-time {
-    background: #007d72;
+    background: #1d4294;
 }
 
 .dtp > .dtp-content > .dtp-date-view > header.dtp-header {
-    background: #009688;
+    background: #001c65;
 }
 
 .dtp .dtp-buttons .dtp-btn-ok {
@@ -5305,7 +5305,7 @@ section.content {
 }
 
 .dtp table.dtp-picker-days tr td a.selected {
-    background: #007d72;
+    background: #1d4294;
     color: #fff;
 }
 
@@ -5651,7 +5651,7 @@ section.content {
 /* Modals ====================================== */
 .modal .modal-header {
     border: none;
-    padding-left:25px;
+    padding-left: 25px;
 }
 
     .modal .modal-header .modal-title {
