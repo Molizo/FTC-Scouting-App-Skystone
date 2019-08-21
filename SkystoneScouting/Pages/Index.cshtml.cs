@@ -9,7 +9,7 @@ namespace SkystoneScouting.Pages
         public void OnGet()
         {
             if (User.Identity.IsAuthenticated)
-                RedirectToPage("/Dashboard");
+                RedirectToPage("/Events");
         }
 
         #endregion Public Methods
