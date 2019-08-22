@@ -1,0 +1,140 @@
+﻿@page
+@{
+    ViewData["Title"] = "Docs";
+    Layout = "/Pages/Shared/_DocsLayout.cshtml";
+}
+
+@section Styles{
+    <!--Bootstrap tags input CSS-->
+    <link href="/vendor/@@adactive/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet"> }
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Events</h2>
+            </div>
+            <div class="body">
+                <p>
+                    Events in the app represent, well, any type of competition a team may attend
+                </p><p>
+                    Events are the primary way of separating scouted teams and matches between competitions. Teams and matches can not be moved or migrated between events.
+                </p><p>
+                    Events are made of the following properties, editable at any time:
+                    <ul>
+                        <li>Name</li>
+                        <li>Start date</li>
+                        <li>End date</li>
+                        <li>Address</li>
+                        <li>Scouters</li>
+                    </ul>
+                </p>
+                <p>
+                    To select an event that you want to scout at, select <a class="btn btn-primary waves-effect"><strong>SCOUT</strong></a> and your selected event will be remembered for the rest of the session.
+                </p>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Managing events</h2>
+            </div>
+            <div class="body">
+                <p>
+                    To add an event, simply press the <a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float">
+                        <i class="material-icons">add</i>
+                    </a> button located in the bottom-right corner of the page.
+                </p><p>
+                    To edit an event, press the
+                    <a class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a> button for the event that you intend to edit. This is only available when working on PCs
+                </p><p>
+                    You will then be prompted to enter the details of the event
+                </p><p>
+                    After filling in the details, press <a class="btn btn-primary waves-effect">ADD/EDIT EVENT</a>
+                </p><p>
+                    To delete an event, press the
+                    <a class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a> button, followed by a confirmation in the pop-up dialog. This is only available when working on tablets/PCs
+                </p>
+                <div class="alert alert-danger">
+                    <strong>Warning!</strong> Once an event is deleted, all of the data associated with it (such as teams and matches) is also deleted. <strong>THIS ACTION CANNOT BE UNDONE</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Importing events from The Orange Alliance</h2>
+            </div>
+            <div class="body">
+                <p>
+                    As The Orange Alliance has built an incredible community and more and more events start submitting their event details to them, we added the possibility of importing an event and its teams' details directly into our app.
+                </p>
+                <p>
+                    This importer allows you to add
+                    <ul>
+                        <li>Event name</li>
+                        <li>Event dates</li>
+                        <li>Event venues</li>
+                        <li>Team names</li>
+                        <li>Team numbers</li>
+                        <li>Team addresses</li>
+                    </ul>
+                    and more coming throughout the season!
+                </p>
+                <p>
+                    To import an event, press the <a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float">
+                        <i class="material-icons">file_upload</i>
+                    </a> button located in the bottom-right corner of the page, next to the add button.
+                </p><p>
+                    You will then be prompted to enter the URL of the event on TOA, such as <code>https://theorangealliance.org/<wbr />events/1819-CMP-DET1</code>
+                </p><p>
+                    After filling it in, press <a class="btn btn-primary waves-effect">IMPORT EVENT</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Managing scouters</h2>
+            </div>
+            <div class="body">
+                <p>
+                    In order for the app to work with multiple devices accessing the same event, we recommend that each scouter creates his own account on the platform, and you shall then share the event with them.
+                </p>
+                <p>
+                    To add/edit scouters, go to the Add/Edit event page, then look for the "Who will be scouting?" field. It should look like this:
+                        <h2 class="card-inside-title">Who will be scouting?</h2>
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" data-role="tagsinput" value="User1,User2,User3,User4,User5">
+                            </div>
+                        </div>
+                </p>
+                <p>
+                    To add a user to the list, simply enter their username (which is CaPs SeNsItIvE) and press Enter.
+                </p><p>
+                    To remove a user from the list, press the X to the right of their name
+                </p><div class="alert alert-warning">
+                    Your username is not shown in the list to prevent you from removing yourself. If you want to remove yourself without deleting the event, ask another person to remove you through their account.
+                </div><p>
+                    Once another user is added, they can also administer the event and its data so be careful about who you trust!
+                </p><p>
+                    After filling it in, press <a class="btn btn-primary waves-effect">ADD/EDIT EVENT</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+
+    <!--Bootstrap tags input JS-->
+    <script src="/vendor/@@adactive/bootstrap-tagsinput/dist/bootstrap-tagsinput.js"></script> }

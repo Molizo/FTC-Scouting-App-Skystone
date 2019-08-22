@@ -225,7 +225,7 @@ cursor: pointer;" href="javascript:window.location.href=window.location.href"><i
                     }
                     <li class="header">Help</li>
                     <li @(@Context.Request.Path.Value.Contains("/Docs") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
-                        <a asp-page="/Docs" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
+                        <a asp-page="/Docs/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                             <i class="material-icons">book</i>
                             <span>Documentation</span>
                         </a>

@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "/Pages/Shared/_Layout.cshtml";
+}
+
+@section Styles{
+@RenderSection("Styles",false)
+ }
+<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Table of contents</h2><small>Rev 1.0 for v1.14 BETA</small>
+                </div>
+                <div class="body">
+                    <ul>
+                        <li><a asp-page="/Docs/Index">Welcome &amp; Installation</a></li>
+                        <li><a asp-page="/Docs/Events">Events</a></li>
+                        <li><a asp-page="/Docs/Teams">Teams</a></li>
+                        <li><a asp-page="/Docs/OfficialMatches">Official matches</a></li>
+                        <li><a asp-page="/Docs/ScoutedMatches">Scouted matches</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row hidden-mobile hidden-tablet">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="card card-about-me">
+                <div class="header">
+                    <h2>Contact</h2>
+                </div>
+                <div class="body">
+                    <ul>
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">markunread</i>
+                                Support e-mail
+                            </div>
+                            <div class="content">
+                                <a href="mailto:support.scouting@qrobotics.eu">support.scouting@qrobotics.eu</a>
+                                <br />
+                                Mon-Sun 8AM - 10PM EET (1AM - 3PM EST)
+                            </div>
+                        </li>
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">markunread</i>
+                                Contact e-mail
+                            </div>
+                            <div class="content">
+                                <a href="mailto:contact@qrobotics.eu">contact@qrobotics.eu</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="title">
+                                <i class="material-icons">web_asset</i>
+                                Website
+                            </div>
+                            <div class="content">
+                                <a href="https://qrobotics.eu">qrobotics.eu</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    @RenderBody()
+</div>
+
+@section Scripts{ 
+@RenderSection("Scripts",false)
+}

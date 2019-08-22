@@ -24,8 +24,12 @@ const offlineResources = [
     '/favicon.ico',
     '/manifest.json',
     '/service_worker.js',
-    '/docs',
-    '/legal'
+    '/Docs',
+    '/Docs/Events',
+    '/Docs/Teams',
+    '/Docs/OfficialMatches',
+    '/Docs/ScoutedMatches',
+    '/Legal'
 ]
 
 // Install stage sets up the offline page in the cache and opens a new cache
