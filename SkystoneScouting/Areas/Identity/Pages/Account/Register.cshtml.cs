@@ -84,7 +84,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
 
                     // This is so the user doesn't get automatically signed in to the app upon registering
                     // await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    return RedirectToPage("/Index", new { source = "userRegistered" });
                 }
                 foreach (var error in result.Errors)
                 {

@@ -4,6 +4,47 @@
     ViewData["Title"] = "Home";
 }
 
-<div class="text-center">
-    <h1 class="font-bold font-32 col-black">Welcome</h1>
+@if (HttpContext.Request.Query["source"] == "emailConfirmed")
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        You have succesfully confirmed your e-mail!
+    </div>
+}
+else if (HttpContext.Request.Query["source"] == "userRegistered")
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        Thank you for registering! Now please confirm your e-mail and you're all set!
+    </div>
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Welcome</h2><small>Welcome to the First Tech Challenge 2019-2020 Skystone Season Online Scouting App provided by Quantum Robotics #14270 / RO077 / KR5075</small>
+            </div>
+            <div class="body">
+                <p>
+                    This web app, together with the mobile apps provided allow teams to scout at various events internationally, helping them to get a better picture of all the participating teams during alliance selection and throughout the event.
+                    This tool is helpful for teams looking to scout other teams, matches and calculate different statistics on-the-fly.
+                </p>
+                <strong>What? Aren't paper scouting sheets enough?</strong>
+                <p>
+                    Enough to fill your pit? Yes. Enough to gather useful information about the teams and having a centralized system for managing the data with easy lookup? No.
+                </p>
+                <strong>What about shared Excel / Google Sheets tables?</strong>
+                <p>
+                    Those solutions are cumbersome and not very easy to comprehend for unexperienced team members, let alone easily update or modify as the season continues and new metrics are required to evaluate a team's performance.
+                </p>
+                <strong>Is the data we enter into the system easily accesible and/or public?</strong>
+                <p>
+                    No. Each user's events are kept separated from anybody else's and we do not have easy access to them.
+                    Due to us (Quantum Robotics) being an EU-based team, we have to conform to GDPR and national privacy laws.
+                    For easier scouting as a team, we allow you to grant access for other users to access your event, and that is made at your discretion.
+                </p>
+            </div>
+        </div>
+    </div>
 </div>

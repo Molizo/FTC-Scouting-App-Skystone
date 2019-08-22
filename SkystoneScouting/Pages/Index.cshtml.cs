@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SkystoneScouting.Pages
 {
@@ -6,10 +7,11 @@ namespace SkystoneScouting.Pages
     {
         #region Public Methods
 
-        public void OnGet()
+        public ActionResult OnGet()
         {
             if (User.Identity.IsAuthenticated)
-                RedirectToPage("/Events");
+                return RedirectToPage("/Events/Index");
+            return Page();
         }
 
         #endregion Public Methods
