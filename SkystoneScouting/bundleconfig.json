@@ -1,0 +1,86 @@
+[
+  {
+    "outputFileName": "wwwroot/css/style.min.css",
+    "inputFiles": [
+      "wwwroot/css/style.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/materialize.min.css",
+    "inputFiles": [
+      "wwwroot/css/materialize.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/themes/theme-quantum.min.css",
+    "inputFiles": [
+      "wwwroot/css/themes/theme-quantum.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/error/403.min.html",
+    "inputFiles": [
+      "wwwroot/error/403.html"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/admin.min.js",
+    "inputFiles": [
+      "wwwroot/js/admin.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/demo.min.js",
+    "inputFiles": [
+      "wwwroot/js/demo.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/helpers.min.js",
+    "inputFiles": [
+      "wwwroot/js/helpers.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plugins/animate-css/animate.min.css",
+    "inputFiles": [
+      "wwwroot/plugins/animate-css/animate.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plugins/jquery-cookie/jquery.cookie.min.js",
+    "inputFiles": [
+      "wwwroot/plugins/jquery-cookie/jquery.cookie.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plugins/jquery-datatable/jquery.dataTables.min.js",
+    "inputFiles": [
+      "wwwroot/plugins/jquery-datatable/jquery.dataTables.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plugins/jquery-spinner/css/bootstrap-spinner.min.css",
+    "inputFiles": [
+      "wwwroot/plugins/jquery-spinner/css/bootstrap-spinner.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plugins/jquery-spinner/js/jquery.spinner.min.js",
+    "inputFiles": [
+      "wwwroot/plugins/jquery-spinner/js/jquery.spinner.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plugins/waitme/waitMe.min.css",
+    "inputFiles": [
+      "wwwroot/plugins/waitme/waitMe.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plugins/waitme/waitMe.min.js",
+    "inputFiles": [
+      "wwwroot/plugins/waitme/waitMe.js"
+    ]
+  }
+]
