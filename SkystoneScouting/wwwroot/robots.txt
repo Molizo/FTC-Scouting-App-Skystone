@@ -1,0 +1,6 @@
+﻿User-agent: *
+Disallow: /Account
+Disallow: /Events
+Disallow: /Teams
+Disallow: /OfficialMatches
+Disallow: /ScoutedMatches
