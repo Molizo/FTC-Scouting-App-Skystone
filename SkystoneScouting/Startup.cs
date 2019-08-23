@@ -77,10 +77,6 @@ namespace SkystoneScouting
 
             app.UseAuthentication();
 
-            //This enables resource caching and compression
-            app.UseResponseCaching();
-            app.UseResponseCompression();
-
             app.UseMvc();
 
             //Sentry error level tracing & release version bundlng config
@@ -106,8 +102,6 @@ namespace SkystoneScouting
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DBConnection")));
 
-            //This configures content minimification
-
             //This enables e-mail verification and configures the default identity
             services.AddDefaultIdentity<IdentityUser>(config =>
                 {
@@ -118,14 +112,29 @@ namespace SkystoneScouting
 
             services.AddTransient<IEmailSender, EmailSender>();
             services.Configure<AuthMessageSenderOptions>(Configuration);
-            //This configures resource caching and compression
-            services.AddResponseCaching();
-            services.AddResponseCompression();
-            services.Configure<GzipCompressionProviderOptions>
-        (options =>
-        {
-            options.Level = CompressionLevel.Fastest;
-        });
+
+            // Configure Identity
+            services.Configure<IdentityOptions>(options =>
+            {
+                // Password settings
+                options.Password.RequireDigit = false;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+            });
+
+            // Configure Identity Cookie
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.Cookie.Name = "FTCScoutingApp_AuthToken";
+            });
+            // Configure Antiforgery
+            services.AddAntiforgery(options =>
+            {
+                options.Cookie.Name = "FTCScoutingApp_AntiforgeryCookie";
+                options.HeaderName = "FTCScoutingApp_AntiforgerHeader";
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
