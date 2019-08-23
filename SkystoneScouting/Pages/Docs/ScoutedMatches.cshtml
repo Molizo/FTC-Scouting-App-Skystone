@@ -1,0 +1,74 @@
+﻿@page
+@{
+    ViewData["Title"] = "Scouted Matches Docs";
+    Layout = "/Pages/Shared/_DocsLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Scouted matches</h2>
+            </div>
+            <div class="body">
+                <p>
+                    Scouted matches in the app represent an individual team's performance in a match, scouted by one of your team members.
+                </p><p>
+                    This type of match allows you to get a breakdown of a team's individual performance during a match, and can provide a much more detailed scoring breakdown than what is provided using the audience display.
+                </p><p>
+                    Scouted matches are split up into three sub-categories:
+                    <br /><strong>Match Info</strong>
+                    <ul>
+                        <li>Match Type - Quals, Semi, Final, Practice</li>
+                        <li>Match Number</li>
+                        <li>Team Alliance</li>
+                        <li>Robot starting position</li>
+                        <li>Human Player - Check if human player is from this team</li>
+                        <li>Robot Disconnected - Check if the robot had connection issues</li>
+                        <li>Robot Malfunctioned - Check if the robot starts to malfunction</li>
+                        <li>Minor Penalties</li>
+                        <li>Major Penalties</li>
+                        <li>Match Description</li>
+                    </ul>
+                    <strong>Autonomous Info</strong>
+                    <ul>
+                    </ul>
+                    <strong>TeleOP Info</strong>
+                    <ul>
+                    </ul>
+                </p>
+                <p>
+                    As the match progresses, the scouter may move from one category to the next, with the match info category being filled in before the match starts
+                </p>
+                <p>Contrary to what the official scoring system does, instad of giving points for penalties to the opposing alliance, in scouted matches the app subtracts those points from that team's individual scouted score.</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Managing scouted matches</h2>
+            </div>
+            <div class="body">
+                <p>You may have noticed that you do not have a "Scouted Matches" option in the sidebar. This is because you first need to select a team to scout. To do this, on the teams page, press <a class="btn btn-primary waves-effect"><strong>SCOUT</strong></a> for the team that you want to scout for this match</p>
+                <p>
+                    To add a scouted match, press the <a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float">
+                        <i class="material-icons">add</i>
+                    </a> button located in the bottom-right corner of the page.
+                </p><p>
+                    To edit a scouted match, press the
+                    <a class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a> button for the scouted match that you intend to edit.
+                </p><p>
+                    You will then be prompted to enter the details of the scouted match.
+                </p><p>
+                    After filling in the details, press <a class="btn btn-primary waves-effect">ADD/EDIT SCOUTED MATCH</a>
+                </p><p>
+                    To delete a scouted match, press the
+                    <a class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a> button, followed by a confirmation in the pop-up dialog.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿@page
+@{
+    ViewData["Title"] = "Official Matches Docs";
+    Layout = "/Pages/Shared/_DocsLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Official matches</h2>
+            </div>
+            <div class="body">
+                <p>
+                    Official matches in the app represent a copy of the official scores from the PIT / Audience Displays at an event.
+                </p><p>
+                    This type of match is required to be added in order to compute OPR, DPR, CCWM, RP and TBP and in practice it can be done in the break between the matches by one scouter.
+                </p><p>
+                    Official matches have a very simple structure:
+                    <ul>
+                        <li>Match Type - Quals, Semi, Final, Practice</li>
+                        <li>Match Number</li>
+                        <li>Red Alliance Teams</li>
+                        <li>Red Alliance Score</li>
+                        <li>Blue Alliance Teams</li>
+                        <li>Blue Alliance Score</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Managing official matches</h2>
+            </div>
+            <div class="body">
+                <div class="alert alert-info"><strong>Tip:</strong> You may start adding the participating teams to the official matches list as soon as you receive your match schedule, so when the scores come up you just need to edit the match and enter the scores.</div>
+                <div class="alert alert-warning"><strong>Warning!</strong> You <strong>MUST</strong> have the participating teams added in the app in order for you to be able to add them in an official match</div>
+                <p>
+                    To add an official match, press the <a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float">
+                        <i class="material-icons">add</i>
+                    </a> button located in the bottom-right corner of the page.
+                </p><p>
+                    To edit an official match, press the
+                    <a class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a> button for the scouted match that you intend to edit.
+                </p><p>
+                    You will then be prompted to enter the details of the official match.
+                </p><p>
+                    After filling in the details, press <a class="btn btn-primary waves-effect">ADD/EDIT OFFICIAL MATCH</a>
+                </p><p>
+                    To delete an official match, press the
+                    <a class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a> button, followed by a confirmation in the pop-up dialog.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

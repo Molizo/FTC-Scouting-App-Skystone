@@ -1,0 +1,77 @@
+﻿@page
+@{
+    ViewData["Title"] = "Teams Docs";
+    Layout = "/Pages/Shared/_DocsLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Teams</h2>
+            </div>
+            <div class="body">
+                <p>
+                    Teams in the app represent teams that participate at any competition.
+                </p><p>
+                    In normal usage, you must also scout your own team for statistics.
+                </p><p>
+                    Teams are made of the following properties, editable at any time:
+                    <ul>
+                        <li>Number</li>
+                        <li>Name</li>
+                        <li>Address</li>
+                        <li>Robot details &amp; strategies</li>
+                        <li>Robot &amp; team description</li>
+                    </ul>
+                    and of the following dynamically calculated properties:
+                    <ul>
+                        <li><strong>OPR</strong> - Offensive Power Rating</li>
+                        <li><strong>DPR</strong> - Defensive Power Rating</li>
+                        <li><strong>CCWM</strong> - Calculated Contribution to Winning Margin</li>
+                        <li><strong>RP</strong> - Ranking Points</li>
+                        <li><strong>TBP</strong> - Tie Breaker Points</li>
+                        <li><strong>AvgPTS</strong> - Average Scouted Match Points - A scouted alternative to OPR/DPR</li>
+                        <li><strong>ExpPTS</strong> - Expected Points - How much a team expects to score in a match</li>
+                    </ul>
+                </p>
+                <p>
+                    AvgPTS is defined as the average between the scouted matches' scores.
+                    <br />ExpPTS is defined as the score determined by what a team says it will be able to do.
+                </p>
+                <p>All properties, apart from AvgPTS and ExpPTS are calculated using data inputted into the Official Matches table.</p>
+                <div class="alert alert-info"><strong>Tip:</strong> by clicking on the column headers in the list of teams, you can sort teams by that property. To sort the other way around, click the column header again.</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>Managing teams</h2>
+            </div>
+            <div class="body">
+                <div class="alert alert-info"><strong>Tip:</strong> To make it easier for scouters at an event, add the teams you know will be attending beforehand, with empty robot details. These teams will be shown separately from already scouted teams and all your scouters need to do is to edit that team, by using the <a class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a> button instead of the <a class="btn btn-primary waves-effect"><strong>SCOUT</strong></a> button, as that would send you to the scouted matches for that team. Teams with empty robot details are automatically added when importing an event from The Orange Alliance.</div>
+                <p>
+                    To add a team, press the <a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float">
+                        <i class="material-icons">add</i>
+                    </a> button located in the bottom-right corner of the page.
+                </p><p>
+                    To edit a team, press the
+                    <a class="btn btn-primary waves-effect"><i class="material-icons">mode_edit</i></a> button for the team that you intend to edit.
+                </p><p>
+                    You will then be prompted to enter the details of the team and the team's robot.
+                </p><p>
+                    After filling in the details, press <a class="btn btn-primary waves-effect">ADD/EDIT TEAM</a>
+                </p><p>
+                    To delete a team, press the
+                    <a class="btn btn-primary waves-effect"><i class="material-icons">delete</i></a> button, followed by a confirmation in the pop-up dialog. This is only available when working on PCs.
+                </p>
+                <div class="alert alert-danger">
+                    <strong>Warning!</strong> Once a team is deleted, all of the matches associated with it are also deleted. <strong>THIS ACTION CANNOT BE UNDONE</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
