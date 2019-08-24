@@ -2,7 +2,7 @@
 @model IndexModel
 @{
     ViewData["Title"] = "Home";
-    ViewData["Description"]="First Tech Challenge Scouting App for the 2019 - 2020 Skystone Game Season";
+    ViewData["Description"] = "First Tech Challenge Scouting App for the 2019 - 2020 Skystone Game Season";
 }
 
 @if (HttpContext.Request.Query["source"] == "emailConfirmed")
@@ -17,6 +17,20 @@ else if (HttpContext.Request.Query["source"] == "userRegistered")
     <div class="alert alert-info alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
         Thank you for registering! Now please confirm your e-mail and you're all set!
+    </div>
+}
+else if (HttpContext.Request.Query["source"] == "forgotPassword")
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        If the e-mail you have entered is valid, you should have received a reset link.
+    </div>
+}
+else if (HttpContext.Request.Query["source"] == "resetPassword")
+{
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+        All set! Your password has been reset!
     </div>
 }
 

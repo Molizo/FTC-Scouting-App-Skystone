@@ -295,7 +295,7 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
             } else {
                 // Register the service worker
                 navigator.serviceWorker
-                    .register("/service_worker.js", {
+                    .register("/service_worker.min.js", {
                         scope: "./"
                     })
                     .then(function (reg) {

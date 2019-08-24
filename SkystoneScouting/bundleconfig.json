@@ -82,5 +82,11 @@
     "inputFiles": [
       "wwwroot/plugins/waitme/waitMe.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/service_worker.min.js",
+    "inputFiles": [
+      "wwwroot/service_worker.js"
+    ]
   }
 ]

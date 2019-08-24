@@ -24,7 +24,7 @@ const offlineResources = [
     '/media/login-background.png',
     '/favicon.ico',
     '/manifest.json',
-    '/service_worker.js',
+    '/service_worker.min.js',
     '/Account/Login',
     '/Account/Register',
     '/Account/ForgotPassword',
