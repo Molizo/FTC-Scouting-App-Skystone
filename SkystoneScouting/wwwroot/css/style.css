@@ -10534,7 +10534,8 @@ fieldset[disabled] .form-control {
 
 /* Forgot Password Page ======================== */
 .fp-page {
-    background-color: #00BCD4;
+    background-image:url("../media/login-background.png");
+    /*background-color: #00BCD4;*/
     padding-left: 0;
     max-width: 360px;
     margin: 5% auto;

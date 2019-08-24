@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <UserSecretsId>aspnet-SkystoneScouting-7B375AA4-4E15-496C-B02A-BB3FA57EBBFF</UserSecretsId>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
-    <Version>1.14.21-DEV0357</Version>
+    <Version>1.14.26-DEV0362</Version>
     <Authors>Mihnea Theodor Visoiu</Authors>
     <Company>Quantum Robotics</Company>
     <Product>FTC Skystone Scouting App</Product>
@@ -19,6 +19,26 @@
     <Content Remove="Areas\Admin\NewFolder\**" />
     <EmbeddedResource Remove="Areas\Admin\NewFolder\**" />
     <None Remove="Areas\Admin\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+    <Content Remove="wwwroot\js\admin.min.js" />
+    <Content Remove="wwwroot\plugins\jquery-datatable\jquery.dataTables.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="bundleconfig.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\css\materialize.min.css" />
+    <_ContentIncludedByDefault Remove="wwwroot\error\403.min.html" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\admin.min.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\plugins\jquery-datatable\jquery.dataTables.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="bundleconfig.json" />
+    <None Include="wwwroot\js\admin.min.js" />
+    <None Include="wwwroot\plugins\jquery-datatable\jquery.dataTables.min.js" />
   </ItemGroup>
 
   <ItemGroup>
