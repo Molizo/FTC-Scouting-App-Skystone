@@ -10,8 +10,8 @@ using SkystoneScouting.Data;
 namespace SkystoneScouting.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190820075225_ExtendedScoutedMatch")]
-    partial class ExtendedScoutedMatch
+    [Migration("20190826070815_Initial-Migration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -253,15 +253,19 @@ namespace SkystoneScouting.Migrations
 
                     b.Property<bool>("HumanPlayer");
 
-                    b.Property<int>("MajorPenalties");
+                    b.Property<long>("MajorPenalties");
 
-                    b.Property<int>("MinorPenalties");
+                    b.Property<string>("MatchNumber");
+
+                    b.Property<int>("MatchType");
+
+                    b.Property<long>("MinorPenalties");
 
                     b.Property<bool>("RobotDisconnected");
 
                     b.Property<bool>("RobotMalfunction");
 
-                    b.Property<int?>("Score");
+                    b.Property<int>("Score");
 
                     b.Property<int>("StartingPosition");
 
@@ -277,7 +281,7 @@ namespace SkystoneScouting.Migrations
                     b.Property<string>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("AvgPTS");
+                    b.Property<double?>("AvgPTS");
 
                     b.Property<double?>("AvgRP");
 

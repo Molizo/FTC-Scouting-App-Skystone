@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SkystoneScouting.Migrations
 {
-    public partial class CompactedMigrations : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -88,11 +88,34 @@ namespace SkystoneScouting.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ScoutedMatch",
+                columns: table => new
+                {
+                    ID = table.Column<string>(nullable: false),
+                    Alliance = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
+                    HumanPlayer = table.Column<bool>(nullable: false),
+                    MajorPenalties = table.Column<long>(nullable: false),
+                    MatchNumber = table.Column<string>(nullable: true),
+                    MatchType = table.Column<int>(nullable: false),
+                    MinorPenalties = table.Column<long>(nullable: false),
+                    RobotDisconnected = table.Column<bool>(nullable: false),
+                    RobotMalfunction = table.Column<bool>(nullable: false),
+                    Score = table.Column<int>(nullable: false),
+                    StartingPosition = table.Column<int>(nullable: false),
+                    TeamID = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ScoutedMatch", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Team",
                 columns: table => new
                 {
                     ID = table.Column<string>(nullable: false),
-                    AvgPTS = table.Column<int>(nullable: true),
+                    AvgPTS = table.Column<double>(nullable: true),
                     AvgRP = table.Column<double>(nullable: true),
                     AvgTBP = table.Column<double>(nullable: true),
                     CCWM = table.Column<double>(nullable: true),
@@ -292,6 +315,9 @@ namespace SkystoneScouting.Migrations
 
             migrationBuilder.DropTable(
                 name: "OfficialMatch");
+
+            migrationBuilder.DropTable(
+                name: "ScoutedMatch");
 
             migrationBuilder.DropTable(
                 name: "Team");
