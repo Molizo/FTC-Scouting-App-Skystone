@@ -16,6 +16,7 @@ const offlineResources = [
     'https://code.jquery.com/jquery-3.4.1.min.js',
     'https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
+    'https://www.googletagmanager.com/gtag/js?id=UA-104466474-2',
     '/vendor/jquery-slimscroll/jquery.slimscroll.js',
     '/vendor/node-waves/dist/waves.js',
     '/js/admin.min.js',
