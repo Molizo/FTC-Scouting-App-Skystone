@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SkystoneScouting.Models;
 
 namespace SkystoneScouting.Data
 {
@@ -18,10 +17,10 @@ namespace SkystoneScouting.Data
         #region Public Properties
 
         public DbSet<SkystoneScouting.Models.Event> Event { get; set; }
-        public DbSet<SkystoneScouting.Models.Team> Team { get; set; }
         public DbSet<SkystoneScouting.Models.OfficialMatch> OfficialMatch { get; set; }
-        public DbSet<SkystoneScouting.Models.UserActivity> UserActivity { get; set; }
         public DbSet<SkystoneScouting.Models.ScoutedMatch> ScoutedMatch { get; set; }
+        public DbSet<SkystoneScouting.Models.Team> Team { get; set; }
+        public DbSet<SkystoneScouting.Models.UserActivity> UserActivity { get; set; }
 
         #endregion Public Properties
     }

@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SkystoneScouting.Models;
-using System.Threading.Tasks;
-
 using SkystoneScouting.Services;
+using System.Threading.Tasks;
 
 namespace SkystoneScouting.Pages.Teams
 {
