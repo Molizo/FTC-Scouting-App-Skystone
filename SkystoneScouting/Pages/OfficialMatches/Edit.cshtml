@@ -200,6 +200,27 @@
         </div>
     </div>
 </form>
+
+<a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position:fixed; right:35px; bottom:35px;" href="javascript:;" onclick="createQuickAddModal('@Model.eventID','@Model.OfficialMatch.ID');">
+    <i class="material-icons">playlist_add</i>
+</a>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <!-- Quick add modal -->
+    <script>
+        function createQuickAddModal(EventID, OfficialMatchID) {
+            var oldError = document.getElementById("quickAddModal");
+            if (oldError == null)
+                $("body").append('<div class="modal fade in" id="quickAddModal" tabindex="-1" role="dialog" style="display: block;"></div>');
+            $("#quickAddModal").html('<div class="modal-dialog modal-sm" role="document"><div class="modal-content"> <div class="modal-header bg-blue"> <h4 class="modal-title" id="defaultModalLabel">Quick add team</h4> </div><div class="modal-body"> <div class="row clearfix"> <div class="col-sm-12"> <h4 class="card-inside-title">Team number</h4> <div class="form-group form-float"> <div class="form-line"> <input id="QuickAddTeamNumber" name="TeamNumber" placeholder="Team number" class="form-control"> </div></div></div><div class="col-sm-12"> <h4 class="card-inside-title">Team name</h4> <div class="form-group form-float"> <div class="form-line"> <input id="QuickAddTeamName" name="TeamName" placeholder="Team name" class="form-control"></div></div></div></div></div><div class="modal-footer"> <a onclick="sendTeamCreateRequest(\'' + EventID + '\',\'' + OfficialMatchID + '\')" href="javascript:;" class="btn btn-primary waves-effect">ADD TEAM</a> <button type="button" class="btn btn - link waves - effect" data-dismiss="modal">CANCEL</button> </div></div></div>');
+            $("#quickAddModal").modal(); // show the modal
+        }
+        function sendTeamCreateRequest(EventID, OfficialMatchID) {
+            var TeamNumber = document.getElementById("QuickAddTeamNumber").value;
+            var TeamName = document.getElementById("QuickAddTeamName").value;
+
+            window.location.href = "?OfficialMatchID=" + OfficialMatchID + "&EventID=" + EventID + "&TeamNumber=" + TeamNumber + "&TeamName=" + TeamName + "&handler=QuickAddTeam";
+        }
+    </script>
 }

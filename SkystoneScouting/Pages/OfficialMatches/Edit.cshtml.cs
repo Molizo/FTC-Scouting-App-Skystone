@@ -47,12 +47,34 @@ namespace SkystoneScouting.Pages.OfficialMatches
 
             eventID = EventID;
             OfficialMatch = await _context.OfficialMatch.FirstOrDefaultAsync(m => m.ID == OfficialMatchID);
-            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).ToListAsync();
+            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).OrderBy(t => t.TeamNumber.PadLeft(5)).ToListAsync();
             if (OfficialMatch == null)
             {
                 return NotFound();
             }
             return Page();
+        }
+
+        public async Task<ActionResult> OnGetQuickAddTeam(string EventID, string TeamNumber, string TeamName, string OfficialMatchID)
+        {
+            if (EventID == null)
+                return NotFound();
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
+
+            Team Team = new Team
+            {
+                EventID = EventID,
+                TeamNumber = TeamNumber,
+                TeamName = TeamName
+            };
+
+            await _context.AddAsync(Team);
+            await _context.SaveChangesAsync();
+
+            var _EventID = EventID;
+            var _OfficialMatchID = OfficialMatchID;
+            return RedirectToPage("./Edit", new { EventID = _EventID, OfficialMatchID = _OfficialMatchID, });
         }
 
         public async Task<IActionResult> OnPostAsync(string EventID, string OfficialMatchID)
