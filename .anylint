@@ -1,0 +1,4 @@
+{
+  "ignore":["SkystoneScouting/wwwroot/"],
+  "html_has_js":true
+}
