@@ -1,12 +1,12 @@
-﻿const CACHE = "ftcsoutingapp";
+﻿const CACHE = "ftcscoutingapp";
 
 const offlineFallbackPage = "/error/offline.html";
 
 const offlineResources = [
     '/error/offline.html',
-    '/css/style.css',
-    '/css/materialize.css',
-    '/css/themes/theme-quantum.css',
+    '/css/style.min.css',
+    '/css/materialize.min.css',
+    '/css/themes/theme-quantum.min.css',
     '/plugins/animate-css/animate.css',
     '/vendor/node-waves/dist/waves.css',
     'https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css',
@@ -16,9 +16,9 @@ const offlineResources = [
     'https://code.jquery.com/jquery-3.4.1.min.js',
     'https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext',
     'https://fonts.googleapis.com/icon?family=Material+Icons',
-    'https://www.googletagmanager.com/gtag/js?id=UA-104466474-2',
     '/vendor/jquery-slimscroll/jquery.slimscroll.js',
     '/vendor/node-waves/dist/waves.js',
+    '/vendor/sw-offline-google-analytics/offline-google-analytics-import.js',
     '/js/admin.min.js',
     '/js/demo.min.js',
     '/media/user-img-background.png',
@@ -54,7 +54,6 @@ self.addEventListener("install", function (event) {
 // If any fetch fails, it will show the offline page.
 self.addEventListener("fetch", function (event) {
     if (event.request.method !== "GET") return;
-
     event.respondWith(
         // Try the cache
         caches.match(event.request).then(function (response) {
@@ -87,3 +86,6 @@ self.addEventListener("refreshOffline", function () {
         });
     });
 });
+
+importScripts('/vendor/sw-offline-google-analytics/offline-google-analytics-import.js');
+goog.offlineGoogleAnalytics.initialize();
