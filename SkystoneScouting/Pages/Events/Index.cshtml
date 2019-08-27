@@ -255,7 +255,7 @@
             var oldError = document.getElementById("deleteModal");
             if (oldError == null)
                 $("body").append('<div class="modal fade in" id="deleteModal" tabindex="-1" role="dialog" style="display: block;"></div>');
-            $("#deleteModal").html('<div class="modal-dialog modal-sm" brole="document"><div class="modal-content"><div class="modal-header bg-red"><h4 class="modal-title" id="defaultModalLabel">Delete event</h4></div><div class="modal-body">Are you sure you want to delete<br />' + Name + ' ?</div > <div class="modal-footer"> <a href="Events?EventID=' + EventID + '&handler=Delete" class="btn btn-danger waves-effect hidden-mobile hidden-tablet">DELETE</a>  <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button> </div>        </div >             </div > ');
+            $("#deleteModal").html('<div class="modal-dialog modal-sm" brole="document"><div class="modal-content"><div class="modal-header bg-red"><h4 class="modal-title" id="defaultModalLabel">Delete event</h4></div><div class="modal-body">Are you sure you want to delete<br />' + Name + ' ?</div > <div class="modal-footer"> <a href="Events?EventID=' + EventID + '&handler=Delete" class="btn btn-danger waves-effect">DELETE</a>  <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCEL</button> </div>        </div >             </div > ');
             $("#deleteModal").modal(); // show the modal
 
         }
