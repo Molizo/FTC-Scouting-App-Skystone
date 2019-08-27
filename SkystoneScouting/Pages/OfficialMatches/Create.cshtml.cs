@@ -40,15 +40,37 @@ namespace SkystoneScouting.Pages.OfficialMatches
 
         #region Public Methods
 
-        public IActionResult OnGet(string EventID)
+        public async Task<IActionResult> OnGetAsync(string EventID)
         {
             if (EventID == null)
                 return NotFound();
             if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
                 return Forbid();
 
-            AuthorizedTeams = _context.Team.AsNoTracking().Where(t => t.EventID == EventID).AsQueryable<Team>().OrderBy(s => s.TeamNumber.PadLeft(5)).ToList<Team>();
+            eventID = EventID;
+            AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).AsQueryable<Team>().OrderBy(s => s.TeamNumber.PadLeft(5)).ToListAsync();
             return Page();
+        }
+
+        public async Task<ActionResult> OnGetQuickAddTeam(string EventID, string TeamNumber, string TeamName)
+        {
+            if (EventID == null)
+                return NotFound();
+            if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
+                return Forbid();
+
+            Team Team = new Team
+            {
+                EventID = EventID,
+                TeamNumber = TeamNumber,
+                TeamName = TeamName
+            };
+
+            await _context.AddAsync(Team);
+            await _context.SaveChangesAsync();
+
+            var _EventID = EventID;
+            return RedirectToPage("./Create", new { EventID = _EventID, });
         }
 
         public async Task<IActionResult> OnPostAsync(string EventID)

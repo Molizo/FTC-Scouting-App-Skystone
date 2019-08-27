@@ -298,6 +298,18 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
 
     <!-- Demo Js -->
     <script async src="/js/demo.min.js"></script>
+
+    <!-- Form persistance plugin -->
+    <script src="/vendor/sisyphus.js/sisyphus.min.js"></script>
+    <script>var s_config = {
+				customKeySuffix: '-SavedFormData',
+				timeout: 0,
+				locationBased: true,
+				autoRelease: true
+			}
+        $('form').sisyphus(s_config);
+    </script>
+
     <!-- Web App Service Worker-->
     <script async>
         if ("serviceWorker" in navigator) {

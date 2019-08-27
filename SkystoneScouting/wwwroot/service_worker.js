@@ -19,6 +19,7 @@ const offlineResources = [
     '/vendor/jquery-slimscroll/jquery.slimscroll.js',
     '/vendor/node-waves/dist/waves.js',
     '/vendor/sw-offline-google-analytics/offline-google-analytics-import.js',
+    '/vendor/sisyphus.js/sisyphus.min.js',
     '/js/admin.min.js',
     '/js/demo.min.js',
     '/media/user-img-background.png',
