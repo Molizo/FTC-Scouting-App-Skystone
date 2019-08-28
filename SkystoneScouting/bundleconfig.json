@@ -18,12 +18,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/error/403.min.html",
-    "inputFiles": [
-      "wwwroot/error/403.html"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/js/admin.min.js",
     "inputFiles": [
       "wwwroot/js/admin.js"
