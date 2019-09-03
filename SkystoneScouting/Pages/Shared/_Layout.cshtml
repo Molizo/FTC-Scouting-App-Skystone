@@ -1,4 +1,7 @@
 ﻿@inject ApplicationDbContext context
+@{
+    var RequestPath = Context.Request.Path.Value;
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,20 +82,7 @@
 </head>
 <body class="theme-quantum">
     <!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-blue">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
+    <div class="page-loader-wrapper-custom">
     </div>
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
@@ -184,7 +174,7 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
                 <ul class="list">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <li>
+                        <li @(RequestPath == "/" ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                             <a asp-page="/Index">
                                 <i class="material-icons">home</i>
                                 <span>Home</span>
@@ -207,7 +197,7 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
                     {
                         @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                         {
-                            <li @(@Context.Request.Path.Value.Contains("/Dashboard") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                            <li @(RequestPath.Contains("/Dashboard") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                 <a asp-page="/Dashboard" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                     <i class="material-icons">dashboard</i>
                                     <span>Dashboard</span>
@@ -215,7 +205,7 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
                             </li>
                         }
                         <li class="header">Scouting</li>
-                        <li @(@Context.Request.Path.Value.Contains("/Events") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                        <li @(RequestPath.Contains("/Events") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                             <a asp-page="/Events/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                 <i class="material-icons">event</i>
                                 <span>Events</span>
@@ -223,13 +213,13 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
                         </li>
                         @if (Context.Request.Query["EventID"].ToString() != String.Empty)
                         {
-                            <li @(@Context.Request.Path.Value.Contains("/OfficialMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                            <li @(RequestPath.Contains("/OfficialMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                 <a asp-page="/OfficialMatches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                     <i class="material-icons">flag</i>
                                     <span>Official Matches</span>
                                 </a>
                             </li>
-                            <li @(@Context.Request.Path.Value.Contains("/Teams") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                            <li @(RequestPath.Contains("/Teams") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                 <a asp-page="/Teams/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                     <i class="material-icons">people</i>
                                     <span>Teams</span>
@@ -237,7 +227,7 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
                             </li>
                             @if (Context.Request.Query["TeamID"].ToString() != String.Empty)
                             {
-                                <li @(@Context.Request.Path.Value.Contains("/ScoutedMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                                <li @(RequestPath.Contains("/ScoutedMatches") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                                     <a asp-page="/ScoutedMatches/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                                         <i class="material-icons">flag</i>
                                         <span>Scouted Matches</span>
@@ -248,13 +238,13 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
                         }
                     }
                     <li class="header">Help</li>
-                    <li @(@Context.Request.Path.Value.Contains("/Docs") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                    <li @(RequestPath.Contains("/Docs") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                         <a asp-page="/Docs/Index" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                             <i class="material-icons">book</i>
                             <span>Documentation</span>
                         </a>
                     </li>
-                    <li @(@Context.Request.Path.Value.Contains("/Legal") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
+                    <li @(RequestPath.Contains("/Legal") ? Html.Raw("class=\"active\"") : Html.Raw(""))>
                         <a asp-page="/Legal" asp-route-EventID="@Context.Request.Query["EventID"].ToString()" asp-route-TeamID="@Context.Request.Query["TeamID"].ToString()">
                             <i class="material-icons">ballot</i>
                             <span>Legal</span>
@@ -288,6 +278,12 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
 
+    <!-- Page loader animation for exit -->
+    <script>
+        $(window).on("beforeunload", function() {
+  $('.page-loader-wrapper-custom').animate({ height: "100%" });
+});
+    </script>
     <!-- Bootstrap Core Js -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
 
@@ -313,16 +309,18 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
 
     <!-- Form persistance plugin -->
     <script src="/vendor/sisyphus.js/sisyphus.min.js"></script>
-    <script>var s_config = {
-				customKeySuffix: '-SavedFormData',
-				timeout: 0,
-				locationBased: true,
-				autoRelease: true
-			}
+    <script>
+        var s_config = {
+            customKeySuffix: '-SavedFormData',
+            timeout: 0,
+            locationBased: true,
+            autoRelease: true
+        }
         $('form').sisyphus(s_config);
     </script>
 
-    <!-- Web App Service Worker-->
+    <!-- Web App Service Worker -->
+    @if (User.Identity.IsAuthenticated) {
     <script async>
         if ("serviceWorker" in navigator) {
             if (navigator.serviceWorker.controller) {
@@ -339,6 +337,7 @@ cursor: pointer;" href="javascript:history.go(0)"><i class="material-icons">refr
             }
         }
     </script>
+    }
 
     @RenderSection("Scripts", false)
 </body>

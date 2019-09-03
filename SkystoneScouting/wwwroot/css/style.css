@@ -8572,7 +8572,7 @@ fieldset[disabled] .form-control {
     right: 0;
     width: 100%;
     height: 100%;
-    background: #eee;
+    background: #ddd;
     overflow: hidden;
     text-align: center;
 }
@@ -8589,6 +8589,19 @@ fieldset[disabled] .form-control {
         top: calc(50% - 30px);
     }
 
+.page-loader-wrapper-custom {
+    z-index: 99999999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: #1d4294;
+    overflow: hidden;
+    text-align: center;
+}
 /* Preloaders ================================== */
 .md-preloader .pl-red {
     stroke: #F44336;
