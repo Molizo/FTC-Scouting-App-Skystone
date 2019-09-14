@@ -78,6 +78,9 @@ namespace SkystoneScouting.Services
         public static int ComputeScoutedMatchScore(ScoutedMatch ScoutedMatch)
         {
             int score = 0;
+            if (ScoutedMatch.Auto_BuildingFoundationReposition)
+                score += 10;
+
             score -= Convert.ToInt32(ScoutedMatch.MinorPenalties) * 10;
             score -= Convert.ToInt32(ScoutedMatch.MajorPenalties) * 50;
             return score;

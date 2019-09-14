@@ -7,6 +7,22 @@ namespace SkystoneScouting.Models
     {
         #region Public Properties
 
+        public bool Auto_BuildingFoundationReposition { get; set; }
+
+        public int Auto_DeliveredSkystones { get; set; }
+
+        public int Auto_DeliveredStones { get; set; }
+
+        public string Auto_Description { get; set; }
+
+        public bool Auto_NavigatedUnderSkybridge { get; set; }
+
+        public int Auto_PlacedStones { get; set; }
+
+        public int Auto_StonesDeliveredUnderAllianceSkybridge { get; set; }
+
+        public int Auto_TimeToComplete { get; set; }
+
         [Display(Name = "Average points")]
         public double? AvgPTS { get; set; }
 
@@ -46,6 +62,16 @@ namespace SkystoneScouting.Models
 
         [Display(Name = "Team ID")]
         public string TeamNumber { get; set; }
+
+        public int TeleOP_BuildingPlatformReposition { get; set; }
+        public int TeleOP_CapstoneLevel { get; set; }
+        public string TeleOP_Description { get; set; }
+        public bool TeleOP_HasPlacedCapstone { get; set; }
+        public int TeleOP_NumberOfSkyscrapers { get; set; }
+        public int TeleOP_NumberOfStonesPlaced { get; set; }
+        public bool TeleOP_ParkedInBuildingSite { get; set; }
+        public int TeleOP_SkyscraperLevel { get; set; }
+        public int TeleOP_StonesDeliveredUnderAllianceSkybridge { get; set; }
 
         #endregion Public Properties
     }

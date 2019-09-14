@@ -11,8 +11,8 @@ namespace SkystoneScouting.Models
 
     public enum StartingPosition
     {
-        One,
-        Two
+        Left,
+        Right
     }
 
     public class ScoutedMatch
@@ -21,6 +21,14 @@ namespace SkystoneScouting.Models
 
         public Alliance Alliance { get; set; }
 
+        public bool Auto_BuildingFoundationReposition { get; set; }
+        public int Auto_DeliveredSkystones { get; set; }
+        public int Auto_DeliveredStones { get; set; }
+        public string Auto_Description { get; set; }
+        public bool Auto_NavigatedUnderSkybridge { get; set; }
+        public int Auto_PlacedStones { get; set; }
+        public int Auto_StonesDeliveredUnderAllianceSkybridge { get; set; }
+        public int Auto_TimeToComplete { get; set; }
         public string Description { get; set; }
         public bool HumanPlayer { get; set; }
 
@@ -37,6 +45,15 @@ namespace SkystoneScouting.Models
         public int Score { get; set; }
         public StartingPosition StartingPosition { get; set; }
         public string TeamID { get; set; }
+        public int TeleOP_BuildingPlatformReposition { get; set; }
+        public int TeleOP_CapstoneLevel { get; set; }
+        public string TeleOP_Description { get; set; }
+        public bool TeleOP_HasPlacedCapstone { get; set; }
+        public int TeleOP_NumberOfSkyscrapers { get; set; }
+        public int TeleOP_NumberOfStonesPlaced { get; set; }
+        public bool TeleOP_ParkedInBuildingSite { get; set; }
+        public int TeleOP_SkyscraperLevel { get; set; }
+        public int TeleOP_StonesDeliveredUnderAllianceSkybridge { get; set; }
 
         #endregion Public Properties
     }
