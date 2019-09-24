@@ -75,6 +75,52 @@ namespace SkystoneScouting.Services
             return Teams;
         }
 
+        public static int ComputedTeamScore(Team Team)
+        {
+            int score = 0;
+            //AUTO
+            if (Team.Auto_Stone1Type == DeliveredStoneType.Stone)
+                score += 2;
+            else if (Team.Auto_Stone1Type == DeliveredStoneType.Skystone)
+                score += 10;
+            if (Team.Auto_Stone2Type == DeliveredStoneType.Stone)
+                score += 2;
+            else if (Team.Auto_Stone2Type == DeliveredStoneType.Skystone)
+                score += 10;
+            if (Team.Auto_Stone3Type != DeliveredStoneType.None)
+                score += 2;
+            if (Team.Auto_Stone4Type != DeliveredStoneType.None)
+                score += 2;
+            if (Team.Auto_Stone5Type != DeliveredStoneType.None)
+                score += 2;
+            if (Team.Auto_Stone6Type != DeliveredStoneType.None)
+                score += 2;
+            score += Team.Auto_StonesPlaced * 4;
+            score -= Team.Auto_StonesRetured * 2;
+            if (Team.Auto_FirstReturnedStoneType == DeliveredStoneType.Skystone)
+                score -= 8;
+            if (Team.Auto_FoundationRepositioned)
+                score += 10;
+            if (Team.Auto_RobotNavigated)
+                score += 5;
+            //TELEOP
+            score += Team.TeleOP_StonesDelivered;
+            score -= Team.TeleOP_StonesReturned;
+            score += Team.TeleOP_StonesPlaced;
+            score += Team.TeleOP_MaximumReachableHeight * 2;
+            //ENDGAME
+            if (Team.EndGame_CapstonePlaced)
+            {
+                score += 5;
+                score += Team.EndGame_CapstoneHeight;
+            }
+            if (Team.EndGame_FoundationMoved)
+                score += 15;
+            if (Team.EndGame_RobotParked)
+                score += 5;
+            return score;
+        }
+
         public static int ComputeScoutedMatchScore(ScoutedMatch ScoutedMatch)
         {
             int score = 0;

@@ -58,6 +58,7 @@ namespace SkystoneScouting.Pages.Teams
             }
 
             Team.EventID = EventID;
+            Team.ExpPTS = Services.CalculateTeamMetrics.ComputedTeamScore(Team);
             _context.Team.Add(Team);
             await _context.SaveChangesAsync();
 

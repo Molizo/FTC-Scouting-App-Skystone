@@ -66,6 +66,7 @@ namespace SkystoneScouting.Pages.Teams
                 return Page();
             }
 
+            Team.ExpPTS = Services.CalculateTeamMetrics.ComputedTeamScore(Team);
             _context.Attach(Team).State = EntityState.Modified;
 
             try

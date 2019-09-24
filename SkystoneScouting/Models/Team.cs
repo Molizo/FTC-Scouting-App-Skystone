@@ -3,25 +3,30 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SkystoneScouting.Models
 {
+    public enum DeliveredStoneType
+    {
+        None,
+        Stone,
+        Skystone
+    }
+
     public class Team
     {
         #region Public Properties
 
-        public bool Auto_BuildingFoundationReposition { get; set; }
+        public DeliveredStoneType Auto_FirstReturnedStoneType { get; set; }
+        public bool Auto_FoundationRepositioned { get; set; }
+        public bool Auto_RobotNavigated { get; set; }
+        public DeliveredStoneType Auto_Stone1Type { get; set; }
+        public DeliveredStoneType Auto_Stone2Type { get; set; }
+        public DeliveredStoneType Auto_Stone3Type { get; set; }
+        public DeliveredStoneType Auto_Stone4Type { get; set; }
+        public DeliveredStoneType Auto_Stone5Type { get; set; }
+        public DeliveredStoneType Auto_Stone6Type { get; set; }
 
-        public int Auto_DeliveredSkystones { get; set; }
+        public int Auto_StonesPlaced { get; set; }
 
-        public int Auto_DeliveredStones { get; set; }
-
-        public string Auto_Description { get; set; }
-
-        public bool Auto_NavigatedUnderSkybridge { get; set; }
-
-        public int Auto_PlacedStones { get; set; }
-
-        public int Auto_StonesDeliveredUnderAllianceSkybridge { get; set; }
-
-        public int Auto_TimeToComplete { get; set; }
+        public int Auto_StonesRetured { get; set; }
 
         [Display(Name = "Average points")]
         public double? AvgPTS { get; set; }
@@ -42,6 +47,10 @@ namespace SkystoneScouting.Models
         [Display(Name = "DPR")]
         public double? DPR { get; set; }
 
+        public int EndGame_CapstoneHeight { get; set; }
+        public bool EndGame_CapstonePlaced { get; set; }
+        public bool EndGame_FoundationMoved { get; set; }
+        public bool EndGame_RobotParked { get; set; }
         public string EventID { get; set; }
 
         [Display(Name = "Expected points")]
@@ -63,15 +72,10 @@ namespace SkystoneScouting.Models
         [Display(Name = "Team ID")]
         public string TeamNumber { get; set; }
 
-        public int TeleOP_BuildingPlatformReposition { get; set; }
-        public int TeleOP_CapstoneLevel { get; set; }
-        public string TeleOP_Description { get; set; }
-        public bool TeleOP_HasPlacedCapstone { get; set; }
-        public int TeleOP_NumberOfSkyscrapers { get; set; }
-        public int TeleOP_NumberOfStonesPlaced { get; set; }
-        public bool TeleOP_ParkedInBuildingSite { get; set; }
-        public int TeleOP_SkyscraperLevel { get; set; }
-        public int TeleOP_StonesDeliveredUnderAllianceSkybridge { get; set; }
+        public int TeleOP_MaximumReachableHeight { get; set; }
+        public int TeleOP_StonesDelivered { get; set; }
+        public int TeleOP_StonesPlaced { get; set; }
+        public int TeleOP_StonesReturned { get; set; }
 
         #endregion Public Properties
     }

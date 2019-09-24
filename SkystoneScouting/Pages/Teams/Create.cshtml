@@ -30,7 +30,7 @@
 
 <form method="post">
     <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
             <div class="card">
                 <div class="header">
                     <h2>
@@ -41,8 +41,8 @@
                 <div class="body">
                     <div class="row clearfix">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="col-sm-3">
-                            <h2 class="card-inside-title">What is the number of this team?</h2>
+                        <div class="col-sm-4">
+                            <h2 class="card-inside-title">Team Number</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <input asp-for="Team.TeamNumber" class="form-control">
@@ -50,8 +50,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-9">
-                            <h2 class="card-inside-title">How does this team like to be called?</h2>
+                        <div class="col-sm-8">
+                            <h2 class="card-inside-title">Team Name</h2>
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <input asp-for="Team.TeamName" class="form-control">
@@ -68,42 +68,222 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="card">
-                <div class="header">
-                    <h2>
-                        ROBOT INFO
-                        <small>How does this team's robot look?</small>
-                    </h2>
-                </div>
-                <div class="body">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row clearfix">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="card">
-                <div class="header">
-                    <h2>
-                        DESCRIPTION
-                        <small>Team &amp; Robot description</small>
-                    </h2>
-                </div>
-                <div class="body">
-                    <div class="row clearfix">
                         <div class="col-sm-12">
                             <h2 class="card-inside-title">Anything to add?</h2>
                             <div class="form-group form-group">
                                 <div class="form-line">
                                     <textarea asp-for="Team.Description" rows="1" class="form-control no-resize auto-growth" style="overflow: hidden; overflow-wrap: break-word; height: 66px;" autocomplete="off"></textarea>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        AUTONOMOUS INFO
+                        <small>Info about the robot in the autonomous period</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Stone 1</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="Team.Auto_Stone1Type" class="form-control">
+                                        <option value="@Models.DeliveredStoneType.None">None / Other team</option>
+                                        <option value="@Models.DeliveredStoneType.Stone">Stone</option>
+                                        <option value="@Models.DeliveredStoneType.Skystone">Skystone</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Stone 2</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="Team.Auto_Stone2Type" class="form-control">
+                                        <option value="@Models.DeliveredStoneType.None">None / Other team</option>
+                                        <option value="@Models.DeliveredStoneType.Stone">Stone</option>
+                                        <option value="@Models.DeliveredStoneType.Skystone">Skystone</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Stone 3</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="Team.Auto_Stone3Type" class="form-control">
+                                        <option value="@Models.DeliveredStoneType.None">None / Other team</option>
+                                        <option value="@Models.DeliveredStoneType.Stone">Stone</option>
+                                        <option value="@Models.DeliveredStoneType.Skystone">Skystone</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Stone 4</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="Team.Auto_Stone4Type" class="form-control">
+                                        <option value="@Models.DeliveredStoneType.None">None / Other team</option>
+                                        <option value="@Models.DeliveredStoneType.Stone">Stone</option>
+                                        <option value="@Models.DeliveredStoneType.Skystone">Skystone</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Stone 5</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="Team.Auto_Stone5Type" class="form-control">
+                                        <option value="@Models.DeliveredStoneType.None">None / Other team</option>
+                                        <option value="@Models.DeliveredStoneType.Stone">Stone</option>
+                                        <option value="@Models.DeliveredStoneType.Skystone">Skystone</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Stone 6</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="Team.Auto_Stone6Type" class="form-control">
+                                        <option value="@Models.DeliveredStoneType.None">None / Other team</option>
+                                        <option value="@Models.DeliveredStoneType.Stone">Stone</option>
+                                        <option value="@Models.DeliveredStoneType.Skystone">Skystone</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <h2 class="card-inside-title"># Stones placed</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.Auto_StonesPlaced" class="form-control">
+                                    <label class="form-label">Stones placed</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title"># Stones returned</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.Auto_StonesRetured" class="form-control">
+                                    <label class="form-label">Stones returned</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" id="firstStoneReturned">
+                            <h2 class="card-inside-title">1st Returned stone type</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <select asp-for="Team.Auto_FirstReturnedStoneType" class="form-control">
+                                        <option value="@Models.DeliveredStoneType.None">None</option>
+                                        <option value="@Models.DeliveredStoneType.Stone">Stone</option>
+                                        <option value="@Models.DeliveredStoneType.Skystone">Skystone</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Foundation repositioned</h2>
+                            <div class="form-group form-float">
+                                <input asp-for="Team.Auto_FoundationRepositioned" type="checkbox" id="foundationRepositionedAuto" class="filled-in chk-col-blue">
+                                <label for="foundationRepositionedAuto">Foundation repositioned</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Robot navigated</h2>
+                            <div class="form-group form-float">
+                                <input asp-for="Team.Auto_RobotNavigated" type="checkbox" id="robotNavigated" class="filled-in chk-col-blue">
+                                <label for="robotNavigated">Robot navigated</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        TELEOP INFO
+                        <small>Info about the robot in the TeleOP period</small>
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title"># Stones placed</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.TeleOP_StonesPlaced" class="form-control">
+                                    <label class="form-label">Stones placed</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title"># Stones delivered</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.TeleOP_StonesDelivered" class="form-control">
+                                    <label class="form-label">Stones delivered</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title"># Stones returned</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.TeleOP_StonesReturned" class="form-control">
+                                    <label class="form-label">Stones returned</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Max height</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.TeleOP_MaximumReachableHeight" class="form-control">
+                                    <label class="form-label">Max height</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Capstone Placed</h2>
+                            <div class="form-group form-float">
+                                <input asp-for="Team.EndGame_CapstonePlaced" type="checkbox" id="capstonePlaced" class="filled-in chk-col-blue">
+                                <label for="capstonePlaced">Capstone Placed</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Capstone height</h2>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input asp-for="Team.EndGame_CapstoneHeight" class="form-control">
+                                    <label class="form-label">Capstone height</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Foundation moved</h2>
+                            <div class="form-group form-float">
+                                <input asp-for="Team.EndGame_FoundationMoved" type="checkbox" id="foundationMovedEnd" class="filled-in chk-col-blue">
+                                <label for="foundationMovedEnd">Foundation moved</label>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <h2 class="card-inside-title">Robot parked</h2>
+                            <div class="form-group form-float">
+                                <input asp-for="Team.EndGame_RobotParked" type="checkbox" id="robotParked" class="filled-in chk-col-blue">
+                                <label for="robotParked">Robot parked</label>
                             </div>
                         </div>
                     </div>
@@ -133,4 +313,5 @@
         // Call the update method to recalculate the size:
         autosize.update(ta);
     </script>
+
 }
