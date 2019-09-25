@@ -85,7 +85,6 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <select asp-for="OfficialMatch.Red1TeamID" class="form-control">
-                                        <option value="null">Select team</option>
                                         @foreach (var Team in Model.AuthorizedTeams)
                                         {
                                             <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
@@ -104,7 +103,6 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <select asp-for="OfficialMatch.Red2TeamID" class="form-control">
-                                        <option value="null">Select team</option>
                                         @foreach (var Team in Model.AuthorizedTeams)
                                         {
                                             <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
@@ -146,7 +144,6 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <select asp-for="OfficialMatch.Blue1TeamID" class="form-control">
-                                        <option value="null">Select team</option>
                                         @foreach (var Team in Model.AuthorizedTeams)
                                         {
                                             <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>
@@ -165,7 +162,6 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <select asp-for="OfficialMatch.Blue2TeamID" class="form-control">
-                                        <option value="null">Select team</option>
                                         @foreach (var Team in Model.AuthorizedTeams)
                                         {
                                             <option value="@Team.ID">@Team.TeamNumber | @Team.TeamName</option>

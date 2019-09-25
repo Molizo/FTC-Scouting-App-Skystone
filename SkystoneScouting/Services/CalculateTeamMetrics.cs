@@ -124,11 +124,49 @@ namespace SkystoneScouting.Services
         public static int ComputeScoutedMatchScore(ScoutedMatch ScoutedMatch)
         {
             int score = 0;
-            if (ScoutedMatch.Auto_BuildingFoundationReposition)
+            //AUTO
+            if (ScoutedMatch.Auto_Stone1Type == DeliveredStoneType.Stone)
+                score += 2;
+            else if (ScoutedMatch.Auto_Stone1Type == DeliveredStoneType.Skystone)
                 score += 10;
+            if (ScoutedMatch.Auto_Stone2Type == DeliveredStoneType.Stone)
+                score += 2;
+            else if (ScoutedMatch.Auto_Stone2Type == DeliveredStoneType.Skystone)
+                score += 10;
+            if (ScoutedMatch.Auto_Stone3Type != DeliveredStoneType.None)
+                score += 2;
+            if (ScoutedMatch.Auto_Stone4Type != DeliveredStoneType.None)
+                score += 2;
+            if (ScoutedMatch.Auto_Stone5Type != DeliveredStoneType.None)
+                score += 2;
+            if (ScoutedMatch.Auto_Stone6Type != DeliveredStoneType.None)
+                score += 2;
+            score += ScoutedMatch.Auto_StonesPlaced * 4;
+            score -= ScoutedMatch.Auto_StonesRetured * 2;
+            if (ScoutedMatch.Auto_FirstReturnedStoneType == DeliveredStoneType.Skystone)
+                score -= 8;
+            if (ScoutedMatch.Auto_FoundationRepositioned)
+                score += 10;
+            if (ScoutedMatch.Auto_RobotNavigated)
+                score += 5;
+            //TELEOP
+            score += ScoutedMatch.TeleOP_StonesDelivered;
+            score -= ScoutedMatch.TeleOP_StonesReturned;
+            score += ScoutedMatch.TeleOP_StonesPlaced;
+            score += ScoutedMatch.TeleOP_TallestSkyscraperHeight * 2;
+            //ENDGAME
+            if (ScoutedMatch.EndGame_CapstonePlaced)
+            {
+                score += 5;
+                score += ScoutedMatch.EndGame_CapstoneHeight;
+            }
+            if (ScoutedMatch.EndGame_FoundationMoved)
+                score += 15;
+            if (ScoutedMatch.EndGame_RobotParked)
+                score += 5;
 
-            score -= Convert.ToInt32(ScoutedMatch.MinorPenalties) * 10;
-            score -= Convert.ToInt32(ScoutedMatch.MajorPenalties) * 50;
+            score -= Convert.ToInt32(ScoutedMatch.MinorPenalties) * 5;
+            score -= Convert.ToInt32(ScoutedMatch.MajorPenalties) * 20;
             return score;
         }
 

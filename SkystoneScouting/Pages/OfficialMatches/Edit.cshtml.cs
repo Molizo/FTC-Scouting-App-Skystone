@@ -82,7 +82,7 @@ namespace SkystoneScouting.Pages.OfficialMatches
             if (EventID == null || OfficialMatchID == null)
                 return NotFound();
 
-            if (!ModelState.IsValid && OfficialMatch.Red1TeamID != null && OfficialMatch.Red2TeamID != null && OfficialMatch.Blue1TeamID != null && OfficialMatch.Blue2TeamID != null)
+            if (!ModelState.IsValid)
             {
                 return Page();
             }

@@ -67,7 +67,7 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "User created a new account with password");
+                    //_ = Services.Logging.LogUserActivity(_context, Input.Username, "User created a new account with password");
                     //_logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

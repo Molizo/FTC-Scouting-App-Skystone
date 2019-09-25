@@ -124,9 +124,6 @@ else
                                     <th>
                                         SCORE
                                     </th>
-                                    <th class="hidden-mobile">
-                                        START POS
-                                    </th>
                                     <th class="hidden-mobile" style="width:50px;">
                                         HP
                                     </th>
@@ -150,13 +147,7 @@ else
                                 {
                                     <tr @(Match.Alliance == Models.Alliance.Red ? Html.Raw("style=\"background-color: rgba(255,82,82,.13);\"") : Html.Raw("style=\"background-color:rgba(68,138,255,.13);\""))>
                                         <td>
-                                            @Match.MatchNumber
-                                        </td>
-                                        <td>
                                             @Match.Score
-                                        </td>
-                                        <td class="hidden-mobile">
-                                            @Match.StartingPosition
                                         </td>
                                         <td class="hidden-mobile">
                                             @if (Match.HumanPlayer)
@@ -230,9 +221,6 @@ else
                                         SCORE
                                     </th>
 
-                                    <th class="hidden-mobile">
-                                        START POS
-                                    </th>
                                     <th class="hidden-mobile" style="width:50px;">
                                         HP
                                     </th>
@@ -260,9 +248,6 @@ else
                                         </td>
                                         <td>
                                             @Match.Score
-                                        </td>
-                                        <td class="hidden-mobile">
-                                            @Match.StartingPosition
                                         </td>
                                         <td class="hidden-mobile">
                                             @if (Match.HumanPlayer)
@@ -336,9 +321,6 @@ else
                                         SCORE
                                     </th>
 
-                                    <th class="hidden-mobile">
-                                        START POS
-                                    </th>
                                     <th class="hidden-mobile" style="width:50px;">
                                         HP
                                     </th>
@@ -366,9 +348,6 @@ else
                                         </td>
                                         <td>
                                             @Match.Score
-                                        </td>
-                                        <td class="hidden-mobile">
-                                            @Match.StartingPosition
                                         </td>
                                         <td class="hidden-mobile">
                                             @if (Match.HumanPlayer)
@@ -442,9 +421,6 @@ else
                                         SCORE
                                     </th>
 
-                                    <th class="hidden-mobile">
-                                        START POS
-                                    </th>
                                     <th class="hidden-mobile" style="width:50px;">
                                         HP
                                     </th>
@@ -472,9 +448,6 @@ else
                                         </td>
                                         <td>
                                             @Match.Score
-                                        </td>
-                                        <td class="hidden-mobile">
-                                            @Match.StartingPosition
                                         </td>
                                         <td class="hidden-mobile">
                                             @if (Match.HumanPlayer)

@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
+using RestSharp;
+using RestSharp.Authenticators;
 using SendGrid;
 using SendGrid.Helpers.Mail;
+using System;
 using System.Threading.Tasks;
 
 namespace SkystoneScouting.Services
@@ -27,12 +30,31 @@ namespace SkystoneScouting.Services
 
         #region Public Methods
 
-        public Task Execute(string apiKey, string subject, string message, string email)
+        public Task ExecuteMailgun(string subject, string message, string email)
         {
-            var client = new SendGridClient(apiKey);
+            RestClient client = new RestClient();
+            client.BaseUrl = new Uri("https://api.eu.mailgun.net/v3");
+            client.Authenticator =
+                new HttpBasicAuthenticator("api",
+                                            "key-5489b57d643818a966b73aeb43befe79");
+            RestRequest request = new RestRequest();
+            request.AddParameter("domain", "mg.qrobotics.eu", ParameterType.UrlSegment);
+            request.Resource = "{domain}/messages";
+            request.AddParameter("from", "FTC Scouting App <noreply@qrobotics.eu>");
+            request.AddParameter("to", email);
+            request.AddParameter("subject", subject);
+            request.AddParameter("html", message);
+            request.Method = Method.POST;
+            client.Execute(request);
+            return Task.FromResult(0);
+        }
+
+        public Task ExecuteSendgrid(string subject, string message, string email)
+        {
+            var client = new SendGridClient(Options.SendGridKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("mihnea@qrobotics.eu", "FTC Scouting App"),
+                From = new EmailAddress("noreply@qrobotics.eu", "FTC Scouting App"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
@@ -48,7 +70,8 @@ namespace SkystoneScouting.Services
 
         public Task SendEmailAsync(string email, string subject, string message)
         {
-            return Execute(Options.SendGridKey, subject, message, email);
+            //return ExecuteSendgrid(Options.SendGridKey, subject, message, email);
+            return ExecuteMailgun(subject, message, email);
         }
 
         #endregion Public Methods

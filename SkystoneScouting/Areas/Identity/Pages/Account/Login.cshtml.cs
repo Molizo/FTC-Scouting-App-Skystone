@@ -78,24 +78,24 @@ namespace SkystoneScouting.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "User authenticated");
+                    //_ = Services.Logging.LogUserActivity(_context, Input.Username, "User authenticated");
                     //_logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "User awaiting auth with 2FA");
+                    //_ = Services.Logging.LogUserActivity(_context, Input.Username, "User awaiting auth with 2FA");
                     return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {
-                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "User locked out during login");
+                    //_ = Services.Logging.LogUserActivity(_context, Input.Username, "User locked out during login");
                     //_logger.LogWarning("User account locked out.");
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
-                    _ = Services.Logging.LogUserActivity(_context, Input.Username, "Invalid login attempt");
+                    //_ = Services.Logging.LogUserActivity(_context, Input.Username, "Invalid login attempt");
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }

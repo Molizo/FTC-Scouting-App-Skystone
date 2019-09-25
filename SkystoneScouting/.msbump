@@ -7,9 +7,9 @@
     },
 
     "Release": {
-      "BumpMinor": true,
-      "ResetPatch": true,
-      "ResetLabel": true
+      "BumpMinor": false,
+      "ResetPatch": false,
+      "ResetLabel": false
     }
   }
 }
