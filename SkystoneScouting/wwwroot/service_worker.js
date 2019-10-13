@@ -1,4 +1,4 @@
-﻿const CACHE = "ftcscoutingapp";
+﻿const CACHE = "ftcscoutingapp-v.1.16.3";
 
 const offlineFallbackPage = "/error/offline.html";
 
@@ -50,7 +50,6 @@ self.addEventListener("install", function (event) {
         })
     );
 });
-
 
 // If any fetch fails, it will show the offline page.
 self.addEventListener("fetch", function (event) {

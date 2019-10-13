@@ -39,6 +39,8 @@ namespace SkystoneScouting.Pages.OfficialMatches
         public IList<OfficialMatch> QualificationsOfficialMatches { get; set; }
         public IList<OfficialMatch> SemifinalsOfficialMatches { get; set; }
 
+        public int TeamCount { get; set; }
+
         #endregion Public Properties
 
         #region Public Methods
@@ -66,6 +68,7 @@ namespace SkystoneScouting.Pages.OfficialMatches
             int BestRedScore = AuthorizedOfficialMatches.Max(m => m.RedScore).GetValueOrDefault();
             int BestBlueScore = AuthorizedOfficialMatches.Max(m => m.BlueScore).GetValueOrDefault();
             BestScore = System.Math.Max(BestRedScore, BestBlueScore);
+            TeamCount = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).CountAsync();
 
             try
             {

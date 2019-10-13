@@ -30,6 +30,7 @@ namespace SkystoneScouting.Pages
 
         public string eventID { get; set; }
 
+        public string EventName { get; set; }
         public Stats stats { get; set; }
 
         #endregion Public Properties
@@ -43,6 +44,7 @@ namespace SkystoneScouting.Pages
             if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
                 return Forbid();
 
+            EventName = _context.Event.Find(EventID).Name;
             stats = new Stats();
             eventID = EventID;
 

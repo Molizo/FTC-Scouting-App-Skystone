@@ -6,7 +6,7 @@
 
 <div class="block-header">
     <h2 style="font-weight:bolder;">
-        Dashboard
+        @Model.EventName Dashboard
     </h2>
     <ol class="breadcrumb">
         <li class="active">
@@ -70,95 +70,95 @@
         </div>
     </div>
 </div>
-@if(Model.stats.NrOfTeams != 0)
+@if (Model.stats.NrOfTeams != 0)
 {
-<div class="row clearfix">
-    @if (Model.stats.TopOPRTeams.First().OPR != null)
-    {
-        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">trending_up</i>
-                </div>
-                <div class="content">
-                    <div class="text">OPR team</div>
-                    <div class="number">
-                        @Model.stats.TopOPRTeams.First().TeamNumber
+    <div class="row clearfix">
+        @if (Model.stats.TopOPRTeams.First().OPR != null)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">OPR team</div>
+                        <div class="number">
+                            @Model.stats.TopOPRTeams.First().TeamNumber
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">trending_up</i>
-                </div>
-                <div class="content">
-                    <div class="text">DPR team</div>
-                    <div class="number">
-                        @Model.stats.TopDPRTeams.First().TeamNumber
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">DPR team</div>
+                        <div class="number">
+                            @Model.stats.TopDPRTeams.First().TeamNumber
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">trending_up</i>
-                </div>
-                <div class="content">
-                    <div class="text">CCWM team</div>
-                    <div class="number">
-                        @Model.stats.TopCCWMTeams.First().TeamNumber
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">CCWM team</div>
+                        <div class="number">
+                            @Model.stats.TopCCWMTeams.First().TeamNumber
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-    @if (Model.stats.TopRPTeams.First().AvgRP != null)
-    {
-        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">trending_up</i>
-                </div>
-                <div class="content">
-                    <div class="text">RP team</div>
-                    <div class="number">
-                        @Model.stats.TopRPTeams.First().TeamNumber
+        }
+        @if (Model.stats.TopRPTeams.First().AvgRP != null)
+        {
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">RP team</div>
+                        <div class="number">
+                            @Model.stats.TopRPTeams.First().TeamNumber
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">trending_up</i>
-                </div>
-                <div class="content">
-                    <div class="text">TBP team</div>
-                    <div class="number">
-                        @Model.stats.TopTBPTeams.First().TeamNumber
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">TBP team</div>
+                        <div class="number">
+                            @Model.stats.TopTBPTeams.First().TeamNumber
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }@if (Model.stats.TopAvgPTSTeams.First().AvgPTS != null)
-    {
+        }@if (Model.stats.TopAvgPTSTeams.First().AvgPTS != null)
+        {
 
-        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
-            <div class="info-box bg-orange hover-expand-effect">
-                <div class="icon">
-                    <i class="material-icons">trending_up</i>
-                </div>
-                <div class="content">
-                    <div class="text">AVG team</div>
-                    <div class="number">
-                        @Model.stats.TopAvgPTSTeams.First().TeamNumber
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="info-box bg-orange hover-expand-effect">
+                    <div class="icon">
+                        <i class="material-icons">trending_up</i>
+                    </div>
+                    <div class="content">
+                        <div class="text">AVG team</div>
+                        <div class="number">
+                            @Model.stats.TopAvgPTSTeams.First().TeamNumber
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
 }

@@ -23,6 +23,13 @@
     </ol>
 </div>
 
+@if (Model.TeamCount < 4)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        You cannot add matches until you have added at least 4 teams
+    </div>
+}
+
 @if (Model.AuthorizedOfficialMatches.Count() == 0)
 {
     <div class="row clearfix">
@@ -43,7 +50,6 @@
 }
 else
 {
-
     <div class="row clearfix hidden-mobile">
         <div class="col-lg-3 col-md-3 col-sm-3 col-sm-3">
             <div class="info-box bg-blue hover-expand-effect">
@@ -548,10 +554,12 @@ else
     }
 }
 
-<a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position:fixed; right:35px; bottom:35px;" asp-page="Create" asp-route-EventID="@Model.eventID">
-    <i class="material-icons">add</i>
-</a>
-
+@if (Model.TeamCount >= 4)
+{
+    <a class="btn btn-primary btn-circle-lg waves-effect waves-circle waves-float" style="position:fixed; right:35px; bottom:35px;" asp-page="Create" asp-route-EventID="@Model.eventID">
+        <i class="material-icons">add</i>
+    </a>
+}
 @section Scripts{
     <script>
         function createModal(Name, EventID, OfficialMatchID) {

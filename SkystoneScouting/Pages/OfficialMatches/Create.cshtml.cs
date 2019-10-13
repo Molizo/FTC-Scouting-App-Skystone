@@ -46,6 +46,8 @@ namespace SkystoneScouting.Pages.OfficialMatches
                 return NotFound();
             if (!AuthorizationCheck.Event(_context, EventID, User.Identity.Name))
                 return Forbid();
+            if (await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).CountAsync() < 4)
+                return Forbid();
 
             eventID = EventID;
             AuthorizedTeams = await _context.Team.AsNoTracking().Where(t => t.EventID == EventID).AsQueryable<Team>().OrderBy(s => s.TeamNumber.PadLeft(5)).ToListAsync();
