@@ -42,7 +42,7 @@
     "sisyphus.js": "1.1.3",
     "sweetalert": "2.1.2",
     "sw-offline-google-analytics": "1.1.1",
-    "tinymce": "5.1.2",
+    "tinymce": "5.1.5",
     "typeahead.js": "0.11.1"
   }
 }
